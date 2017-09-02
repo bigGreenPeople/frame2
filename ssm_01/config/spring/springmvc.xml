@@ -13,7 +13,7 @@
 	<!-- 扫描controller注解包 -->
 	<context:component-scan base-package="com.fj.controller"></context:component-scan>
 	<!-- 注解映射器和适配器 -->
-	<mvc:annotation-driven ></mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
 	<!-- 配置视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -21,5 +21,13 @@
 		<property name="prefix" value="/WEB-INF/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-		
+	<!-- 配置我们自定义的类型转换器 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<!-- 转换器 -->
+		<property name="converters">
+			<list>
+				<bean class="com.fj.converter.CustomDateConverter"></bean>
+			</list>
+		</property>
+	</bean>
 </beans>
