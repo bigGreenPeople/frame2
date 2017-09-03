@@ -15,5 +15,7 @@ public interface ItemsService {
 	public void saveItem(Integer id,ItemsCustom itemsCustom)throws Exception;
 	//批量删除商品
 	public void deleteAllItems(Integer[] item_id);
+	//批量修改信息
+	public void saveAllItems(ItemsQueryVo itemsQueryVo);
 	
 }

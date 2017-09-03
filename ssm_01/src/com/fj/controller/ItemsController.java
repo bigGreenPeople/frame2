@@ -84,9 +84,21 @@ public class ItemsController {
 	
 	//到批量修改界面
 	@RequestMapping("/editItemsQuery.action")
-	public String editItemsQuery(HttpServletRequest request,ItemsQueryVo itemsQueryVo) throws Exception{
+	public ModelAndView editItemsQuery(HttpServletRequest request,ItemsQueryVo itemsQueryVo) throws Exception{
+		List<ItemsCustom> list = iItemsService.findItemsList(itemsQueryVo);
 		
-		return "";
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("itemsList", list);
+		modelAndView.setViewName("editItemsQuery");
+		return modelAndView;
+	}
+	
+	//提交批量修改
+	@RequestMapping("/editItemsAllSubmit.action")
+	public String editItemsAllSubmit(ItemsQueryVo itemsQueryVo)throws Exception{
+		//修改的业务逻辑
+		iItemsService.saveAllItems(itemsQueryVo);
+		return "success";
 	}
 	
 }

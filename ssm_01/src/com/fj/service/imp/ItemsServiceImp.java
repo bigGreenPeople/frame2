@@ -57,4 +57,13 @@ public class ItemsServiceImp implements ItemsService {
 			itemsMapper.deleteByPrimaryKey(id);
 		}
 	}
+	//批量修改信息
+	@Override
+	public void saveAllItems(ItemsQueryVo itemsQueryVo) {
+		// TODO Auto-generated method stub
+		List<ItemsCustom> itemsList = itemsQueryVo.getItemsList();
+		for (ItemsCustom itemsCustom : itemsList) {
+			itemsMapper.updateByPrimaryKey(itemsCustom);
+		}
+	}
 }
