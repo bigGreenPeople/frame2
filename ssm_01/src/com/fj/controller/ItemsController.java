@@ -2,7 +2,11 @@ package com.fj.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fj.po.ItemsCustom;
+import com.fj.po.ItemsQueryVo;
 import com.fj.service.ItemsService;
 import com.fj.service.imp.ItemsServiceImp;
 
@@ -22,10 +27,11 @@ public class ItemsController {
 	@Autowired
 	private ItemsService iItemsService;
 	
+	//根据条件进行查询   如果查询为空默认查询所有商品
 	@RequestMapping("/queryItems.action")
-	public ModelAndView queryItems() throws Exception{
+	public ModelAndView queryItems(HttpServletRequest request,ItemsQueryVo itemsQueryVo) throws Exception{
 		
-		List<ItemsCustom> list = iItemsService.findItemsList(null);
+		List<ItemsCustom> list = iItemsService.findItemsList(itemsQueryVo);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("itemsList", list);
@@ -65,4 +71,22 @@ public class ItemsController {
 		//跳转到成功界面
 		return "success";
 	}
+	
+	//批量删除 
+	//Integer[] item_id 接受到form表单的item_id
+	@RequestMapping("/deleteitem.action")
+	public String deleteitem(Integer[] item_id) throws Exception{
+		//这里做批量删除的业务逻辑
+		iItemsService.deleteAllItems(item_id);
+		//请求转发到查询所有的商品
+		return "redirect:/item/queryItems.action";
+	}
+	
+	//到批量修改界面
+	@RequestMapping("/editItemsQuery.action")
+	public String editItemsQuery(HttpServletRequest request,ItemsQueryVo itemsQueryVo) throws Exception{
+		
+		return "";
+	}
+	
 }

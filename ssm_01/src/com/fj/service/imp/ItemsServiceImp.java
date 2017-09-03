@@ -49,4 +49,12 @@ public class ItemsServiceImp implements ItemsService {
 		itemsCustom.setId(id);
 		itemsMapper.updateByPrimaryKey(itemsCustom);
 	}
+	//ÅúÁ¿É¾³ý
+	@Override
+	public void deleteAllItems(Integer[] item_id) {
+		// TODO Auto-generated method stub
+		for (Integer id : item_id) {
+			itemsMapper.deleteByPrimaryKey(id);
+		}
+	}
 }

@@ -13,4 +13,7 @@ public interface ItemsService {
 	public ItemsCustom findItemById(Integer id)throws Exception;
 	//修改商品信息
 	public void saveItem(Integer id,ItemsCustom itemsCustom)throws Exception;
+	//批量删除商品
+	public void deleteAllItems(Integer[] item_id);
+	
 }
