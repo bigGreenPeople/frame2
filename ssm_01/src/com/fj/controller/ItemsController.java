@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,12 +72,17 @@ public class ItemsController {
 	 * method:指定方法只能被get和post访问
 	 * @Validated和BindingResult必须是成对出现(一前一后)
 	 * BindingResult是校检错误信息
+	 * 数据回显：
+	 * springmvc自动将形参中的pojo重新放回request域中
+	 * 如果key不是pojo的类名(首字母小写)，可以使用@ModelAttribute完成数据回显。
 	 * */
 	//@Validated(value={ValidGroup1.class})配置分组校验
 	@RequestMapping(value="/editItemSubmit.action",method={RequestMethod.GET,RequestMethod.POST})
-	public String editItemSubmit(Model model,Integer id,@Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult) throws Exception{
+	public String editItemSubmit(Model model,Integer id,@ModelAttribute("itemsCustom") @Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult) throws Exception{
 		//如果校检有错误
 		if(bindingResult.hasErrors()){
+			//数据回显
+			model.addAttribute("id", id);
 			model.addAttribute("errors",bindingResult);
 			//跳转回我们的界面
 			return "forward:editItem.action";
