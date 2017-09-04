@@ -51,4 +51,7 @@
  		<!-- 对资源文件的缓存时间,单位秒 -->
  		<property name="cacheSeconds" value="120"/>
  	</bean>
+ 	
+ 	<!-- 配置异常处理器 -->
+ 	<bean id="customExceptionResolver" class="com.fj.exception.CustomExceptionResolver"></bean>
 </beans>

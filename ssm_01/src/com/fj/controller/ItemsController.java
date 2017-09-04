@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fj.exception.CustomException;
 import com.fj.po.ItemsCustom;
 import com.fj.po.ItemsQueryVo;
 import com.fj.service.ItemsService;
@@ -36,6 +37,12 @@ public class ItemsController {
 	//根据条件进行查询   如果查询为空默认查询所有商品
 	@RequestMapping("/queryItems.action")
 	public ModelAndView queryItems(HttpServletRequest request,ItemsQueryVo itemsQueryVo) throws Exception{
+		
+		//异常测试
+		if(true){
+			throw new CustomException("异常测试");
+		}
+		
 		
 		List<ItemsCustom> list = iItemsService.findItemsList(itemsQueryVo);
 		
