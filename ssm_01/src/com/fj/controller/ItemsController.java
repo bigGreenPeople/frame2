@@ -4,11 +4,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +22,7 @@ import com.fj.po.ItemsCustom;
 import com.fj.po.ItemsQueryVo;
 import com.fj.service.ItemsService;
 import com.fj.service.imp.ItemsServiceImp;
+import com.fj.valid.ValidGroup1;
 
 @Controller
 //窄化请求映射
@@ -64,9 +69,18 @@ public class ItemsController {
 	//修改商品信息
 	/*
 	 * method:指定方法只能被get和post访问
+	 * @Validated和BindingResult必须是成对出现(一前一后)
+	 * BindingResult是校检错误信息
 	 * */
+	//@Validated(value={ValidGroup1.class})配置分组校验
 	@RequestMapping(value="/editItemSubmit.action",method={RequestMethod.GET,RequestMethod.POST})
-	public String editItemSubmit(Integer id,ItemsCustom itemsCustom) throws Exception{
+	public String editItemSubmit(Model model,Integer id,@Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult) throws Exception{
+		//如果校检有错误
+		if(bindingResult.hasErrors()){
+			model.addAttribute("errors",bindingResult);
+			//跳转回我们的界面
+			return "forward:editItem.action";
+		}
 		iItemsService.saveItem(id, itemsCustom);
 		//跳转到成功界面
 		return "success";
