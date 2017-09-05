@@ -2,26 +2,17 @@ package com.fj.po;
 
 import java.util.Date;
 
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.fj.valid.ValidGroup1;
-import com.fj.valid.ValidGroup2;
-
 public class Items {
     private Integer id;
 
     private Date createtime;
-    @NotEmpty(message="{item.price.notNull.erro}",groups={ValidGroup1.class})
+
     private String detail;
-    //商品名必须在1到30个字符
-    @Size(min=1,max=30,message="{item.name.length.erro}",groups={ValidGroup2.class})
+
     private String name;
 
-    private Float pic;
-    //商品的价格不能为空
-   
+    private String pic;
+
     private Float price;
 
     public Integer getId() {
@@ -56,12 +47,12 @@ public class Items {
         this.name = name == null ? null : name.trim();
     }
 
-    public Float getPic() {
+    public String getPic() {
         return pic;
     }
 
-    public void setPic(Float pic) {
-        this.pic = pic;
+    public void setPic(String pic) {
+        this.pic = pic == null ? null : pic.trim();
     }
 
     public Float getPrice() {

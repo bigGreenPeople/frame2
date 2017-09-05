@@ -1,6 +1,8 @@
 package com.fj.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fj.exception.CustomException;
@@ -39,9 +42,9 @@ public class ItemsController {
 	public ModelAndView queryItems(HttpServletRequest request,ItemsQueryVo itemsQueryVo) throws Exception{
 		
 		//异常测试
-		if(true){
-			throw new CustomException("异常测试");
-		}
+//		if(true){
+//			throw new CustomException("异常测试");
+//		}
 		
 		
 		List<ItemsCustom> list = iItemsService.findItemsList(itemsQueryVo);
@@ -85,7 +88,16 @@ public class ItemsController {
 	 * */
 	//@Validated(value={ValidGroup1.class})配置分组校验
 	@RequestMapping(value="/editItemSubmit.action",method={RequestMethod.GET,RequestMethod.POST})
-	public String editItemSubmit(Model model,Integer id,@ModelAttribute("itemsCustom") @Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult) throws Exception{
+	public String editItemSubmit(Model model,Integer id,@ModelAttribute("itemsCustom") @Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,BindingResult bindingResult,MultipartFile pictureFile) throws Exception{
+		//文件上传的代码
+		//源文件的名称
+		String pictureFile_name = pictureFile.getOriginalFilename();
+		//新文件的名称
+		String newFileName = UUID.randomUUID().toString()+pictureFile_name.substring(pictureFile_name.lastIndexOf("."));
+		//上传图片
+		File uploadPic = new File("D:/images/"+newFileName);
+		//向磁盘写文件
+		pictureFile.transferTo(uploadPic);
 		//如果校检有错误
 		if(bindingResult.hasErrors()){
 			//数据回显
@@ -94,6 +106,8 @@ public class ItemsController {
 			//跳转回我们的界面
 			return "forward:editItem.action";
 		}
+		
+		itemsCustom.setPic(newFileName);
 		iItemsService.saveItem(id, itemsCustom);
 		//跳转到成功界面
 		return "success";

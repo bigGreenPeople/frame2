@@ -54,4 +54,11 @@
  	
  	<!-- 配置异常处理器 -->
  	<bean id="customExceptionResolver" class="com.fj.exception.CustomExceptionResolver"></bean>
+ 	<!--文件上传  配置解析器 -->
+ 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<!-- 设置文件上传大小 5MB-->
+ 		<property name="maxUploadSize">
+ 			<value>5242880</value>
+ 		</property>
+ 	</bean>
 </beans>

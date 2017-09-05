@@ -375,52 +375,62 @@ public class ItemsExample {
             return (Criteria) this;
         }
 
-        public Criteria andPicEqualTo(Float value) {
+        public Criteria andPicEqualTo(String value) {
             addCriterion("pic =", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicNotEqualTo(Float value) {
+        public Criteria andPicNotEqualTo(String value) {
             addCriterion("pic <>", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicGreaterThan(Float value) {
+        public Criteria andPicGreaterThan(String value) {
             addCriterion("pic >", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicGreaterThanOrEqualTo(Float value) {
+        public Criteria andPicGreaterThanOrEqualTo(String value) {
             addCriterion("pic >=", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicLessThan(Float value) {
+        public Criteria andPicLessThan(String value) {
             addCriterion("pic <", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicLessThanOrEqualTo(Float value) {
+        public Criteria andPicLessThanOrEqualTo(String value) {
             addCriterion("pic <=", value, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicIn(List<Float> values) {
+        public Criteria andPicLike(String value) {
+            addCriterion("pic like", value, "pic");
+            return (Criteria) this;
+        }
+
+        public Criteria andPicNotLike(String value) {
+            addCriterion("pic not like", value, "pic");
+            return (Criteria) this;
+        }
+
+        public Criteria andPicIn(List<String> values) {
             addCriterion("pic in", values, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicNotIn(List<Float> values) {
+        public Criteria andPicNotIn(List<String> values) {
             addCriterion("pic not in", values, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicBetween(Float value1, Float value2) {
+        public Criteria andPicBetween(String value1, String value2) {
             addCriterion("pic between", value1, value2, "pic");
             return (Criteria) this;
         }
 
-        public Criteria andPicNotBetween(Float value1, Float value2) {
+        public Criteria andPicNotBetween(String value1, String value2) {
             addCriterion("pic not between", value1, value2, "pic");
             return (Criteria) this;
         }
