@@ -13,7 +13,9 @@
 	<!-- 扫描controller注解包 -->
 	<context:component-scan base-package="com.fj.controller"></context:component-scan>
 	<!-- 注解映射器和适配器 -->
-	<mvc:annotation-driven conversion-service="conversionService" validator="validator"></mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="conversionService" validator="validator">
+		
+	</mvc:annotation-driven>
 	<!-- 配置视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -61,4 +63,16 @@
  			<value>5242880</value>
  		</property>
  	</bean>
+ 	
+ 	<!-- 配置拦截器 -->
+ 	<mvc:interceptors>
+ 		<mvc:interceptor>
+ 			<mvc:mapping path="/**"/>
+ 			<bean class="com.fj.Interceptor.HandlerInterceptor1">
+ 			</bean>
+ 		</mvc:interceptor>
+ 	</mvc:interceptors>
+ 	
+ 	<!--创建拦截器  -->
+ 	
 </beans>

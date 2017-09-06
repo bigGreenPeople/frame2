@@ -16,13 +16,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fj.exception.CustomException;
+import com.fj.po.Items;
 import com.fj.po.ItemsCustom;
 import com.fj.po.ItemsQueryVo;
 import com.fj.service.ItemsService;
@@ -141,5 +144,6 @@ public class ItemsController {
 		iItemsService.saveAllItems(itemsQueryVo);
 		return "success";
 	}
+	
 	
 }
