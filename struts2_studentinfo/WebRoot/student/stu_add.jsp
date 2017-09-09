@@ -1,8 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>����ѧ����Ϣ</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+<title>添加学生信息</title>
 <style type="text/css">
 <!--
 body {
@@ -15,38 +24,38 @@ body {
 <body background="background.GIF">
 <center>
 <jsp:include page="top.jsp"/>
-<form action="" method="post">
+<form action="${pageContext.request.contextPath }/stu_add" method="post">
     <table width="424" height="57" border="1">
      <caption align="center">
-     <font color=red size=5>����ѧ����Ϣ</font>
+     <font color=red size=5>添加学生信息</font>
      </caption>
-     <tr><td>ѧ��:</td> <td><input type="text" name="id"/></td></tr>
-    <tr><td>����:</td> <td><input type="text" name="name"/></td></tr>
-    <tr><td>�Ա�:</td> <td>
-    <input type="radio" name="sex" checked value="��"/>��
-    <input type="radio" name="sex"  value="Ů"/>Ů
+     <tr><td>学号:</td> <td><input type="text" name="sid"/></td></tr>
+    <tr><td>姓名:</td> <td><input type="text" name="sname"/></td></tr>
+    <tr><td>性别:</td> <td>
+    <input type="radio" name="ssex" checked value="男"/>男
+    <input type="radio" name="ssex"  value="女"/>女
     </td></tr>
-    <tr><td>��������:</td> <td><input type="text" name="birthday"/> <font color=red>Ĭ�ϸ�ʽΪ:*2014/1/2</font></td></tr>
-    <tr><td>רҵ:</td> <td><select name="major" id="select">
-      <option >--��ѡ��רҵ--</option>
-      <option value="������ҵ����">������ҵ����</option>
-      <option value="���ѧ">���ѧ</option>
-      <option value="�������������">�������������</option>
-      <option value="��������缼��">��������缼��</option>
-      <option value="����Ӣ��">����Ӣ��</option>
-      <option value="Ӧ�õ��Ӽ���">Ӧ�õ��Ӽ���</option>
-      <option value="���ؼ���">���ؼ���</option>
-      <option value="����һ�廯">����һ�廯</option>
-      <option value="Ӧ����ѧ">Ӧ����ѧ</option>
-      <option value="ͨ�Ź���">ͨ�Ź���</option>
-      <option value="Ӧ�û�ѧ">Ӧ�û�ѧ</option>
-      <option value="���﹤��">���﹤��</option>
+    <tr><td>出生日期:</td> <td><input type="text" name="sbirthday"/> <font color=red>默认格式为:*2014-01-02</font></td></tr>
+    <tr><td>专业:</td> <td><select name="smajor" id="select">
+      <option >--请选择专业--</option>
+      <option value="工商企业管理">工商企业管理</option>
+      <option value="会计学">会计学</option>
+      <option value="计算机软件技术">计算机软件技术</option>
+      <option value="计算机网络技术">计算机网络技术</option>
+      <option value="商务英语">商务英语</option>
+      <option value="应用电子技术">应用电子技术</option>
+      <option value="数控技术">数控技术</option>
+      <option value="机电一体化">机电一体化</option>
+      <option value="应用数学">应用数学</option>
+      <option value="通信工程">通信工程</option>
+      <option value="应用化学">应用化学</option>
+      <option value="生物工程">生物工程</option>
     </select></td>
     </tr>
-    <tr><td>�ɼ�:</td> <td><input type="text" name="score"/></td></tr>
-    <tr><td>�绰:</td> <td><input type="text" name="tel"/></td></tr>
-    <tr align="center"><td colspan="2"><input type="submit" value="��   ��"/>
-    &nbsp;&nbsp;<input type="reset" value="ȡ   ��"/>
+    <tr><td>成绩:</td> <td><input type="text" name="sscore"/></td></tr>
+    <tr><td>电话:</td> <td><input type="text" name="stel"/></td></tr>
+    <tr align="center"><td colspan="2"><input type="submit" value="添   加"/>
+    &nbsp;&nbsp;<input type="reset" value="取   消"/>
     </td></tr>
     </table>
   </form>

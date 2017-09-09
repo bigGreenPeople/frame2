@@ -60,8 +60,8 @@ function changeColor(obj,color){
         <td >${stu.sscore }</td>
         <td >${stu.stel }</td>
         <td width="47" ><a href="${pageContext.request.contextPath }/student/stu_add.jsp">Ìí¼Ó</a></td>
-        <td width="42"><a href="#">É¾³ý</a></td>
-        <td width="42" ><a href="#">ÐÞ¸Ä</a></td>
+        <td width="42"><a href="${pageContext.request.contextPath }/stu_delete?sid=${stu.sid }">É¾³ý</a></td>
+        <td width="42" ><a href="${pageContext.request.contextPath }/stu_toModify?sid=${stu.sid }">ÐÞ¸Ä</a></td>
         <td width="49" ><a href="${pageContext.request.contextPath }/student/stu_query.jsp">²éÑ¯</a></td>
         </tr>
        </c:forEach>

@@ -20,9 +20,9 @@ body {
      <caption align="center">
      <font color=red size=5><b>恭喜，你找回的密码信息如下：</b></font>
      </caption>
-    <tr><td>用户名:</td> <td>lisi</td></tr>
-    <tr><td>姓名:</td> <td>李四</td></tr>
-    <tr><td>密码:</td> <td>123456</td></tr>
+    <tr><td>用户名:</td> <td>${user.uid }</td></tr>
+    <tr><td>姓名:</td> <td>${user.uname }</td></tr>
+    <tr><td>密码:</td> <td>${user.upass }</td></tr>
     </table>
   </form>
   <br/>

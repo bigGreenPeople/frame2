@@ -16,13 +16,23 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		//创建我们的dao对象
 		userDao = new UserDaoImpl();
+		return userDao.findList(user);
+	}
+	
+	//注册
+	@Override
+	public void register(User user) {
+		// TODO Auto-generated method stub
+		userDao = new UserDaoImpl();
+		userDao.add(user);
+	}
+	
+	//找回密码
+	@Override
+	public User reback(User user) {
+		// TODO Auto-generated method stub
+		userDao = new UserDaoImpl();
 		return userDao.findUser(user);
 	}
 
-	//查询所有学生
-	@Override
-	public List<Student> findAllStu() {
-		// TODO Auto-generated method stub
-		return userDao.findList();
-	}
 }

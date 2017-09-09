@@ -6,11 +6,34 @@
 <struts>
 	<package name="user" extends="struts-default" namespace="/">
 		<action name="user_*" class="com.fj.action.UserAction" method="{1}">
-			<result name="loginOk">
-				/student/stu_disp.jsp
+			<result name="loginOk" type="redirectAction">
+				stu_findAllStu
 			</result>
 			<result name="loginErr">
 				/login_fail.jsp
+			</result>
+			<!--注册成功  -->
+			<result name="registerOk">
+				/registerOk.jsp
+			</result>
+			<!--找回界面密码  -->
+			<result name="rebackOk">
+				/reback_do.jsp
+			</result>
+		</action>
+		<!-- 学生的action -->
+		<action name="stu_*" class="com.fj.action.StudentAction" method="{1}">
+		<!--到列表页面  -->
+			<result name="stuList" >
+				/student/stu_disp.jsp
+			</result>
+			<!-- 跳转到list -->
+			<result name="tolist" type="redirectAction">
+				stu_findAllStu
+			</result>
+			<!-- 跳转到修改界面 -->
+			<result name="toModify">
+				/student/stu_modify.jsp
 			</result>
 		</action>
 	</package>

@@ -15,13 +15,13 @@ body {
 <body background="background.GIF">
 <center>
 <jsp:include page="top.jsp"/>
-<form action="" method="post">
+<form action="${pageContext.request.contextPath }/stu_findStuById" method="post">
     <table width="404" height="57" border="0">
      <caption align="center">
      <font color=red size=5>查询学生信息</font>
      </caption>
     <tr><td>请输入要查询的学号:</td>
-    <td><input type="text" name="id"/></td>
+    <td><input type="text" name="sid"/></td>
      <td><input type="submit"  value="查询"/></td>
     </tr>
     </table>

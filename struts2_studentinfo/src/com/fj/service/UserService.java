@@ -8,7 +8,10 @@ import com.fj.domain.User;
 public interface UserService {
 	//登录
 	public User login(User user);
-	//查询所有用户
-	public List<Student> findAllStu();
+//	注册
+	public void register(User user);
+	//找回密码
+	public User reback(User user);
+
 	
 }

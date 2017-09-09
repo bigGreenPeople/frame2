@@ -1,8 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>ÕÒ»ØÃÜÂë</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+<title>æ‰¾å›žå¯†ç </title>
 <style type="text/css">
 <!--
 body {
@@ -15,18 +24,18 @@ body {
 <body background="background.GIF">
 <center>
 <jsp:include page="student/top.jsp"/>
-<form action="reback_do.jsp" method="post">
+<form action="${pageContext.request.contextPath }/user_reback" method="post">
     <table width="424" height="57" border="1">
      <caption align="center">
-     <font color=red size=5><b>ÕÒ»ØÃÜÂë£¬ÇëÊäÈëÒÔÏÂÐÅÏ¢£º</b></font>
+     <font color=red size=5><b>æ‰¾å›žå¯†ç ï¼Œè¯·è¾“å…¥ä»¥ä¸‹ä¿¡æ¯ï¼š</b></font>
      </caption>
-    <tr><td>ÓÃ»§Ãû:</td> <td><input type="text" name="uid"/></td></tr>
-    <tr><td>ÐÕÃû:</td> <td><input type="text" name="uname"/></td></tr>
+    <tr><td>ç”¨æˆ·å:</td> <td><input type="text" name="uid"/></td></tr>
+    <tr><td>å§“å:</td> <td><input type="text" name="uname"/></td></tr>
     <tr align="center">
     <td colspan="2">
-    <input type="submit" value="ÕÒ»ØÃÜÂë"/>
+    <input type="submit" value="æ‰¾å›žå¯†ç "/>
     &nbsp;&nbsp;
-    <input type="reset" value="È¡   Ïû"/>
+    <input type="reset" value="å–   æ¶ˆ"/>
     </td></tr>
     </table>
   </form>

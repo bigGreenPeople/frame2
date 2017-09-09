@@ -6,8 +6,10 @@ import com.fj.domain.Student;
 import com.fj.domain.User;
 
 public interface UserDao {
-	//查找用户
+	
 	public User findUser(User user);
-	//查询所有用户
-	public List<Student> findList();
+	//添加
+	public void add(User user);
+	//查找所有用户
+	public User findList(User user);
 }
