@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<package name="user" extends="struts-default" namespace="/">
+		<!--User的action  -->
+		<action name="user_*" class="com.fj.action.UserAction" method="{1}">
+		<!-- 跳转到管理员的登录界面 -->
+			<result name="manage" type="redirectAction">
+				house_toUserHouseList
+			</result>
+			<!-- 到房屋列表 -->
+			<result name="house_list"  type="redirectAction">
+				house_toHouselist
+			</result>
+			<!-- 到登录界面 -->
+			<result name="login">
+				/login.jsp
+			</result>
+			<!-- 到注册界面 -->
+			<result name="register">
+				/register.jsp
+			</result>
+			<!-- 注册失败 -->
+			<result name="input">
+				/register.jsp
+			</result>
+			<!-- 到注册成功界面 -->
+			<result name="registerOk">
+				/success.jsp
+			</result>
+		</action>
+		<action name="house_*" class="com.fj.action.HouseAction" method="{1}">
+		<!-- 跳转到管理员的登录界面 -->
+			<!-- 到房屋列表 -->
+			<result name="toUserHouseList">
+				/manage.jsp
+			</result>
+			<!-- 到房屋列表 -->
+			<result name="toHouselist">
+				/house_list.jsp
+			</result>
+			<!-- 到发布房屋界面 -->
+			<result name="toPublishHouse">
+				/add.jsp
+			</result>
+			<!-- 房屋发布成功 -->
+			<result name="publishHouseOk">
+				/success2.jsp
+			</result>
+			<!-- 到修改界面 -->
+			<result name="toUpdateHouse">
+				/modify.jsp
+			</result>
+			<!-- 修改成功 -->
+			<result name="updateHouseOk">
+				/success3.jsp
+			</result>
+			<!-- 删除成功跳转到列表 -->
+			<result name="deleteOk" type="redirectAction">
+				house_toUserHouseList
+			</result>
+			<!-- 跳转到房屋的详细信息 -->
+			<result name="showHouseInfo">
+				/show.jsp
+			</result>
+		</action>
+	</package>
+</struts>
