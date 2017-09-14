@@ -3,14 +3,19 @@ package com.fj.dao.Imp;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ColumnListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.apache.commons.dbutils.handlers.columns.IntegerColumnHandler;
 
 import com.fj.dao.BaseDao;
+import com.fj.domain.PageBean;
 import com.fj.domain.Users;
 import com.fj.utils.TxQueryRunner;
 
@@ -169,6 +174,147 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 		List<T> newlist = qr.query(sql, new BeanListHandler<T>(pclazz), params);
 		return newlist;
 	}
+	
+	@Override
+	public PageBean<T> findPageByCondition(T t,PageBean<T> pageBean) throws Exception {
+		// TODO Auto-generated method stub
+//		创建TxQueryRunner
+		TxQueryRunner qr = new TxQueryRunner();
+		
+		//要设置的属性值
+		List<Object> list = new ArrayList<Object>();
+		String intoMess = "";
+		//得到所有的属性
+		Field[] fs = pclazz.getDeclaredFields();
+		for(int i = 0 ; i < fs.length; i++){
+			Field f = fs[i];  
+			
+            f.setAccessible(true); //设置些属性是可以访问的  
+            Object val = f.get(t);//得到此属性的值    
+            String type = f.getType().toString();//得到此属性的类型  
+            //如果不为null
+            if (type.endsWith("int") || type.endsWith("Integer")) { 
+              if(val!=null && !"0".equals(val.toString())){
+            	  //加入到？里面
+            	  intoMess+=" and "+f.getName()+"=?";
+            	//加入到list
+            	list.add(val);
+              }
+           }else{  
+        	   if(val!=null){
+             	  //加入到？里面
+        		  intoMess+=" and "+f.getName()+"=?";
+        		 //加入到list
+            	  list.add(val);
+               }
+        	   
+           }
+		}
+		
+		//设置要注入的参数
+		Object[] params = new Object[list.size()];
+		for (int i=0;i<list.size();i++) {
+			params[i] = list.get(i);
+		}
+		//写出sql语句
+		//select t2.* from (select t1.*,rownum rn from (select * from users) t1 where rownum<=结束位置) t2 where rn>=开始位置;
+		//计算出page的相关信息
+		//查询得到总记录数
+		pageBean.setTotalCount(this.getCountByCondition(intoMess,params));
+		//计算开始位置
+		int begin = (pageBean.getCurrentPage()-1)*pageBean.getPageSize()+1;
+		pageBean.setBegin(begin);
+		//计算出总页数
+		int totalPage=pageBean.getTotalCount()%pageBean.getPageSize()==0?
+				pageBean.getTotalCount()/pageBean.getPageSize():
+					pageBean.getTotalCount()/pageBean.getPageSize()+1;
+		pageBean.setTotalPage(totalPage);
+		//计算出结束位置
+		int end = pageBean.getCurrentPage()*pageBean.getPageSize();
+		pageBean.setEnd(end);
+		
+		String sql = "select t2.* from "
+				+ "(select t1.*,rownum rn from (select * from "+pclazz.getSimpleName()+" where 1=1"+intoMess+")"
+						+ " t1 where rownum<="+pageBean.getEnd()+") t2 where rn>="+pageBean.getBegin();
+		System.out.println("fjUtils:  "+sql);
+		List<T> newlist = qr.query(sql, new BeanListHandler<T>(pclazz), params);
+		//设置list
+		pageBean.setList(newlist);
+		return pageBean;
+	}
+	
+	@Override
+	public PageBean<T> findPageAll(PageBean<T> pageBean) throws Exception {
+		// TODO Auto-generated method stub
+//		创建TxQueryRunner
+		TxQueryRunner qr = new TxQueryRunner();
+		//计算出page的相关信息
+		//查询得到总记录数
+		pageBean.setTotalCount(this.getCount());
+		//计算开始位置
+		int begin = (pageBean.getCurrentPage()-1)*pageBean.getPageSize()+1;
+		pageBean.setBegin(begin);
+		//计算出总页数
+		int totalPage=pageBean.getTotalCount()%pageBean.getPageSize()==0?
+				pageBean.getTotalCount()/pageBean.getPageSize():
+					pageBean.getTotalCount()/pageBean.getPageSize()+1;
+		pageBean.setTotalPage(totalPage);
+		//计算出结束位置
+		int end = pageBean.getCurrentPage()*pageBean.getPageSize();
+		pageBean.setEnd(end);
+		//写出sql语句
+		//String sql = "select * from "+pclazz.getSimpleName();
+		String sql = "select t2.* from "
+				+ "(select t1.*,rownum rn from (select * from "+pclazz.getSimpleName()+")"
+						+ " t1 where rownum<="+pageBean.getEnd()+") t2 where rn>="+pageBean.getBegin();
+		System.out.println("fjUtils:  "+sql);
+		List<T> newlist = qr.query(sql, new BeanListHandler<T>(pclazz));
+		//设置list
+		pageBean.setList(newlist);
+		return pageBean;
+	}
+	
+	@Override
+	public Integer getCount() throws Exception {
+		// TODO Auto-generated method stub
+//		创建TxQueryRunner
+		TxQueryRunner qr = new TxQueryRunner();
+		//写出sql语句
+		String sql = "select count(*) as count from "+pclazz.getSimpleName();
+		System.out.println(sql);
+		Number ob =(Number) qr.query(sql, new ScalarHandler());
+		
+		return ob.intValue();
+		
+	}
+	
+	@Override
+	public Integer getCountByCondition(String intoMess,Object[] params) throws Exception {
+		// TODO Auto-generated method stub
+//		创建TxQueryRunner
+		TxQueryRunner qr = new TxQueryRunner();
+		
+		//写出sql语句
+		String sql = "select count(*) as count from "+pclazz.getSimpleName()+" where 1=1"+intoMess;
+		System.out.println("fjutils:  "+sql);
+		Number ob =(Number) qr.query(sql, new ScalarHandler(),params);
+		
+		return ob.intValue();
+	}
+	
+	@Override
+	public Integer getCountByCondition(String intoMess) throws Exception {
+		// TODO Auto-generated method stub
+//		创建TxQueryRunner
+		TxQueryRunner qr = new TxQueryRunner();
+		
+		//写出sql语句
+		String sql = "select count(*) as count from "+pclazz.getSimpleName()+" where 1=1"+intoMess;
+		System.out.println("fjutils:  "+sql);
+		Number ob =(Number) qr.query(sql, new ScalarHandler());
+		
+		return ob.intValue();
+	}
 
 	@Override
 	public int addOne(T t) throws Exception {
@@ -229,5 +375,6 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 		System.out.println("fjUtils:  "+sql);
 		return qr.update(sql, params);
 	}
+	
 
 }

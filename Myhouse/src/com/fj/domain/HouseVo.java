@@ -5,6 +5,7 @@ import java.util.Date;
 public class HouseVo extends House {
 	//区域
 	private District district;
+	
 	//街道
 	private Street street;
 	//类型

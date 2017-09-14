@@ -15,6 +15,7 @@ import com.fj.dao.UserDao;
 import com.fj.dao.Imp.HouseDaoImp;
 import com.fj.dao.Imp.UserDaoImp;
 import com.fj.domain.House;
+import com.fj.domain.PageBean;
 import com.fj.domain.Users;
 
 public class UserServiceImplTest {
@@ -44,22 +45,15 @@ public class UserServiceImplTest {
 		
 	}
 	@Test
-	public void tt(){
-		UserDao userDao = new UserDaoImp();
-		HouseDao houseDao = new HouseDaoImp();
-		Users bean = new Users(1, "∏∂ffsΩ‹", "3221", "1223123", "ˆË”„¿±1", null);
+	public void tt() throws Exception{
 		House house = new House();
-		house.setId(2);
-		house.setPrice(200);
-		
-		try {
-			List<Users> num = userDao.findAll();
-			//int num = houseDao.updateById(house,house.getId());
-			System.out.println(num);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		house.setUser_id(1);
+		HouseDaoImp usersDaoImp = new HouseDaoImp();
+		PageBean<House> pageBean = new PageBean<House>();
+		pageBean.setCurrentPage(1);
+		pageBean.setPageSize(2);
+		PageBean<House> pageBean2 = usersDaoImp.findPageByCondition(house, pageBean);
+		System.out.println(pageBean2);
 	}
 
 	@Test

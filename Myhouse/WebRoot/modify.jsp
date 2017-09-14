@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,39 +21,60 @@
 
 		</dl>
 		<div class="box">
-			<form action="modify.action">
-			<input type='hidden' value='11' name='id'/> 
+			<form action="${pageContext.request.contextPath }/house_updateHouse" method="post">
+			<input type='hidden' value='${house.id }' name='id'/> 
 				<div class="infos">
 					<table class="field">
 						<tr>
 							<td class="field">标　　题：</td>
-							<td><input type="text" class="text" name="title" value='便宜好房'/></td>
+							<td><input type="text" class="text" name="title" value='${house.title }'/></td>
 						</tr>
 						<tr>
 							<td class="field">户　　型：</td>
-							<td><select  class="text" name="type_id"><option value="1000">一室一厅</option></select></td>
+							<td><select  class="text" name="type_id">
+									<c:forEach items="${types }" var="type">
+										<option value="${type.id }"
+											<c:if test="${type.id==house.type_id }">
+												selected
+											</c:if>
+										 >${type.name }</option>
+									</c:forEach>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td class="field">面　　积：</td>
-							<td><input type="text" class="text" name="floorage"  value='89'/></td>
+							<td><input type="text" class="text" name=floorAge  value='${house.floorAge }'/></td>
 						</tr>
 						<tr>
 							<td class="field">价　　格：</td>
-							<td><input type="text" class="text" name="price"  value='233'/></td>
+							<td><input type="text" class="text" name="price"  value='${house.price }'/></td>
 						</tr>
                         <tr>
 							<td class="field">位　　置：</td>
-							<td>区：<select  class="text" name="district_id"><option value="1004">高新区</option></select>
-                            	街：<select  class="text" name="street_id"><option value="1001">东元二路</option></select>
+							<td>区：<select  class="text" name="district_id">
+								<c:forEach items="${districts }" var="district">
+										<option value="${district.id }">${district.name }</option>
+									</c:forEach>
+							</select>
+                            	街：<select  class="text" name="street_id">
+                            		<c:forEach items="${streets }" var="street">
+										<option value="${street.id }" 
+											<c:if test="${street.id==house.street_id }">
+												selected
+											</c:if>
+										>${street.name }</option>
+									</c:forEach>
+                            	</select>
                             </td>
 						</tr>
                         <tr>
 							<td class="field">联系方式：</td>
-							<td><input type="text" class="text" name="contact" value='13587889854'/></td>
+							<td><input type="text" class="text" name="contact" value='${house.contact }'/></td>
 						</tr>
                         <tr>
 							<td class="field">详细信息：</td>
-							<td><textarea name="description">本房子质量非常好，家居齐全，租客可以直接入住。</textarea></td>
+							<td><textarea name="description">${house.description }</textarea></td>
 						</tr>
 					</table>
 					<div class="buttons"><input type="submit" name="submit" value="立即修改" /></div>

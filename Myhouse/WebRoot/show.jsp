@@ -120,13 +120,13 @@
 <div id="view" class="main wrap">
 	<div class="intro">
 		<div class="lefter">
-			<h1>地跌旁好房子</h1>
-			<div class="subinfo">2015-8-12</div>
+			<h1>${houseVo.title}</h1>
+			<div class="subinfo">${houseVo.pubDate }</div>
 			<div class="houseinfo">
-				<p>户　　型：<span>一室一厅</span></p>
-				<p>面　　积：<span>88m<sup>2</sup></span></p>				
-				<p>位　　置：<span>青山湖区青山北路</span></p>
-				<p>联系方式：<span>13892383446</span></p>
+				<p>户　　型：<span>${houseVo.type.name }</span></p>
+				<p>面　　积：<span>${houseVo.floorAge }m<sup>2</sup></span></p>				
+				<p>位　　置：<span>${houseVo.street.name}</span></p>
+				<p>联系方式：<span>${houseVo.contact}</span></p>
 			</div>
 		</div>
 		<div class="side">
@@ -141,7 +141,7 @@
 		<div class="introduction">
 			<h2><span><strong>房源详细信息</strong></span></h2>
 			<div class="content">
-				<p>本房子装修好，家居齐全，可以直接入住。</p>
+				<p>${houseVo.description}</p>
 			</div>
 		</div>
 	</div>

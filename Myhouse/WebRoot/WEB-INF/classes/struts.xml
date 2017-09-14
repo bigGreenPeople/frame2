@@ -42,6 +42,30 @@
 			<result name="toHouselist">
 				/house_list.jsp
 			</result>
+			<!-- 到发布房屋界面 -->
+			<result name="toPublishHouse">
+				/add.jsp
+			</result>
+			<!-- 房屋发布成功 -->
+			<result name="publishHouseOk">
+				/success2.jsp
+			</result>
+			<!-- 到修改界面 -->
+			<result name="toUpdateHouse">
+				/modify.jsp
+			</result>
+			<!-- 修改成功 -->
+			<result name="updateHouseOk">
+				/success3.jsp
+			</result>
+			<!-- 删除成功跳转到列表 -->
+			<result name="deleteOk" type="redirectAction">
+				house_toUserHouseList
+			</result>
+			<!-- 跳转到房屋的详细信息 -->
+			<result name="showHouseInfo">
+				/show.jsp
+			</result>
 		</action>
 	</package>
 </struts>

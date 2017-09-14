@@ -13,7 +13,7 @@
 			return;
 		}
 		function update(id){
-			document.location = '/HouseRent/modify.jsp?id=' + id;
+			document.location = '${pageContext.request.contextPath}/house_toUpdateHouse?id=' + id;
 		}
 	</script>
 </head>
@@ -22,7 +22,7 @@
 	<div id="logo"><img src="images/logo.gif" /></div>
 	<div class="search">
 		<label class="ui-green">
-		<input onclick="toUrl('add.jsp');" type="button" name="search" value="发布房屋信息" /></label>	
+		<input onclick="toUrl('${pageContext.request.contextPath}/house_toPublishHouse');" type="button" name="search" value="发布房屋信息" /></label>	
 		<label class="ui-green">
 		<input type="button" name="search" value="退       出" onclick='document.location="login.jsp"'/></label>
 	</div>
@@ -30,7 +30,7 @@
 <div class="main wrap">
 <div id="houseArea">
 	<table class="house-list">
-		<c:forEach items="${list }" var="house">
+		<c:forEach items="${pageBean.list }" var="house">
 			<tr>
 			<td class="house-thumb"><span><a href="show?id=11">
 			<img src="images/thumb_house.gif" /></a></span></td>
@@ -44,39 +44,26 @@
 				</dl>
 			</td>
 			<td class="house-type"><label class="ui-green">
-			<input type="button" onclick='update()' name="search" value="修    改" /></label></td>
+			<input type="button" onclick='update(${house.id})' name="search" value="修    改" /></label></td>
 			<td class="house-price"><label class="ui-green">
-			<input type="button" name="search" value="删    除" /></label></td>
+			<input type="button" onclick="toUrl('${pageContext.request.contextPath}/house_deleteHouse?id=${house.id }');" name="search" value="删    除" /></label></td>
 		</tr>
 		</c:forEach>
 		
-		<!-- <tr class="">
-			<td class="house-thumb"><span><a href="view.html">
-			<img src="images/thumb_house.gif" /></a></span></td>
-			<td>
-				<dl>
-					<dt><a href="show?id=11">地跌旁好房</a></dt>
-					<dd>
-						东湖区二七北路,78平米<br />
-						联系方式：13982347644				
-					</dd>
-				</dl>
-			</td>
-			<td class="house-type"><label class="ui-green">
-			<input type="button" onclick='update()' name="search" value="修    改" /></label></td>
-			<td class="house-price"><label class="ui-green">
-			<input type="button" name="search" value="删    除" /></label></td>
-		</tr>  -->
 	</table>
 </div>
 	<div class="pager">
 		<ul>
-			<li class="current"><a href="#">首页</a></li>
-			<li class="current"><a href='#'>上一页</a></li>
-			<li class="current"><a href='#'>下一页</a></li>
-			<li class="current"><a href='#'>末页</a></li>
+			<li class="current"><a href="${pageContext.request.contextPath}/house_toUserHouseList?currentPage=1">首页</a></li>
+			<c:if test="${1!=pageBean.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/house_toUserHouseList?currentPage=${pageBean.currentPage-1}'>上一页</a></li>
+			</c:if>
+			<c:if test="${pageBean.totalPage!=pageBean.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/house_toUserHouseList?currentPage=${pageBean.currentPage+1}'>下一页</a></li>
+			</c:if>
+			<li class="current"><a href='${pageContext.request.contextPath}/house_toUserHouseList?currentPage=${pageBean.totalPage}'>末页</a></li>
 		</ul>
-		<span class="total">2/4页</span>
+		<span class="total">${pageBean.currentPage}/${pageBean.totalPage}页</span>
 	</div>
 </div>
 <div id="footer" class="wrap">

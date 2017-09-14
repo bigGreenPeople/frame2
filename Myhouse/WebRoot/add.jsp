@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,7 +21,7 @@
 
 		</dl>
 		<div class="box">
-			<form action="" method="post">
+			<form action="${pageContext.request.contextPath }/house_publishHouse" method="post">
 				<div class="infos">
 					<table class="field">
 						<tr>
@@ -32,11 +33,15 @@
 						<tr>
 							<td class="field">户　　型：</td>
 							<td><select  class="text" name="type_id">
-							<option value="1000">一室一厅</option></select></td>
+									<c:forEach items="${types }" var="type">
+										<option value="${type.id }">${type.name }</option>
+									</c:forEach>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td class="field">面　　积：</td>
-							<td><input type="text" key="floorage" name="floorage"/></td>
+							<td><input type="text" key="floorage" name="floorAge"/></td>
 						</tr>
 						<tr>
 							<td class="field">价　　格：</td>
@@ -44,18 +49,19 @@
 							<input type="text" key="price" name="price"/>
 							</td>
 						</tr>
-						 
-						<tr>
-							<td class="field">房产证日期：</td>
-							<td><input type="text" class="text" name="houseDate" /></td>
-						</tr>
 						
                         <tr>
 							<td class="field">位　　置：</td>
 							<td>区：<select  class="text" name="district_id">
-							<option value="1004">高新区</option></select>
+									<c:forEach items="${districts }" var="district">
+										<option value="${district.id }">${district.name }</option>
+									</c:forEach>
+							</select>
                             	街：<select  class="text" name="street_id">
-                            	<option value="1001">高新五路</option></select>
+                            		<c:forEach items="${streets }" var="street">
+										<option value="${street.id }">${street.name }</option>
+									</c:forEach>
+                            	</select>
                             </td>
 						</tr>
 						
