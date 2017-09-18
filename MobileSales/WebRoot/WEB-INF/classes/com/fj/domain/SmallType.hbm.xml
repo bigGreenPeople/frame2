@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.fj.domain.SmallType" table="t_smalltype">
-		<id name="linkid" column="linkid">
+		<id name="id">
 			<generator class="native"></generator>
 		</id>
 		<property name="smallName"></property>
@@ -13,9 +13,9 @@
 		<!-- 配置多对一 -->
 		<many-to-one name="bigType" column="bigType_id"></many-to-one>
 		<!-- 配置一对多 -->
-		<set name="goodsSet" inverse="true" cascade="delete">
+		 <set name="goodsSet" inverse="true" cascade="delete">
 			<key column="smallType_id"></key>
 			<one-to-many class="com.fj.domain.Goods"/>
-		</set>
+		</set> 
 	</class>
 </hibernate-mapping>

@@ -19,9 +19,9 @@
 		<!-- 配置多对一 -->
 		<many-to-one name="smallType" column="smallType_id"></many-to-one>
 		<!-- 让一的那一方放弃维护 并且配置级联删除 -->
-		<!-- <set name="orderDetailSet" inverse="true" cascade="delete">
+		 <set name="orderDetailSet" inverse="true" cascade="delete">
 			<key column="goods_id"></key>
 			<one-to-many class="com.fj.domain.OrderDetail"/>
-		</set> -->
+		</set>
 	</class>
 </hibernate-mapping>

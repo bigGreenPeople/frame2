@@ -12,11 +12,11 @@
 		<property name="setMoney"></property>
 		<property name="post"></property>
 		<property name="bz"></property>
-		<property name="sin"></property>
+		<property name="sign"></property>
 		<property name="creaTime"></property>
 		
 		<!-- 配置多对一 -->
-		<many-to-one name="member" column="membere_id"></many-to-one>
+		<many-to-one name="member" column="member_id"></many-to-one>
 		<!-- 让一的那一方放弃维护 并且配置级联删除 -->
 		<set name="orderDetailSet" inverse="true" cascade="delete">
 			<key column="order_id"></key>

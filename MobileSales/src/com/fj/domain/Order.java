@@ -22,9 +22,6 @@ public class Order {
 	private Member member;
 	private Set<OrderDetail> orderDetailSet = new HashSet<OrderDetail>();
 
-	public Order() {
-		// TODO Auto-generated constructor stub
-	}
 	public Set<OrderDetail> getOrderDetailSet() {
 		return orderDetailSet;
 	}

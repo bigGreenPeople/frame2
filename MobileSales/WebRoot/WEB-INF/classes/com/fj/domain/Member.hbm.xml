@@ -17,7 +17,7 @@
 		<property name="result"></property>
 		
 		<set name="orderSet" inverse="true" cascade="delete">
-			<key column="membere_id"></key>
+			<key column="member_id"></key>
 			<one-to-many class="com.fj.domain.Order"/>
 		</set>
 	</class>
