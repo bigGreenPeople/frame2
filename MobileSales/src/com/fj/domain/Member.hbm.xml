@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.fj.domain.Member" table="tb_member">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" not-null="true"></property>		
+		<property name="password"></property>
+		<property name="reallyName"></property>
+		<property name="age"></property>
+		<property name="profession"></property>
+		<property name="email"></property>
+		<property name="question"></property>
+		<property name="result"></property>
+		
+		<set name="orderSet" inverse="true" cascade="delete">
+			<key column="membere_id"></key>
+			<one-to-many class="com.fj.domain.Order"/>
+		</set>
+	</class>
+</hibernate-mapping>

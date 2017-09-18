@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.fj.domain.Goods" table="tb_goods">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="goodsName"></property>
+		<property name="goodsFrom"></property>
+		<property name="introduce"></property>
+		<property name="creaTime"></property>
+		<property name="nowPrice"></property>
+		<property name="freePrice"></property>
+		<property name="number"></property>
+		<property name="pirture"></property>
+		<property name="mark"></property>
+		<!-- 配置多对一 -->
+		<many-to-one name="smallType" column="smallType_id"></many-to-one>
+		<!-- 让一的那一方放弃维护 并且配置级联删除 -->
+		<!-- <set name="orderDetailSet" inverse="true" cascade="delete">
+			<key column="goods_id"></key>
+			<one-to-many class="com.fj.domain.OrderDetail"/>
+		</set> -->
+	</class>
+</hibernate-mapping>

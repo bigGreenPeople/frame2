@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 这里可以设置上传文件的大小 -->
+	<constant name="struts.multipart.maxSize" value="2097150"></constant>
+
+	<package name="user" extends="struts-default" namespace="/">
+		<!-- 用户 -->
+		
+	</package>
+</struts>

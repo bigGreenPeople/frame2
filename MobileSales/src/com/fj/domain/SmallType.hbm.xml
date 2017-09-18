@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.fj.domain.SmallType" table="t_smalltype">
+		<id name="linkid" column="linkid">
+			<generator class="native"></generator>
+		</id>
+		<property name="smallName"></property>
+		<property name="creaTime"></property>
+		
+		<!-- 配置多对一 -->
+		<many-to-one name="bigType" column="bigType_id"></many-to-one>
+		<!-- 配置一对多 -->
+		<set name="goodsSet" inverse="true" cascade="delete">
+			<key column="smallType_id"></key>
+			<one-to-many class="com.fj.domain.Goods"/>
+		</set>
+	</class>
+</hibernate-mapping>
