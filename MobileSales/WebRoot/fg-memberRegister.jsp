@@ -1,31 +1,31 @@
-<%@ page contentType="text/html; charset=gb2312" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="java.sql.*,java.util.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>�ֻ�����ϵͳ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>手机销售系统</title>
 </head>
 <link href="css/css.css" rel="stylesheet" type="text/css"> 
 <script language="javascript">
 function checkEmpty(memberForm){
 for(i=0;i<memberForm.length;i++){
 if(memberForm.elements[i].value==""){
-alert("������Ϣ����Ϊ��");
+alert("表单信息不能为空");
 return false;
 }
 }
-//�¼������֤E-mail��ַ�Ƿ���ȷ209-05-25
+//新加入的验证E-mail地址是否正确209-05-25
 var vemail=memberForm.email.value;
 var regExp=/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
 if(!regExp.test(vemail)){
-	window.alert("������������ַ����ȷ��");return false;
+	window.alert("您输入的邮箱地址不正确！");return false;
 }
 if(document.memberForm.password.value!=document.memberForm.passwordOne.value){
-window.alert("��������������벻һ�£�����������");
+window.alert("您两次输入的密码不一致，请重新输入");
 return false;
 }
 if(isNaN(document.memberForm.age.value)){
-window.alert("����ֻ��Ϊ����");
+window.alert("年龄只能为数字");
 return false;
 }
 }
@@ -36,67 +36,67 @@ return false;
   <tr>
     <td bgcolor="#F5F5F5" align="center">
 <img src="image/fg1.jpg" width="752" height="39">
-<form action="memberAction.do?action=0"  onsubmit="return checkEmpty(memberForm)">
+<form action="${pageContext.request.contextPath }/member_register" method="post"  onsubmit="return checkEmpty(memberForm)">
 <table width="270"  border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="107" height="35">
-          <div align="right">��Ա���ƣ�</div></td>
+          <div align="right">会员名称：</div></td>
         <td width="163">
             <div align="left">
              <input type="text"  name="name"/>
           </div></td></tr>
       <tr>
         <td height="35">          
-          <div align="right">��Ա���룺</div></td>
+          <div align="right">会员密码：</div></td>
         <td>
             <div align="left">
             <input type="password"  name="password"/>
           </div></td></tr>
       <tr>
         <td height="35">
-          <div align="right">����ȷ�ϣ�</div></td>
+          <div align="right">密码确认：</div></td>
         <td>
             <div align="left">
               <input type="password" name="passwordOne">
           </div></td></tr>
       <tr>
         <td height="35">
-          <div align="right">��ʵ������</div></td>
+          <div align="right">真实姓名：</div></td>
         <td>
             <div align="left">
             <input type="text"  name="reallyName"/>
           </div></td></tr>
       <tr>
         <td height="35">
-          <div align="right">���䣺</div></td>
+          <div align="right">年龄：</div></td>
         <td>
             <div align="left">
               <input type="text"  name="age"/>          
           </div></td></tr>
       <tr>
         <td height="35">
-          <div align="right">ְҵ��</div></td>
+          <div align="right">职业：</div></td>
         <td>
             <div align="left">
             <input type="text"  name="profession"/>
           </div></td></tr>
       <tr>
         <td height="35">
-          <div align="right">Email��ַ��</div></td>
+          <div align="right">Email地址：</div></td>
         <td>
             <div align="left">
              <input type="text"  name="email"/>
           </div></td></tr>
       <tr>
         <td height="35">
-          <div align="right">�һ��������⣺</div></td>
+          <div align="right">找回密码问题：</div></td>
         <td>
             <div align="left">
                <input type="text"  name="question"/>
           </div></td></tr>
       <tr>
         <td height="35">
-          <div align="right">�𰸣�</div></td>
+          <div align="right">答案：</div></td>
         <td>
             <div align="left">
                <input type="text"  name="result"/>

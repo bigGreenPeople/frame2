@@ -7,10 +7,10 @@
 		<id name="id">
 			<generator class="native"></generator>
 		</id>
-		<property name="account"></property>
-		<property name="name"></property>
-		<property name="password"></property>
-		<property name="sign"></property>
+		<property name="account" not-null="true"></property>
+		<property name="name" not-null="true"></property>
+		<property name="password" not-null="true"></property>
+		<property name="sign" not-null="true"></property>
 		
 	</class>
 </hibernate-mapping>

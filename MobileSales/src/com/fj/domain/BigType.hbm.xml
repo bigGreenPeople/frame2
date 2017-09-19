@@ -8,7 +8,7 @@
 			<generator class="native"></generator>
 		</id>
 		<property name="bigName"></property>
-		<property name="creaTime"></property>
+		<property name="creaTime" not-null="true"></property>
 		<!-- 让一的那一方放弃维护 并且配置级联删除 -->
 		<set name="smallTypesSet" inverse="true" cascade="delete">
 			<key column="bigType_id"></key>

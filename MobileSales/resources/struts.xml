@@ -6,8 +6,13 @@
 	<!-- 这里可以设置上传文件的大小 -->
 	<constant name="struts.multipart.maxSize" value="2097150"></constant>
 
-	<package name="user" extends="struts-default" namespace="/">
+	<package name="phone" extends="struts-default" namespace="/">
 		<!-- 用户 -->
-		
+		<action name="member_*" class="memberAction" method="{1}">
+			<!-- 到首页 -->
+			<result name="toIndex">
+				/index.jsp
+			</result>
+		</action>
 	</package>
 </struts>

@@ -9,7 +9,7 @@
 		</id>
 		<property name="name"></property>
 		<property name="content"></property>
-		<property name="issue_Time"></property>
+		<property name="issue_Time" not-null="true"></property>
 		
 	</class>
 </hibernate-mapping>

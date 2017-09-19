@@ -1,28 +1,31 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("±íµ¥ĞÅÏ¢²»ÄÜÎª¿Õ");
+alert("è¡¨å•ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
 return false;
 }
 }
 }
 function quit() {
-  if(confirm("Ã»ÓĞÒªÂòµÄ¶«Î÷ÁËÂğ£¿")){
-    window.location.href="loginOut.jsp";
+  if(confirm("æ²¡æœ‰è¦ä¹°çš„ä¸œè¥¿äº†å—ï¼Ÿ")){
+    window.location.href="${pageContext.request.contextPath }/member_memberOut";
 	}
   }
 </script>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.*"%>
 <body>
-<!--×ó²à01-->
+<!--å·¦ä¾§01-->
+	
+	<c:if test="${session.loginMember==null }">
 	<table width="100%" height="138"  border="0" cellpadding="0" cellspacing="0" background="image/fg_left01.jpg">
       <tr>
         <td valign="top"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
@@ -30,26 +33,27 @@ function quit() {
             <td height="16">&nbsp;</td>
           </tr>
         </table>
-        <form name="form" method="post" action="memberAction.do?action=1" onSubmit="return checkEmpty(form)">
+        <form name="form" method="post" action="${pageContext.request.contextPath }/member_login" onSubmit="return checkEmpty(form)">
           <table width="185" border="0" align="center">
             <tr>
-              <td width="60" height="25">ÓÃ»§Ãû£º</td>
+              <td width="60" height="25">ç”¨æˆ·åï¼š</td>
               <td width="115"> <input name="name" type="text" size="17"></td>
             </tr>
             <tr>
-              <td height="25">ÃÜ&nbsp;&nbsp;Âë£º</td>
+              <td height="25">å¯†&nbsp;&nbsp;ç ï¼š</td>
               <td><input name="password" type="password" size="17"></td>
             </tr>
 			 <tr>
               <td height="26"><input type="image" class="input1"  src="image/fg-land.gif" width="51" height="20"></td>
-              <td height="26">  &nbsp;&nbsp;<a href="fg-memberRegister.jsp">×¢²á</a>&nbsp;&nbsp;<a href="fg-One.jsp">ÕÒ»ØÃÜÂë£¿</a></td>
+              <td height="26">  &nbsp;&nbsp;<a href="fg-memberRegister.jsp">æ³¨å†Œ</a>&nbsp;&nbsp;<a href="fg-One.jsp">æ‰¾å›å¯†ç ï¼Ÿ</a></td>
 			 </tr>	  
           </table>
 		  </form>
 		  </td>
       </tr>
     </table>
-
+</c:if>
+	<c:if test="${session.loginMember!=null }">
 	<table width="100%" height="138"  border="0" cellpadding="0" cellspacing="0" background="image/fg_left01.jpg">
       <tr>
         <td valign="top"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
@@ -60,23 +64,23 @@ function quit() {
        
           <table width="167" border="0" align="center">
             <tr>
-              <td width="161" height="25"><font color="#FB6801"><b>lisi</b>,</font>»¶Ó­»ØÀ´</td>
+              <td width="161" height="25"><font color="#FB6801"><b>${loginMember.name }</b>,</font>æ¬¢è¿å›æ¥</td>
               </tr>
             <tr>
-              <td height="25">2017-08-23</td>
+              <td height="25">${loginTime }</td>
               </tr>
 			 <tr>
-              <td height="25" >»áÔ±ĞÕÃû£ºÀîËÄ</td>
+              <td height="25" >ä¼šå‘˜å§“åï¼š${session.loginMember.reallyName }</td>
               </tr>	 
 			  <tr>
-              <td height="20" align="right" valign="middle"><a href="javascript:quit()">°²È«ÍË³ö</a></td>
+              <td height="20" align="right" valign="middle"><a href="javascript:quit()">å®‰å…¨é€€å‡º</a></td>
               </tr>	
           </table>
 	  </td>
      </tr>
     </table>
-
-	<!--×ó²à02-->		
+</c:if>
+	<!--å·¦ä¾§02-->		
         <table width="100%" height="194" border="0" background="image/fg_left02.jpg">
           <tr>
             <td valign="top"><table width="150" border="0">
@@ -90,9 +94,9 @@ function quit() {
 				  <marquee direction="up" height="114" onmouseout="this.start()" 
              onmouseover="this.stop()" scrollAmount="1" scrollDelay="1">	  
 		           
-						<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">ºÃÏûÏ¢£¡2017Äê¹úÇìÆÚ¼ä±¾ÉÌ³ÇËùÓĞµÄ»ªÎªÊÖ»ú´ò8ÕÛ¡£
+						<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">å¥½æ¶ˆæ¯ï¼2017å¹´å›½åº†æœŸé—´æœ¬å•†åŸæ‰€æœ‰çš„åä¸ºæ‰‹æœºæ‰“8æŠ˜ã€‚
 </a><br><br>
-<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">¹ØÓÚ2017Äê¹úÇìÆÚ¼äÉÌ³¡»î¶¯Í¨Öª
+<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">å…³äº2017å¹´å›½åº†æœŸé—´å•†åœºæ´»åŠ¨é€šçŸ¥
 </a><br><br>
 					
             </marquee></font>			      </td>
@@ -111,7 +115,7 @@ function quit() {
 			  <table width="178" height="19" border="0" align="center" cellpadding="0" cellspacing="0" background="image/fg_left04.jpg">
 			    <tr>
 			    <td width="14"></td>
-                <td width="164"><a href="bg-sellResult.jsp?id=%>&account=">1&nbsp;&nbsp;»ªÎªÈÙÒ«5X</a></td>
+                <td width="164"><a href="bg-sellResult.jsp?id=%>&account=">1&nbsp;&nbsp;åä¸ºè£è€€5X</a></td>
 				</tr>   
             </table>				
 			</td>
@@ -130,8 +134,8 @@ function quit() {
 				  <MARQUEE direction="up" height="114" onmouseout="this.start()" 
              onmouseover="this.stop()" scrollAmount="1" scrollDelay="1">	  
 		          
-					<img src="image/sign1.gif">&nbsp; <a href="https://ai.taobao.com" target="_blank">ÌÔ±¦Íø</a><br><br>
-					<img src="image/sign1.gif">&nbsp; <a href="https://www.jd.com" target="_blank">¾©¶«ÉÌ³Ç</a><br><br>
+					<img src="image/sign1.gif">&nbsp; <a href="https://ai.taobao.com" target="_blank">æ·˜å®ç½‘</a><br><br>
+					<img src="image/sign1.gif">&nbsp; <a href="https://www.jd.com" target="_blank">äº¬ä¸œå•†åŸ</a><br><br>
 				
             </marquee>				 </td>
                 </tr>
