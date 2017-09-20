@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.fj.dao.BaseDao;
+import com.fj.domain.PageBean;
 @SuppressWarnings("all")
 public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T> {
 	//泛型的实际类型
@@ -66,6 +68,45 @@ public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T> {
 	public List<T> findAll() {
 		// TODO Auto-generated method stub
 		return (List<T>) this.getHibernateTemplate().find("from "+pclazz.getSimpleName());
+	}
+	//分页查询所有
+	@Override
+	public PageBean<T> findPageBeanAll(PageBean<T> pageBean) throws Exception {
+		// TODO Auto-generated method stub
+		//离线查询
+		DetachedCriteria criteria = DetachedCriteria.forClass(pclazz);
+		//得到分页后的
+		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(criteria, pageBean.getCurrentPage(), pageBean.getPageSize());
+		//封装pageBean
+		pageBean.setList(list);
+		//查询得到总记录数
+		pageBean.setTotalCount(this.getCount());
+		//计算开始位置
+		int begin = (pageBean.getCurrentPage()-1)*pageBean.getPageSize()+1;
+		pageBean.setBegin(begin);
+		//计算出总页数
+		int totalPage=pageBean.getTotalCount()%pageBean.getPageSize()==0?
+				pageBean.getTotalCount()/pageBean.getPageSize():
+					pageBean.getTotalCount()/pageBean.getPageSize()+1;
+		pageBean.setTotalPage(totalPage);
+		//计算出结束位置
+		int end = pageBean.getCurrentPage()*pageBean.getPageSize();
+		pageBean.setEnd(end);
+		return pageBean;
+	}
+	
+	//查询表记录的所有数量
+	public Integer getCount() {
+		//离线查询
+		DetachedCriteria criteria = DetachedCriteria.forClass(pclazz);
+		criteria.setProjection(Projections.count("id"));
+		List<Long> list = (List<Long>) this.getHibernateTemplate().findByCriteria(criteria);
+		//如果不为空
+		if(list.size()!=0 && list!=null){
+			//返回我们的记录数
+			return list.get(0).intValue();
+		}
+		return 0;		
 	}
 	//条件查询一个
 	@Override

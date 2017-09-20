@@ -1,10 +1,13 @@
 package com.fj.domain;
+
+import java.io.Serializable;
+
 /**
  * 友情链接表
  * @author bigGreenPeople
  *
  */
-public class Link {
+public class Link  implements Serializable{
 	private Integer id;
 	private String linkName;//连接名字
 	private String linkAddress;//连接地址

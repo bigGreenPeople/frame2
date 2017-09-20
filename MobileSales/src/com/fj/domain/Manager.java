@@ -1,6 +1,8 @@
 package com.fj.domain;
 
-public class Manager {
+import java.io.Serializable;
+
+public class Manager  implements Serializable{
 	private Integer id;
 	private String account;//ÕËºÅ
 	private String password;//ÃÜÂë

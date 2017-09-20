@@ -9,9 +9,6 @@
 
 <body>
 <%if(request.getAttribute("result")==null){%>
-  <%
-    session.setAttribute("manager",request.getAttribute("manager"));
-  %>
 	<script language=javascript>window.location.href='bg-orderSelect.jsp';</script>
 	<%}else{%>
 	<script language='javascript'>alert('<%=request.getAttribute("result")%>');history.go(-1);</script>

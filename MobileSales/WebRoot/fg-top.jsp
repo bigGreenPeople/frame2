@@ -32,7 +32,7 @@
         <c:if test="${session.loginMember!=null }">
 	        <td width="117" onMouseOver="this.style.backgroundImage='url(image/fg_top04.jpg)'" onMouseOut="this.style.backgroundImage=''"><a href="cart_detail.jsp" class="a4">查看订单</a></td>
 	        <td width="117" onMouseOver="this.style.backgroundImage='url(image/fg_top04.jpg)'" onMouseOut="this.style.backgroundImage=''"><a href="cart_see.jsp" class="a4">购物车</a></td>
-	        <td width="117" onMouseOver="this.style.backgroundImage='url(image/fg_top04.jpg)'" onMouseOut="this.style.backgroundImage=''"><a href="fg-updateMember.jsp" class="a4">会员修改</a></td>
+	        <td width="117" onMouseOver="this.style.backgroundImage='url(image/fg_top04.jpg)'" onMouseOut="this.style.backgroundImage=''"><a href="${pageContext.request.contextPath }/member_toUpdataMember" class="a4">会员修改</a></td>
         </c:if>
         <td width="117" onMouseOver="this.style.backgroundImage='url(image/fg_top04.jpg)'" onMouseOut="this.style.backgroundImage=''"><a href="#" onclick="this.style.behavior='url(#default#homepage)';this.sethomepage('http://www.mobilesale.com')" class="a4">设为首页</a></td>
       </tr>	

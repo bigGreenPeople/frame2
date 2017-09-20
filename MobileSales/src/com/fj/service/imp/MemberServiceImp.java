@@ -17,6 +17,18 @@ public class MemberServiceImp implements MemberService {
 	}
 	
 	@Override
+	public Member findMemberByName(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDao.findOneByCondition(member);
+	}
+	
+	@Override
+	public Member findMemberByResult(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDao.findOneByCondition(member);
+	}
+	
+	@Override
 	public Member login(Member member) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDao.findOneByCondition(member);
@@ -25,6 +37,20 @@ public class MemberServiceImp implements MemberService {
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
-	
+
+	@Override
+	public void upPass(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		Member findById = memberDao.findById(member.getId());
+		findById.setPassword(member.getPassword());
+		memberDao.update(findById);
+	}
+	@Override
+	public Member upDataMember(Member member) throws Exception {
+		// TODO Auto-generated method stub
+		memberDao.update(member);
+		
+		return memberDao.findById(member.getId());
+	}
 	
 }

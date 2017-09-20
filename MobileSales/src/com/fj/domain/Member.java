@@ -1,5 +1,6 @@
 package com.fj.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +9,7 @@ import java.util.Set;
  * @author bigGreenPeople
  *
  */
-public class Member {
+public class Member  implements Serializable{
 	private Integer id;
 	//ÕËºÅÃû
 	private String name;

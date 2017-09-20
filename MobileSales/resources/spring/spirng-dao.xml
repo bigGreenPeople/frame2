@@ -4,5 +4,12 @@
 	<bean id="memberDaoImp" class="com.fj.dao.imp.MemberDaoImp">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+	<!-- 管理员 -->
+	<bean id="managerDaoImp" class="com.fj.dao.imp.ManagerDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 大类别 -->
+	<bean id="bigTypeDaoImp" class="com.fj.dao.imp.BigTypeDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

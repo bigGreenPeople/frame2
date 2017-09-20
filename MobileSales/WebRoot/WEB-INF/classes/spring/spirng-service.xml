@@ -4,4 +4,12 @@
 	<bean id="memberServiceImp" class="com.fj.service.imp.MemberServiceImp">
 		<property name="memberDao" ref="memberDaoImp"></property>
 	</bean>
+	<!-- 管理员 -->
+	<bean id="managerServiceImp" class="com.fj.service.imp.ManagerServiceImp">
+		<property name="managerDao" ref="managerDaoImp"></property>
+	</bean>
+	<!--商品  -->
+	<bean id="bigTypeServiceImp" class="com.fj.service.imp.BigTypeServiceImp">
+		<property name="bigTypeDao" ref="bigTypeDaoImp"></property>
+	</bean>
 </beans>

@@ -1,12 +1,13 @@
 package com.fj.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * 公告信息表
  * @author bigGreenPeople
  *
  */
-public class Affiche {
+public class Affiche implements Serializable{
 	private Integer id;
 	private String name;//公告标题
 	private String content;//公告内容

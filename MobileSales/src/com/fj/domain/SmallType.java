@@ -1,5 +1,6 @@
 package com.fj.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +10,7 @@ import java.util.Set;
  * @author bigGreenPeople
  *
  */
-public class SmallType {
+public class SmallType  implements Serializable{
 	private Integer id;
 	private String smallName;
 	private Date creaTime;

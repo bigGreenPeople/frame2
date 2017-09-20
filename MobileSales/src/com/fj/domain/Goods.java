@@ -1,10 +1,11 @@
 package com.fj.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Goods {
+public class Goods  implements Serializable{
 	private Integer id;
 	private String goodsName;
 	//生产厂家

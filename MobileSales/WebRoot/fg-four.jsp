@@ -13,7 +13,7 @@
 <img src="image/fg2.jpg" width="752" height="45">
    <p><strong>
     密码修改成功！！！
-    密码修改失败！！！
+ <!--    密码修改失败！！！ -->
   </strong></p>
   <!-- 提示：此时要对修改的密码是否成功进行判断，密码修改失败则跳到fg-three.jsp页面，修改成功则跳回到首页index.jsp -->
 <meta http-equiv="refresh" content="3;URL=index.jsp">

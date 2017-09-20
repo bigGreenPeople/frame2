@@ -1,5 +1,6 @@
 package com.fj.domain;
 
+import java.io.Serializable;
 import java.util.List;
 /**
  * 此类用于表示分页的条件
@@ -8,7 +9,7 @@ import java.util.List;
  *
  * @param <T>
  */
-public class PageBean<T> {
+public class PageBean<T>  implements Serializable{
 	//每页记录的list集合
 	private List<T> list;
 	//当前页

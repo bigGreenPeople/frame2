@@ -1,20 +1,20 @@
-<%@ page contentType="text/html; charset=gb2312" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css"> 
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("±íµ¥ÐÅÏ¢²»ÄÜÎª¿Õ");
+alert("è¡¨å•ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
 return false;
 }
 }
 if(document.form.password.value!=document.form.passwordOne.value){
-window.alert("ÄúÁ½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ£¬ÇëÖØÐÂÊäÈë");
+window.alert("æ‚¨ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥");
 return false;
 }
 }
@@ -26,21 +26,22 @@ return false;
     <td bgcolor="#FFFFFF" align="center">
 <img src="image/fg2.jpg" width="752" height="45">
 
- <p><strong>´ð°¸²»ÕýÈ·,ÇëÖØÐÂÊäÈë£¡£¡£¡</strong></p>
- <meta http-equiv="refresh" content="3;URL=fg-Two.jsp">
-  <p><strong>ÊäÈëÐÂÃÜÂë</strong></p>
-  <form name="form" method="post" action="fg-four.jsp?id=" onSubmit="return checkEmpty(form)">
+ <!-- <p><strong>ç­”æ¡ˆä¸æ­£ç¡®,è¯·é‡æ–°è¾“å…¥ï¼ï¼ï¼</strong></p>
+ <meta http-equiv="refresh" content="3;URL=fg-Two.jsp"> -->
+  <p><strong>è¾“å…¥æ–°å¯†ç </strong></p>
+  <form name="form" method="post" action="${pageContext.request.contextPath }/member_upPass" onSubmit="return checkEmpty(form)">
     <table width="298"  border="0" cellspacing="0" cellpadding="0" bordercolor="#FFFFFF" bordercolordark="#819BBC" bordercolorlight="#FFFFFF">
+    	<tr><td><input type="hidden" name="id" value="${id }"/></td></tr>
       <tr>
         <td width="105" height="35">
-          <div align="right">ÇëÊäÈëÐÂµÄÃÜÂë£º</div></td>
+          <div align="right">è¯·è¾“å…¥æ–°çš„å¯†ç ï¼š</div></td>
         <td width="187"><div align="center">
           <input type="password" name="password">
         </div></td>
       </tr>
        <tr>
         <td width="105" height="35">
-          <div align="right">È·ÈÏÃÜÂë£º</div></td>
+          <div align="right">ç¡®è®¤å¯†ç ï¼š</div></td>
         <td width="187"><div align="center">
                  <input type="password" name="passwordOne">
         </div></td>

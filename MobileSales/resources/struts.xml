@@ -10,8 +10,46 @@
 		<!-- 用户 -->
 		<action name="member_*" class="memberAction" method="{1}">
 			<!-- 到首页 -->
-			<result name="toIndex">
+			<result name="toIndex" type="redirect">
 				/index.jsp
+			</result>
+			<!--回应axaj的name查询  -->
+			<result name="findByName" type="stream">
+				<param name="contentType">text/html</param>
+                 <param name="inputName">inputStream</param>
+             </result>
+             <!-- 到问题界面 -->
+             <result name="toQuestion">
+             	/fg-Two.jsp
+             </result>
+             <result name="toUpPass">
+             	/fg-three.jsp
+             </result>
+             <!-- 到修改成功界面 -->
+             <result name="upPass">
+             	/fg-four.jsp
+             </result>
+             <!-- 跳转到修改用户信息界面 -->
+             <result name="toUpdataMember">
+             	/fg-updateMember.jsp
+             </result>
+		</action>
+		
+		<!-- 管理员 -->
+		<action name="manager_*" class="managerAction" method="{1}">
+			<!-- 到管理界面 -->
+			<result name="toManager">
+				/bg-landResult.jsp
+			</result>
+			<!-- 回到登录界面 -->
+			<result name="loginErr">
+				/bg-land.jsp
+			</result>
+		</action>
+		<!-- 商品 大类别 小类别 -->
+		<action name="goods_*" class="goodsAction" method="{1}">
+			<result name="findAllBigType">
+				/bg-bigTypeSelect.jsp
 			</result>
 		</action>
 	</package>

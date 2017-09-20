@@ -4,4 +4,13 @@
 	<bean id="memberAction" class="com.fj.action.MemberAction" scope="prototype">
 		<property name="memberService" ref="memberServiceImp"></property>
 	</bean>
+	<!-- 管理员 -->
+	<bean id="managerAction" class="com.fj.action.ManagerAction" scope="prototype">
+		<property name="managerService" ref="managerServiceImp"></property>
+	</bean>
+	<!--商品  -->
+	<bean id="goodsAction" class="com.fj.action.GoodsAction" scope="prototype">
+		<property name="bigTypeService" ref="bigTypeServiceImp"></property>
+	</bean>
+	
 </beans>

@@ -1,10 +1,13 @@
 package com.fj.domain;
+
+import java.io.Serializable;
+
 /**
  * ¶©µ¥Ã÷Ï¸±í
  * @author bigGreenPeople
  *
  */
-public class OrderDetail {
+public class OrderDetail  implements Serializable{
 	private Integer id;
 	private Float price;
 	private Integer number;

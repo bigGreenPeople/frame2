@@ -1,25 +1,31 @@
-<%@ page contentType="text/html; charset=gb2312" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="java.sql.*,java.util.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>�ֻ�����ϵͳ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>手机销售系统</title>
 </head>
 <link href="css/css.css" rel="stylesheet" type="text/css"> 
-<script language="javascript">
+<script type="text/javascript" language="javascript">
 function checkEmpty(memberForm){
 for(i=0;i<memberForm.length;i++){
 if(memberForm.elements[i].value==""){
-alert("������Ϣ����Ϊ��");
+alert("表单信息不能为空");
 return false;
 }
 }
+//新加入的验证E-mail地址是否正确209-05-25
+var vemail=memberForm.email.value;
+var regExp=/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+if(!regExp.test(vemail)){
+	window.alert("您输入的邮箱地址不正确！");return false;
+}
 if(document.memberForm.password.value!=document.memberForm.passwordOne.value){
-window.alert("��������������벻һ�£�����������");
+window.alert("您两次输入的密码不一致，请重新输入");
 return false;
 }
 if(isNaN(document.memberForm.age.value)){
-window.alert("����ֻ��Ϊ����");
+window.alert("年龄只能为数字");
 return false;
 }
 }
@@ -32,65 +38,65 @@ return false;
 <img src="image/fg1.jpg" width="752" height="39">
 
 
-<form action="memberAction.do?action=6"  onsubmit="return checkEmpty(memberForm)">
+<form action="${pageContext.request.contextPath }/member_updataMember" method="post"  onsubmit="return checkEmpty(memberForm)">
 <table width="298"  border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="105" height="35">
-          <div align="right">��Ա���ƣ�</div></td>
+          <div align="right">会员名称：</div></td>
         <td width="187"><div align="center">
-          <input type="hidden" name="name" value="lisi">lisi
+          <input type="hidden" name="name" value="${loginMember.name }">${loginMember.name }
         </div></td>
       </tr>
        <tr>
         <td height="35">
-          <div align="right">ԭ�������룺</div></td>
+          <div align="right">原来的密码：</div></td>
         <td><div align="center">
-           <input type="hidden" name="result" value="121212">
-            <input type="hidden" name="question" value="��ļ�������?">
-          <input type="hidden" name="passwordOld" value="121212">
+           <input type="hidden" name="result" value="${loginMember.result }">
+            <input type="hidden" name="question" value="${loginMember.question }">
+         <input type="hidden" name="id" value="${loginMember.id }">
           <input type="password" name="oldPassword">
         </div></td>
       </tr>
       <tr>
         <td height="35">
-          <div align="right">��Ա���룺</div></td>
+          <div align="right">会员密码：</div></td>
         <td><div align="center">
           <input type="password" name="password">
         </div></td>
       </tr>
       <tr>
         <td height="35">
-          <div align="right">����ȷ�ϣ�</div></td>
+          <div align="right">密码确认：</div></td>
         <td><div align="center">
           <input type="password" name="passwordOne">
         </div></td>
       </tr>
       <tr>
         <td height="35">
-          <div align="right">��ʵ������</div></td>
+          <div align="right">真实姓名：</div></td>
         <td><div align="center">
-          <input type="text" name="reallyName" value="lisi">
+          <input type="text" name="reallyName" value="${loginMember.reallyName }">
         </div></td>
       </tr>
       <tr>
         <td height="35">
-          <div align="right">���䣺</div></td>
+          <div align="right">年龄：</div></td>
         <td><div align="center">
-          <input type="text" name="age" value="23">
+          <input type="text" name="age" value="${loginMember.age }">
         </div></td>
       </tr>
       <tr>
         <td height="35">
-          <div align="right">ְҵ��</div></td>
+          <div align="right">职业：</div></td>
         <td><div align="center">
-          <input type="text" name="profession" value="ѧ��">
+          <input type="text" name="profession" value="${loginMember.profession }">
         </div></td>
       </tr>
       <tr>
         <td height="35">
-          <div align="right">Email��ַ��</div></td>
+          <div align="right">Email地址：</div></td>
         <td><div align="center">
-          <input name="email" type="text"  value="lisi23@126.com">
+          <input name="email" type="text"  value="${loginMember.email }">
         </div></td>
       </tr>
     </table>
