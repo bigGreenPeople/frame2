@@ -1,20 +1,22 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
 <script language="javascript">
 function checkEmpty(form){
-for(i=0;i<form.length;i++){
-if(form.elements[i].value==""){
-alert("±íµ¥ĞÅÏ¢²»ÄÜÎª¿Õ");
-return false;
-}
-}
+	for(i=0;i<form.length;i++){
+		
+		if(form.elements[i].value==""){
+			alert("è¡¨å•ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
+			return false;
+		}
+	}
 }
 </script>
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -28,25 +30,27 @@ return false;
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>Ìí¼ÓÉÌÆ·Ğ¡Àà±ğĞÅÏ¢</strong></div></td>
+            <td><div align="center"><strong>æ·»åŠ å•†å“å°ç±»åˆ«ä¿¡æ¯</strong></div></td>
           </tr>
         </table>
         <br>
-		  <form action="smallTypeAction.do?action=2" method="post"  name="form" onSubmit="return checkEmpty(form)" >
+		  <form action="${pageContext.request.contextPath }/type_addSmallType" method="post"  name="form" onSubmit="return checkEmpty(form)" >
         <table width="90%" height="60"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="25%" height="30"><div align="center">ÇëÑ¡ÔñÀà±ğÃû³Æ</div></td>
+            <td width="25%" height="30"><div align="center">è¯·é€‰æ‹©ç±»åˆ«åç§°</div></td>
             <td width="75%" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;
 			
-              <select name="bigId" >
-              <option value="">ÇëÑ¡Ôñ</option>
-                  <option value="121">»ªÎª</option>       
+              <select name="smallType.bigType.id" >
+              <option value="">è¯·é€‰æ‹©</option>
+              <c:forEach items="${list }" var="bigType">
+              	 <option value="${bigType.id }">${bigType.bigName }</option> 
+              </c:forEach>
 		    </select>		    </td>
           </tr>
            <tr>
-            <td width="25%" height="30"><div align="center">Ğ¡Àà±ğÃû³Æ</div></td>
+            <td width="25%" height="30"><div align="center">å°ç±»åˆ«åç§°</div></td>
             <td width="75%" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;
-             <input name="name" type="text" size="50"></td>
+             <input name="smallType.smallName" type="text" size="50"></td>
           </tr>
         </table>
        <br>

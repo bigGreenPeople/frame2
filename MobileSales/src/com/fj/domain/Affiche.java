@@ -11,7 +11,7 @@ public class Affiche implements Serializable{
 	private Integer id;
 	private String name;//公告标题
 	private String content;//公告内容
-	private Date issue_Time;//发布时间
+	private Date issue_Time = new Date();//发布时间
 	
 	public Integer getId() {
 		return id;

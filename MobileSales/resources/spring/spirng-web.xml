@@ -9,7 +9,7 @@
 		<property name="managerService" ref="managerServiceImp"></property>
 	</bean>
 	<!--商品  -->
-	<bean id="goodsAction" class="com.fj.action.GoodsAction" scope="prototype">
+	<bean id="typeAction" class="com.fj.action.TypeAction" scope="prototype">
 		<property name="bigTypeService" ref="bigTypeServiceImp"></property>
 	</bean>
 	

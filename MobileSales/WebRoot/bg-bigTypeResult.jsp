@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>手机销售系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>鎵嬫満閿�鍞郴缁�</title>
 </head>
 
 <body>
 
-	<script language='javascript'>alert('<%=request.getAttribute("result")%>'); window.location.href='#';</script>
+	<script language='javascript'>alert('<%=request.getAttribute("result")%>'); window.location.href="${pageContext.request.contextPath }/type_findAllBigType";</script>
 
 </body>
 </html>

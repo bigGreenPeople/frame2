@@ -75,10 +75,7 @@ public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T> {
 		// TODO Auto-generated method stub
 		//离线查询
 		DetachedCriteria criteria = DetachedCriteria.forClass(pclazz);
-		//得到分页后的
-		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(criteria, pageBean.getCurrentPage(), pageBean.getPageSize());
-		//封装pageBean
-		pageBean.setList(list);
+		
 		//查询得到总记录数
 		pageBean.setTotalCount(this.getCount());
 		//计算开始位置
@@ -92,6 +89,10 @@ public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T> {
 		//计算出结束位置
 		int end = pageBean.getCurrentPage()*pageBean.getPageSize();
 		pageBean.setEnd(end);
+		//得到分页后的
+		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(criteria, pageBean.getBegin()-1, pageBean.getPageSize());
+		//封装pageBean
+		pageBean.setList(list);
 		return pageBean;
 	}
 	

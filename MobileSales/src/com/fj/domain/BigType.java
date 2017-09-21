@@ -12,7 +12,7 @@ import java.util.Set;
 public class BigType  implements Serializable{
 	private Integer id;
 	private String bigName;
-	private Date creaTime;
+	private Date creaTime = new Date();
 	
 	//大类别下面的小类别
 	private Set<SmallType> smallTypesSet = new HashSet<SmallType>();

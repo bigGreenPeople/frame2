@@ -12,7 +12,7 @@ public class Goods  implements Serializable{
 	private String goodsFrom;
 	//商品介绍
 	private String introduce;
-	private Date creaTime;
+	private Date creaTime = new Date();
 	//商品定价
 	private Double nowPrice;
 	//商品特价

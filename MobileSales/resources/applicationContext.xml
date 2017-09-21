@@ -6,7 +6,7 @@
 	<bean id="comboPooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<!-- jdbc:mysql://localhost:3306/sample_db -->
-		<property name="jdbcUrl" value="jdbc:mysql:///MobileSales?characterEncoding=UTF-8"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://obileSales?characterEncoding=UTF-8"></property>
 		<property name="user" value="root"></property>
 		<property name="password" value=""></property>
 	</bean>

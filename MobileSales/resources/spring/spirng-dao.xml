@@ -12,4 +12,8 @@
 	<bean id="bigTypeDaoImp" class="com.fj.dao.imp.BigTypeDaoImp">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<!-- 小类别 -->
+	<bean id="smallTypeDaoImp" class="com.fj.dao.imp.SmallTypeDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

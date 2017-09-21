@@ -7,7 +7,7 @@
 
 <body>
 
-	<script language='javascript'>alert('<%=request.getAttribute("result")%>');window.location.href='#';</script>
+	<script language='javascript'>alert('<%=request.getAttribute("result")%>');window.location.href='${pageContext.request.contextPath}/type_findAllSmallType';</script>
 
 </body>
 </html>

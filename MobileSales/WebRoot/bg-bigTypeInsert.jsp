@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@page import="java.sql.*,java.util.*"%>
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("±íµ¥ĞÅÏ¢²»ÄÜÎª¿Õ");
+alert("è¡¨å•ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
 return false;
 }
 }
@@ -13,8 +13,8 @@ return false;
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -40,16 +40,16 @@ return false;
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>Ìí¼ÓÉÌÆ·´óÀà±ğĞÅÏ¢</strong></div></td>
+            <td><div align="center"><strong>æ·»åŠ å•†å“å¤§ç±»åˆ«ä¿¡æ¯</strong></div></td>
           </tr>
         </table>
         <br>
-		  <form action="bigTypeAction.do?action=2" method="post"  name="form" onSubmit="return checkEmpty(form)" >
+		  <form action="${pageContext.request.contextPath }/type_addBigType" method="post"  name="form" onSubmit="return checkEmpty(form)" >
         <table width="74%" height="60"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="25%" height="30"><div align="center">´óÀà±ğÃû³Æ</div></td>
+            <td width="25%" height="30"><div align="center">å¤§ç±»åˆ«åç§°</div></td>
             <td width="75%" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="name" type="text" size="50"></td>
+            <input name="bigType.bigName" type="text" size="50"></td>
           </tr>
         </table>
      <br>

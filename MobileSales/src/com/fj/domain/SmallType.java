@@ -13,7 +13,7 @@ import java.util.Set;
 public class SmallType  implements Serializable{
 	private Integer id;
 	private String smallName;
-	private Date creaTime;
+	private Date creaTime = new Date();
 	
 //	所属的大类别
 	private BigType bigType;

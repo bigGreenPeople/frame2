@@ -1,9 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>йж╩ЗоЗйшо╣мЁ</title>
+ <script type="text/javascript" Language="JavaScript">
+ function deleteType(date) {
+  if(confirm("Г║╝Е╝ Х╕│Е┬═И≥╓Е░≈О╪÷")){
+    window.location="${pageContext.request.contextPath}/type_deleteSmallType?smallType.id="+date;
+	}
+  }
+ </script>
+<title>Ф┴▀Ф°╨И■─Е■╝ГЁ╩Г╩÷</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -15,60 +23,69 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>илф╥п║юЮ╠П╡Ия╞</strong></div></td>
+            <td><div align="center"><strong>Е∙├Е⌠│Е╟▐Г╠╩Е┬╚Ф÷╔Х╞╒</strong></div></td>
           </tr>
         </table>
         <br>
 
 
 	  <table width="90%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+	  
         <tr>
-          <td width="10%" height="25"><div align="center">йЩ╬щ╠Ю╨е</div></td>
-          <td width="18%"><div align="center">п║юЮ╠ПцШЁф</div></td>
-		  <td width="20%"><div align="center">йТсз╢СюЮ╠ПцШЁф</div></td>
-          <td width="27%"><div align="center">╢╢╫╗й╠╪Д</div></td>
-
-          <td width="25%"><div align="center">╡ывВ</div></td>
-        </tr>
- 
-        <tr bgcolor="#FFFFFF">
-          <td height="30"><div align="center">11</div></td>
-          <td><div align="center">╩╙н╙хыр╚</div></td>
-		  <td><div align="center">
-		  
-		  <a href="smallTypeAction.do?action=6&bigId=">╩╙н╙</a>
-		 
-		  </div></td>
-          <td><div align="center">2017.8.12</div></td>                                                                                                                                                                                                   
-       
-		 <td>  
-		   <div align="center">   
-		  <a href="smallTypeAction.do?action=3&id=">и╬ЁЩ</a> </div>
-		
-		 <div align="center">  нч╡ывВ </div>
-		  </td>
-	 </tr>
-      </table> 
+          <td width="12%" height="25"><div style="font-size: 14px;" align="center">Ф∙╟Ф█╝Г╪√Е▐╥</div></td>
+          <td width="18%"><div style="font-size: 14px;" align="center">Е╟▐Г╠╩Е┬╚Е░█Г╖╟</div></td>
+		  <td width="20%"><div style="font-size: 14px;" align="center">Е╠·Д╨▌Е╓╖Г╠╩Е┬╚Е░█Г╖╟</div></td>
+          <td width="27%"><div style="font-size: 14px;" align="center">Е┬⌡Е╩╨Ф≈╤И≈╢</div></td>
+                                                  
+          <td width="25%"><div style="font-size: 14px;" align="center">Ф⌠█Д╫°</div></td>
+        </tr>                                     
+ 		<c:forEach items="${smallTypes.list }" var="smallType">
+	        <tr bgcolor="#FFFFFF">
+	          <td height="30"><div align="center">${smallType.id }</div></td>
+	          <td><div align="center">${smallType.smallName }</div></td>
+			  <td><div align="center">
+			  
+			  <a href="smallTypeAction.do?action=6&bigId=">${smallType.bigType.bigName }</a>
+			 
+			  </div></td>
+	          <td><div align="center">${smallType.creaTime }</div></td>                                                                                                                                                                                                   
+	       
+			 <td>  
+			   <div align="center">   
+			  <a href="javascript:deleteType('${smallType.id}')">Е┬═И≥╓</a> </div>
+			
+			 <!-- <div align="center">  Ф≈═Ф⌠█Д╫° </div> -->
+			  </td>
+			 </tr>
+	 </c:forEach>
+     	 </table> 
 	  <br>
 	  <table width="90%"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr align="center">
-          <td width="13%">╧╡н╙5рЁ</td>
-          <td width="16%">╧╡сп23лУ╪гб╪</td>
-          <td width="14%">╣╠г╟н╙╣з2рЁ</td>
-          <td width="19%">
-      иор╩рЁ
-        <a href="smallTypeAction.do?action=0&i=">иор╩рЁ</a>
-		 <a href="smallTypeAction.do?action=6&i=&bigId=">иор╩рЁ</a>
-		</td>
+          <td style="font-size: 12px;" width="13%">Е┘╠Д╦╨${smallTypes.totalPage }И║╣</td>
+          <td  style="font-size: 12px;" width="16%">Е┘╠Ф°┴${smallTypes.totalCount }Ф²║Х╝╟Е╫∙</td>
+          <td style="font-size: 12px;" width="14%">Е╫⌠Е┴█Д╦╨Г╛╛${smallTypes.currentPage }И║╣</td>
+          <td style="font-size: 12px;" width="19%">
+       
+        <c:if test="${1!=smallTypes.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/type_findAllSmallType?currentPage=${smallTypes.currentPage-1}'>Д╦┼Д╦─И║╣</a></li>
+			</c:if>
+        </td>
+      
           <td width="18%">
-            обр╩рЁ
-        <a href="smallTypeAction.do?action=0&i=">обр╩рЁ</a>
-             <a href="smallTypeAction.do?action=6&i=&bigId=">обр╩рЁ</a>
-</td>
-<td width="20%"><a href="bg-smallTypeInsert.jsp">лМ╪сп║юЮ╠П&nbsp;</a></td>
-        </tr>
+            
+              <c:if test="${smallTypes.totalPage!=smallTypes.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/type_findAllSmallType?currentPage=${smallTypes.currentPage+1}'>Д╦▀Д╦─И║╣</a></li>
+			</c:if>
+       	</td>
+
+          <td width="20%">
+            <div align="right"><img src="image/bg-add.gif" width="9" height="9"><a href="${pageContext.request.contextPath}/type_toAddSmallType">&nbsp;Ф╥╩Е┼═Е╟▐Г╠╩Е┬╚&nbsp;</a></div></td>
+		</tr>
       </table>
-<P align="center">ddd</P>
+
+<P align="center"></P>
+	
     </td>
   </tr>
 </table>

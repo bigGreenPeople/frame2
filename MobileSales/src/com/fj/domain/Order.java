@@ -18,7 +18,7 @@ public class Order  implements Serializable{
 	private String bz;
 	// «∑Ò¥¶¿Ì
 	private Integer sign;
-	private Date creaTime;
+	private Date creaTime = new Date();
 	
 	private Member member;
 	private Set<OrderDetail> orderDetailSet = new HashSet<OrderDetail>();

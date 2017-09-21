@@ -46,10 +46,27 @@
 				/bg-land.jsp
 			</result>
 		</action>
-		<!-- 商品 大类别 小类别 -->
-		<action name="goods_*" class="goodsAction" method="{1}">
+		<!--大类别 小类别 -->
+		<action name="type_*" class="typeAction" method="{1}">
+			<!-- 到大类别页面 -->
 			<result name="findAllBigType">
 				/bg-bigTypeSelect.jsp
+			</result>
+			<!-- 到小类别页面 -->
+			<result name="findAllSmallType">
+				/bg-smallTypeSelect.jsp
+			</result>
+			<!-- 到大类别添加成功界面 -->
+			<result name="toBigResult">
+				/bg-bigTypeResult.jsp
+			</result>
+			<!-- 到小类别添加成功界面 -->
+			<result name="toSmallResult">
+				/bg-smallTypeResult.jsp
+			</result>
+			<!-- 到添加小类别界面 -->
+			<result name="toAddSmallType">
+				/bg-smallTypeInsert.jsp
 			</result>
 		</action>
 	</package>

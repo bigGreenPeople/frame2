@@ -8,8 +8,9 @@
 	<bean id="managerServiceImp" class="com.fj.service.imp.ManagerServiceImp">
 		<property name="managerDao" ref="managerDaoImp"></property>
 	</bean>
-	<!--商品  -->
+	<!--类别  -->
 	<bean id="bigTypeServiceImp" class="com.fj.service.imp.BigTypeServiceImp">
 		<property name="bigTypeDao" ref="bigTypeDaoImp"></property>
+		<property name="smallTypeDao" ref="smallTypeDaoImp"></property>
 	</bean>
 </beans>
