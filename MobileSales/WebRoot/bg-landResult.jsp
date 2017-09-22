@@ -11,7 +11,7 @@
 <%if(request.getAttribute("result")==null){%>
 	<script language=javascript>window.location.href='bg-orderSelect.jsp';</script>
 	<%}else{%>
-	<script language='javascript'>alert('<%=request.getAttribute("result")%>');history.go(-1);</script>
+	<script language='javascript'>alert('<%=request.getAttribute("result")%>');location.href='bg-land.jsp'</script>
 	<%}%>
 </body>
 </html>

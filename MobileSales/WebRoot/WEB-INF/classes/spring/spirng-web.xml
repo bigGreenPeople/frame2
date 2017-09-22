@@ -8,9 +8,13 @@
 	<bean id="managerAction" class="com.fj.action.ManagerAction" scope="prototype">
 		<property name="managerService" ref="managerServiceImp"></property>
 	</bean>
-	<!--商品  -->
+	<!--类型  -->
 	<bean id="typeAction" class="com.fj.action.TypeAction" scope="prototype">
 		<property name="bigTypeService" ref="bigTypeServiceImp"></property>
 	</bean>
-	
+	<!--商品  -->
+	<bean id="goodsAction" class="com.fj.action.GoodsAction" scope="prototype">
+		<property name="goodsService" ref="goodsServiceImp"></property>
+		<property name="bigTypeService" ref="bigTypeServiceImp"></property>
+	</bean>
 </beans>

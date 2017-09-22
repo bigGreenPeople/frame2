@@ -7,7 +7,7 @@
 
 <body>
 
-	<script language='javascript'>alert('<%=request.getAttribute("result")%>');window.location.href='goodsAction.do?action=0';</script>
+	<script language='javascript'>alert('<%=request.getAttribute("result")%>');window.location.href='goods_findAllGoods';</script>
 
 </body>
 </html>

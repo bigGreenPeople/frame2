@@ -6,7 +6,7 @@
 	<!-- 这里可以设置上传文件的大小 -->
 	<constant name="struts.multipart.maxSize" value="2097150"></constant>
 
-	<package name="phone" extends="struts-default" namespace="/">
+	<package name="phone" extends="struts-default,json-default" namespace="/">
 		<!-- 用户 -->
 		<action name="member_*" class="memberAction" method="{1}">
 			<!-- 到首页 -->
@@ -33,6 +33,18 @@
              <result name="toUpdataMember">
              	/fg-updateMember.jsp
              </result>
+             <!-- 显示所有的用户 -->
+             <result name="findAllMember">
+             	/bg-selectMember.jsp
+             </result>
+             <!-- 显示用户的详细 -->
+             <result name="showMember">
+             	/bg-selectContent.jsp
+             </result>
+             <!-- 查找完成界面 -->
+             <result name="toMemberResult">
+             	/bg-resultMember.jsp
+             </result>
 		</action>
 		
 		<!-- 管理员 -->
@@ -44,6 +56,18 @@
 			<!-- 回到登录界面 -->
 			<result name="loginErr">
 				/bg-land.jsp
+			</result>
+			<!-- 到登录结果提示界面 -->
+			<result name="toLandResult">
+				/bg-landResult.jsp
+			</result>
+			<!-- 到显示所有管理员的界面 -->
+			<result name="findAllManager">
+				/bg-managerSelect.jsp
+			</result>
+			<!-- 到显示操作结果界面 -->
+			<result name="toManagerResult">
+				/bg-managerResult.jsp
 			</result>
 		</action>
 		<!--大类别 小类别 -->
@@ -67,6 +91,32 @@
 			<!-- 到添加小类别界面 -->
 			<result name="toAddSmallType">
 				/bg-smallTypeInsert.jsp
+			</result>
+		</action>
+		
+		<!--商品  -->
+		<action name="goods_*" class="goodsAction" method="{1}">
+			<result name="findAllGoods">
+				/bg-goodSelect.jsp
+			</result>
+			<!-- 到商品添加界面 -->
+			<result name="toAddGoods">
+				/bg-goodInsert.jsp
+			</result>
+			<!-- 到判断添加成功与否的界面 -->
+			<result name="toGoodsResult">
+				/bg-goodsResult.jsp
+			</result>
+			<!-- 到显示商品详细信息页面 -->
+			<result name="showGoods">
+				/bg-goodSelectContent.jsp
+			</result>
+			<!-- 到设置特价界面 -->
+			<result name="tosetGoods">
+				/bg-goodsFreePirce.jsp
+			</result>
+			<!-- ajax -->			
+			<result name="bigTypeAjax" type="json">
 			</result>
 		</action>
 	</package>

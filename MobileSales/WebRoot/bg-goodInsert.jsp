@@ -1,15 +1,16 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("±íµ¥ĞÅÏ¢²»ÄÜÎª¿Õ");
+alert("è¡¨å•ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
 return false;
 }
 }
 if(isNaN(document.form.nowPirce.value)){
-window.alert("¼Û¸ñÖ»ÄÜÎªÊı×Ö");
+window.alert("ä»·æ ¼åªèƒ½ä¸ºæ•°å­—");
 return false;
 }
 }
@@ -18,11 +19,13 @@ var big=form.big.value;
 window.location.href="goodsAction.do?action=2&bigId="+big;
 }
 </script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js">
+</script>
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -34,57 +37,55 @@ window.location.href="goodsAction.do?action=2&bigId="+big;
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>Ìí¼ÓÉÌÆ·ĞÅÏ¢</strong></div></td>
+            <td><div align="center"><strong>æ·»åŠ å•†å“ä¿¡æ¯</strong></div></td>
           </tr>
         </table>
         <br>
 
-  <form action="goodsAction.do?action=3" method="post" enctype="multipart/form-data"  name="form" onSubmit="return checkEmpty(form)" >
+  <form action="${pageContext.request.contextPath }/goods_addGoods" method="post" enctype="multipart/form-data"  name="form" enctype="multipart/form-data" onSubmit="return checkEmpty(form)" >
         <table width="90%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="20%" height="26">&nbsp;&nbsp;ËùÊô´óÀà±ğ</td>
+            <td width="20%" height="26" style="font-size: 14px;">&nbsp;&nbsp;æ‰€å±å¤§ç±»åˆ«</td>
             <td width="31%" bgcolor="#FFFFFF">&nbsp;&nbsp;
-              <select name="big" onChange="ChangeItem()"><option value="">ÇëÑ¡Ôñ</option>
-      
-          <option value="11">
-		   »ªÎª
-		  </option>
+              <select name="goods.smallType.bigType.id" id="big"><option value="">è¯·é€‰æ‹©</option>
+      			<c:forEach items="${list }" var="bigType">
+              	 <option value="${bigType.id }">${bigType.bigName }</option> 
+              </c:forEach>
             </select></td>
-            <td width="20%">&nbsp;&nbsp;ËùÊôÓÚĞ¡Àà±ğ</td>
+            <td width="20%" style="font-size: 14px;">&nbsp;&nbsp;æ‰€å±äºå°ç±»åˆ«</td>
             <td width="31%" bgcolor="#FFFFFF">&nbsp;
-              <select name="small"><option value="">ÇëÑ¡Ôñ</option>
-                  <option value="12">ÈÙÒ«4C</option>
+              <select name="goods.smallType.id" id="small"><option value="">-- è¯·é€‰æ‹© --</option>
 
             </select></td>
           </tr>
           <tr>
-            <td height="25">&nbsp;&nbsp;ÉÌÆ·Ãû³Æ</td>
+            <td height="25" style="font-size: 14px;">&nbsp;&nbsp;å•†å“åç§°</td>
             <td bgcolor="#FFFFFF">&nbsp;&nbsp;
-            <input name="name" type="text" size="20"></td>
-            <td>&nbsp;&nbsp;Éú²ú³§ÉÌ</td>
+            <input name="goods.goodsName" type="text" size="20"></td>
+            <td style="font-size: 14px;">&nbsp;&nbsp;ç”Ÿäº§å‚å•†</td>
             <td bgcolor="#FFFFFF">&nbsp;
-            <input name="from" type="text" size="20"></td>
+            <input name="goods.goodsFrom" type="text" size="20"></td>
           </tr>
           <tr>
-            <td height="27">&nbsp;&nbsp;ÉÌÆ·¶¨¼Û</td>
+            <td height="27" style="font-size: 14px;">&nbsp;&nbsp;å•†å“å®šä»·</td>
             <td bgcolor="#FFFFFF">&nbsp;&nbsp;
-            <input name="nowPirce" type="text" size="20"></td>
-            <td>&nbsp;&nbsp;³õÊ¼»¯ÌØ¼Û</td>
+            <input name="goods.nowPrice" type="text" size="20"></td>
+            <td style="font-size: 14px;">&nbsp;&nbsp;åˆå§‹åŒ–ç‰¹ä»·</td>
             <td bgcolor="#FFFFFF">&nbsp;
-            <input name="freePirce" type="hidden" size="20" value="0">0Ôª</td>
+            <input name="goods.freePrice" type="hidden" size="20" value="0">0å…ƒ</td>
           </tr>
 		  
 		  <tr>
-            <td height="28">&nbsp;&nbsp;ÉÌÆ·Í¼Æ¬</td>
+            <td height="28" style="font-size: 14px;">&nbsp;&nbsp;å•†å“å›¾ç‰‡</td>
             <td colspan="3" bgcolor="#FFFFFF">&nbsp;&nbsp;
-            <input name="formFile" type="file" id="formFile"></td>
+            <input name="fieldName" type="file" id="formFile"></td>
           </tr>
 		  
 		  
           <tr>
-            <td height="28">&nbsp;&nbsp;¼ò½é</td>
+            <td height="28" style="font-size: 14px;">&nbsp;&nbsp;ç®€ä»‹</td>
             <td colspan="3" bgcolor="#FFFFFF">&nbsp;&nbsp;
-            <input name="introduce" type="text" size="50"></td>
+            <input name="goods.introduce" type="text" size="50"></td>
           </tr>
         </table><br>
      <input type="image" class="input1"  src="image/save.jpg" width="51" height="20">
@@ -107,7 +108,55 @@ window.location.href="goodsAction.do?action=2&bigId="+big;
 
 
 
-
+<script type="text/javascript">
+	$("#big").change(function(){
+			//åˆ é™¤åŸå°ç±»åˆ«ä¸‹æ‹‰æ¡†ä¸­çš„å†…å®¹ï¼Œé™¤ç¬¬ä¸€é¡¹å¤–
+			$("#small option:gt(0)").remove();
+			var bigTypeId = $("#big option:selected").val();
+			/* if("" != bigTypeId){
+				//alert("ajaxå¼€å§‹"+bigTypeId);
+				$.ajax({
+					"type":"POST",
+					 contentType:"application/json; charset=utf-8",
+					"url":"${pageContext.request.contextPath}/goods_findSmallTypeByBigTypeAjax?time="+new Date().getTime(),
+					data:{"bigTypeId":bigTypeId},
+					"dataType":"json",
+					"success":function(backData,textStatus,ajax){
+						var types = backData.smallTypes;
+						//alert(city);
+						//jqueryå¯¹è±¡
+						var $types = $(types);
+						
+						types.each(function(){
+							//thisè¡¨ç¤ºæ¯ä¸ªå°ç±»åˆ«
+							alert(this.smallName);
+							var $option = $("<option>" + this.smallName + "</option>");
+							$("#small").append( $option );
+						});
+					}
+				});  
+				}*/
+				$.ajax({
+		  			data:{"bigTypeId":bigTypeId},
+		  			dataType:"json",
+		  			url:"${pageContext.request.contextPath}/goods_findSmallTypeByBigTypeAjax?time="+new Date().getTime(),
+		  			type:"post",
+		  			success:function(html){
+					    var types = html.smallTypes;
+					    var $types = $(types);
+						
+						$types.each(function(){
+							//thisè¡¨ç¤ºæ¯ä¸ªå°ç±»åˆ«
+							//alert(this.smallName);
+							var $option = $("<option value='"+this.id+"'>" + this.smallName + "</option>");
+							$("#small").append( $option );
+						});
+					 }
+		  		})
+			
+		});
+	
+</script>
 
 
 

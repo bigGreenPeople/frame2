@@ -39,9 +39,9 @@ return true;
           </tr>
         </table>
         <br>
-<form name="form" method="post" action="managerAction.do?action=8&account=" onSubmit="return checkEmpty(form)">
-       <table width="60%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
-          <tr><input name="selectPassword" type="hidden"  value=" ">
+<form name="form" method="post" action="manager_upPass" onSubmit="return checkEmpty(form)">
+       <table style="font-size: 14px;" width="60%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+          <tr><!-- <input name="selectPassword" type="hidden"  value=" "> -->
             <td width="29%" height="30"><div align="center">Ô­ÃÜÂë</div></td>
             <td width="71%" bgcolor="#FFFFFF">&nbsp;
             <input name="old" type="password" size="30"></td>

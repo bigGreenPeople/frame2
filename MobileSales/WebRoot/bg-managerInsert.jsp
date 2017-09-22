@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@page import="java.sql.*,java.util.*"%>
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("±íµ¥ĞÅÏ¢²»ÄÜÎª¿Õ");
+alert("è¡¨å•ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
 return false;
 }
 }
@@ -12,8 +12,8 @@ return false;
 </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
 <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -26,27 +26,27 @@ return false;
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>Ìí¼Ó¹ÜÀíÔ±ĞÅÏ¢</strong></div></td>
+            <td><div align="center"><strong>æ·»åŠ ç®¡ç†å‘˜ä¿¡æ¯</strong></div></td>
           </tr>
         </table>
         <br>
 				 
-		 <form action="managerAction.do?action=3" onsubmit="return checkEmpty(managerForm)">
-		 <table width="58%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+		 <form action="manager_addManager" onsubmit="return checkEmpty(managerForm)">
+		 <table style="font-size: 12px;" width="58%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="23%" height="30"><div align="center">ÓÃ»§Ãû</div></td>
+            <td width="23%" height="30"><div align="center">ç”¨æˆ·å</div></td>
             <td width="77%" bgcolor="#FFFFFF">&nbsp;
             <input name="account" type="text" size="35"></td>
           </tr>
           <tr>
-            <td height="30"><div align="center">ÃÜ&nbsp;Âë</div></td>
+            <td height="30"><div align="center">å¯†&nbsp;ç </div></td>
             <td bgcolor="#FFFFFF">&nbsp;
             <input name="password" type="password" size="35"></td>
           </tr>
           <tr>
-            <td height="30"><div align="center">ĞÕ&nbsp;Ãû</div></td>
+            <td height="30"><div align="center">å§“&nbsp;å</div></td>
             <td bgcolor="#FFFFFF">&nbsp;
-            <input name="name" type="text" size="35"> <input name="sigh" type="hidden" value="0"></td>
+            <input name="name" type="text" size="35"> <input name="sign" type="hidden" value="0"></td>
           </tr>
         </table>
 		<br>  

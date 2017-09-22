@@ -1,10 +1,11 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("±íµ¥ĞÅÏ¢²»ÄÜÎª¿Õ");
+alert("è¡¨å•ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
 return false;
 }
 }
@@ -12,8 +13,8 @@ return false;
 </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -25,55 +26,50 @@ return false;
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>²é¿´ÉÌÆ·µÄÏêÏ¸Çé¿ö</strong></div></td>
+            <td><div align="center"><strong>æŸ¥çœ‹å•†å“çš„è¯¦ç»†æƒ…å†µ</strong></div></td>
           </tr>
         </table>
         <br>
-		      <table width="90%" height="209"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+		      <table  style="font-size: 14px;" width="90%" height="209"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="20%" height="26">&nbsp;&nbsp;ËùÊô´óÀà±ğ</td>
-            <td width="31%" bgcolor="#FFFFFF">&nbsp;&nbsp;»ªÎª</td>
-            <td width="20%">&nbsp;&nbsp;ËùÊôÓÚĞ¡Àà±ğ</td>
-            <td width="31%" bgcolor="#FFFFFF">&nbsp;&nbsp;»ªÎªÊÖ»ú</td>
+            <td width="20%" height="26">&nbsp;&nbsp;æ‰€å±å¤§ç±»åˆ«</td>
+            <td width="31%" bgcolor="#FFFFFF">&nbsp;&nbsp;${goods.smallType.bigType.bigName }</td>
+            <td width="20%">&nbsp;&nbsp;æ‰€å±äºå°ç±»åˆ«</td>
+            <td width="31%" bgcolor="#FFFFFF">&nbsp;&nbsp;${goods.smallType.smallName }</td>
           </tr>
           <tr>
-            <td height="26">&nbsp;&nbsp;ÉÌÆ·Ãû³Æ</td>
-            <td bgcolor="#FFFFFF">&nbsp;&nbsp;»ªÎªÈÙÒ«5C</td>
-            <td>&nbsp;&nbsp;Éú²ú³§ÉÌ</td>
-            <td bgcolor="#FFFFFF">&nbsp;&nbsp;»ªÎª</td>
+            <td height="26">&nbsp;&nbsp;å•†å“åç§°</td>
+            <td bgcolor="#FFFFFF">&nbsp;&nbsp;${goods.goodsName}</td>
+            <td>&nbsp;&nbsp;ç”Ÿäº§å‚å•†</td>
+            <td bgcolor="#FFFFFF">&nbsp;&nbsp;${goods.goodsFrom}</td>
           </tr>
           <tr>
-            <td height="26">&nbsp;&nbsp;ÉÌÆ·¶¨¼Û</td>
-            <td bgcolor="#FFFFFF">&nbsp;&nbsp;2233Ôª</td>
-            <td>&nbsp;&nbsp;ÌØ¼Û</td>
-            <td bgcolor="#FFFFFF">&nbsp;&nbsp;1233Ôª</td>
+            <td height="26">&nbsp;&nbsp;å•†å“å®šä»·</td>
+            <td bgcolor="#FFFFFF">&nbsp;&nbsp;${goods.nowPrice}å…ƒ</td>
+            <td>&nbsp;&nbsp;ç‰¹ä»·</td>
+            <td bgcolor="#FFFFFF">&nbsp;&nbsp;${goods.freePrice}å…ƒ</td>
           </tr>
           <tr>
-            <td height="26">&nbsp;&nbsp;ÉÌÆ·¼ò½é</td>
-            <td colspan="3" bgcolor="#FFFFFF">&nbsp;&nbsp;»ªÎªÈÙÒ«5CÊÖ»úºÜºÃ...</td>
+            <td height="26">&nbsp;&nbsp;å•†å“ç®€ä»‹</td>
+            <td colspan="3" bgcolor="#FFFFFF">&nbsp;&nbsp;${goods.introduce}</td>
           </tr>
           <tr>
-            <td height="79">&nbsp;&nbsp;ÉÌÆ·Í¼Æ¬</td>
+            <td height="79">&nbsp;&nbsp;å•†å“å›¾ç‰‡</td>
             <td colspan="3" bgcolor="#FFFFFF">&nbsp;&nbsp;
-            <input name="imageField" type="image" src="goodsPicture/huawei/1492255388853.jpg" width="140" height="126"></td>
+            <input name="imageField" type="image"
+             <c:if test="${goods.pirture!=null}">src="file/${goods.pirture}"</c:if>
+             width="140" height="126"></td>
           </tr>
       </table>
         <table width="90%"  border="0" cellspacing="0" cellpadding="0">
-          <tr> 
-            <td width="65%" height="29" align="right">			
-			  
-			<a href="goodsAction.do?action=11&id= &mark=0">É¾³ıÌØ¼ÛĞÅÏ¢</a>
- 
-			&nbsp;&nbsp;</td>
-           
-		    <td width="22%" align="right">
-                        
-              <a href="bg-goodsFreePirce.jsp">ÉèÖÃÌØ¼ÛÉÌÆ·</a>
- 
-              <a href="bg-goodsFreePirce.jsp">µ÷ÕûÌØ¼ÛÉÌÆ·</a>
-           
+          <tr>
+		    <td align="right">
+			    <a href="goods_delGoodsFire?goods.id=${goods.id }">åˆ é™¤ç‰¹ä»·ä¿¡æ¯</a>
+	              <a href="${pageContext.request.contextPath }/goods_toSetGoods?goods.id=${goods.id }">è®¾ç½®ç‰¹ä»·å•†å“</a>
+	              <!-- <a href="bg-goodsFreePirce.jsp">è°ƒæ•´ç‰¹ä»·å•†å“</a> -->
+	              <a href="javascript:history.back();">è¿”å›</a>
 &nbsp;&nbsp;</td>
-            <td width="13%"> <a href="javascript:history.back();">·µ»Ø</a></td>
+           
           </tr>
         </table>
     </td>

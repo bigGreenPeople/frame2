@@ -3,7 +3,7 @@
   <script Language="JavaScript">
  function quit() {
   if(confirm("确定要退出后台吗？")){
-    window.location.href="loginOut.jsp";
+    window.location.href="${pageContext.request.contextPath}/manager_managerOut";
 	}
   }
  </script>
@@ -17,10 +17,10 @@
         <tr>
           <td><table width="118" border="0" align="center" cellpadding="0" cellspacing="0">
             <tr>
-              <td width="118" height="17" align="center" valign="bottom"><div align="left"><a href="bg-goodSelect.jsp" class="a3">商品设置</a></div></td>
+              <td width="118" height="17" align="center" valign="bottom"><div align="left"><a href="${pageContext.request.contextPath }/goods_findAllGoods" class="a3">商品设置</a></div></td>
             </tr>
             <tr>
-              <td height="17" align="center"><div align="left"><font color="#FFFFFF">Goods Manage</font></div></td>
+              <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Goods Manage</font></div></td>
             </tr>
           </table></td>
         </tr>
@@ -29,10 +29,10 @@
         <tr>
           <td><table width="118" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="109" height="17" align="center" valign="bottom"><div align="left"><a href="bg-selectMember.jsp" class="a3">会员设置</a></div></td>
+                <td width="109" height="17" align="center" valign="bottom"><div align="left"><a href="${pageContext.request.contextPath }/member_findAllMember" class="a3">会员设置</a></div></td>
               </tr>
               <tr>
-                <td height="17" align="center"><div align="left"><font color="#FFFFFF">Member Manage</font></div></td>
+                <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Member Manage</font></div></td>
               </tr>
           </table></td>
         </tr>
@@ -44,10 +44,10 @@
 	          <td><div align="left">
 	            <table width="118" border="0" align="center" cellpadding="0" cellspacing="0">
 	                <tr>
-	                  <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-managerSelect.jsp" class="a3">后台管理员设置</a></div></td>
+	                  <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="${pageContext.request.contextPath }/manager_findAllManager" class="a3">后台管理员设置</a></div></td>
 	                </tr>
 	                <tr>
-	                  <td height="17" align="center"><div align="left"><font color="#FFFFFF">Admin Manage</font></div></td>
+	                  <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Admin Manage</font></div></td>
 	                </tr>
 	             </table>
 	          </div></td>
@@ -62,7 +62,7 @@
                   <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-managerUpdatePassword.jsp" class="a3">修改密码</a></div></td>
                 </tr>
                 <tr>
-                  <td height="17" align="center"><div align="left"><font color="#FFFFFF">Amend Password</font></div></td>
+                  <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Amend Password</font></div></td>
                 </tr>
              </table>
           </div></td>
@@ -77,7 +77,7 @@
                 <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-orderSelect.jsp" class="a3">订单设置</a></div></td>
               </tr>
               <tr>
-                <td height="17" align="center"><div align="left"><font color="#FFFFFF">Order Manage</font></div></td>
+                <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Order Manage</font></div></td>
               </tr>
           </table></td>
         </tr>
@@ -89,7 +89,7 @@
                 <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-afficheSelect.jsp" class="a3">公告设置</a></div></td>
               </tr>
               <tr>
-                <td height="17" align="center"><div align="left"><font color="#FFFFFF">Placard Manage</font></div></td>
+                <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Placard Manage</font></div></td>
               </tr>
           </table></td>
         </tr>
@@ -101,7 +101,7 @@
                 <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-linkSelect.jsp" class="a3">友情设置</a></div></td>
               </tr>
               <tr>
-                <td height="17" align="center"><div align="left"><font color="#FFFFFF">Link Manage</font></div></td>
+                <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Link Manage</font></div></td>
               </tr>
           </table></td>
         </tr>
@@ -113,7 +113,7 @@
                 <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="javascript:quit()" class="a3">安全退出</a></div></td>
               </tr>
               <tr>
-                <td height="17" align="center"><div align="left"><font color="#FFFFFF">Exit Background</font></div></td>
+                <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Exit Background</font></div></td>
               </tr>
           </table></td>
         </tr>

@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fj.dao.MemberDao;
 import com.fj.domain.Member;
+import com.fj.domain.PageBean;
 import com.fj.service.MemberService;
 @Transactional
 public class MemberServiceImp implements MemberService {
@@ -16,6 +17,23 @@ public class MemberServiceImp implements MemberService {
 		memberDao.add(member);
 	}
 	
+	@Override
+	public PageBean<Member> findAllGoods(PageBean<Member> pageBean) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDao.findPageBeanAll(pageBean);
+	}
+	
+	@Override
+	public void deleteMemberById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		memberDao.delete(memberDao.findById(id));
+	}
+	
+	@Override
+	public Member findMemberById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDao.findById(id);
+	}
 	@Override
 	public Member findMemberByName(Member member) throws Exception {
 		// TODO Auto-generated method stub

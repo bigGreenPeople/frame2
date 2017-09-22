@@ -166,4 +166,56 @@ public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T> {
 		}
 		return null;
 	}
+	
+	@Override
+	public List<T> findListByCondition(T t) throws Exception {
+		// TODO Auto-generated method stub
+@SuppressWarnings("all")
+		
+		//要设置的属性值
+		List<Object> list = new ArrayList<Object>();
+		//要设置的属性名
+		List<String> listField = new ArrayList<String>();
+		String intoMess = "";
+		//得到所有的属性
+		Field[] fs = pclazz.getDeclaredFields();
+		for(int i = 0 ; i < fs.length; i++){
+			Field f = fs[i];  
+			
+            f.setAccessible(true); //设置些属性是可以访问的  
+            Object val = f.get(t);//得到此属性的值    
+            String type = f.getType().toString();//得到此属性的类型  
+            //如果不为null
+            if (type.endsWith("int") || type.endsWith("Integer")) { 
+              if(val!=null && !"0".equals(val.toString())){
+            	  //加入到属性名里面
+            	  listField.add(f.getName());
+            	//加入到list
+            	list.add(val);
+              }
+           }else if(type.endsWith("List") || type.endsWith("Set")  || type.endsWith("Map")){
+        	   
+           }
+            else{  
+        	   if(val!=null){
+        		   //加入到属性名里面
+             	  listField.add(f.getName());
+        		 //加入到list
+            	  list.add(val);
+               }
+        	   
+           }
+		}
+		
+		//离线查询
+		DetachedCriteria criteria = DetachedCriteria.forClass(pclazz);
+		
+		//设置条件
+		for(int i=0;i<list.size();i++){
+			criteria.add(Restrictions.eq(listField.get(i), list.get(i)));
+		}
+		
+		List<T> listQuery = (List<T>) this.getHibernateTemplate().findByCriteria(criteria);
+		return listQuery;
+	}
 }

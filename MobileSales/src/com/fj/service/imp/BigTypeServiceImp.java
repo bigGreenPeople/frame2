@@ -75,6 +75,17 @@ public class BigTypeServiceImp implements BigTypeService {
 		this.smallTypeDao = smallTypeDao;
 	}
 	
+	@Override
+	public List<SmallType> findSmallTypesByCondition(SmallType smallType)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return smallTypeDao.findListByCondition(smallType);
+	}
 	
+	@Override
+	public BigType findBigTypeById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return bigTypeDao.findById(id);
+	}
 	
 }

@@ -1,16 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
  <script Language="JavaScript">
  function deleteMember(date) {
-  if(confirm("È·¶¨ÒªÉ¾³ıÂğ£¿")){
-    window.location="memberAction.do?action=4&id="+date;
+  if(confirm("ç¡®å®šè¦åˆ é™¤å—ï¼Ÿ")){
+    window.location="${pageContext.request.contextPath}/member_deleteMember?id="+date;
 	}
   }
  </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -24,7 +25,7 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>»áÔ±ĞÅÏ¢µÄ²éÑ¯</strong></div></td>
+            <td><div align="center"><strong>ä¼šå‘˜ä¿¡æ¯çš„æŸ¥è¯¢</strong></div></td>
           </tr>
         </table>
         <br>
@@ -32,39 +33,57 @@
 	    <table width="71%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
 
 	    <tr>
-          <td width="14%" height="25"><div align="center">±àºÅ</div></td>
-          <td width="14%"><div align="center">»áÔ±ÕËºÅ</div></td>
-          <td width="14%"><div align="center">»áÔ±ĞÕÃû</div></td>
-           <td width="14%"><div align="center">»áÔ±ÄêÁä</div></td>
+          <td width="14%" height="25" style="font-size: 14px;"><div align="center">ç¼–å·</div></td>
+          <td width="14%" style="font-size: 14px;"><div align="center">ä¼šå‘˜è´¦å·</div></td>
+          <td width="14%" style="font-size: 14px;"><div align="center">ä¼šå‘˜å§“å</div></td>
+           <td width="14%" style="font-size: 14px;"><div align="center">ä¼šå‘˜å¹´é¾„</div></td>
 
-    <td width="38%"><div align="center">²Ù×÷</div></td>
+    <td width="38%" style="font-size: 14px;"><div align="center">æ“ä½œ</div></td>
         </tr>
-        <tr bgcolor="#FFFFFF">
-          <td height="30"><div align="center">112</div></td>
-          <td><div align="center">lisi23</div></td>
-          <td><div align="center">ÀîËÄ</div></td>
-          <td><div align="center">23Ëê</div></td>
-        <td><div align="center">
-
-		 <a href="bg-selectContent.jsp">ÏêÏ¸ĞÅÏ¢</a>&nbsp;&nbsp;&nbsp;&nbsp;
-
-		 <a href="javascript:deleteMember('')">É¾³ı</a>
-
-		  </div></td>
-        </tr>
+        <c:forEach items="${members.list }" var="member">
+	        <tr bgcolor="#FFFFFF" style="font-size: 12px;">
+	          <td height="30"><div align="center">${member.id }</div></td>
+	          <td><div align="center">${member.name }</div></td>
+	          <td><div align="center">${member.reallyName }</div></td>
+	          <td><div align="center">${member.age }</div></td>
+	        <td><div align="center">
+	
+			 <a href="${pageContext.request.contextPath}/member_showMember?id=${member.id }">è¯¦ç»†ä¿¡æ¯</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	
+			 <a href="javascript:deleteMember('${member.id }')">åˆ é™¤</a>
+	
+			  </div></td>
+	        </tr>
+	        </c:forEach>
       </table><br>
-	   <table width="71%"  border="0" align="center" cellpadding="0" cellspacing="0">
-   <tr align="center">
-    <td width="17%">¹²Îª4Ò³</td>
-			<td width="22%">¹²ÓĞ25Ìõ¼ÇÂ¼</td>
-            <td width="26%">µ±Ç°ÎªµÚ2Ò³</td>
-    <td width="19%">ÉÏÒ»Ò³
-    <a href="memberAction.do?action=2&i=">ÉÏÒ»Ò³</a></td>
-            <td width="16%">ÏÂÒ»Ò³
-            <a href="memberAction.do?action=2&i=">ÏÂÒ»Ò³</a></td>
-   </tr>
- </table>
-	</table>	
+	   <table width="90%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr align="center">
+          <td style="font-size: 12px;" width="13%">å…±ä¸º${members.totalPage }é¡µ</td>
+          <td  style="font-size: 12px;" width="16%">å…±æœ‰${members.totalCount }æ¡è®°å½•</td>
+          <td style="font-size: 12px;" width="14%">å½“å‰ä¸ºç¬¬${members.currentPage }é¡µ</td>
+          <td style="font-size: 12px;" width="19%">
+       
+        <c:if test="${1!=members.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/member_findAllMember?currentPage=${members.currentPage-1}'>ä¸Šä¸€é¡µ</a></li>
+			</c:if>
+        </td>
+      
+          <td width="18%">
+              <c:if test="${members.totalPage!=members.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/member_findAllMember?currentPage=${members.currentPage+1}'>ä¸‹ä¸€é¡µ</a></li>
+			</c:if>
+       	</td>
+
+          <%-- <td width="20%">
+            <div align="right"><img src="image/bg-add.gif" width="9" height="9"><a href="${pageContext.request.contextPath}/goods_toAddGoods">&nbsp;æ·»åŠ å•†å“&nbsp;</a></div></td> --%>
+		</tr>
+      </table>
+
+<P align="center"></P>
+	
+    </td>
+  </tr>
+</table>
 <jsp:include page="bg-down.jsp" flush="true" />
 </body>
 </html>

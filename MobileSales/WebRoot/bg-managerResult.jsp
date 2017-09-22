@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>手机销售系统</title>
+<title>无标题文档</title>
 </head>
 
 <body>
 
-<script language=javascript>alert('<%=request.getAttribute("result")%>');window.location.href='member_findAllMember';</script>
+	<script language='javascript'>alert('<%=request.getAttribute("result")%>');window.location.href='${pageContext.request.contextPath}/manager_findAllManager';</script>
 
 </body>
 </html>

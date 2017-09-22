@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.fj.domain.Goods;
 import com.fj.domain.Member;
+import com.fj.domain.PageBean;
 import com.fj.service.MemberService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -24,13 +26,53 @@ public class MemberAction extends ActionSupport implements ModelDriven<Member>{
 	private InputStream inputStream;
 	//旧密码
 	private String oldPassword;
-	
+	//默认当前页是第一页
+	private Integer currentPage=1;
 	//注册
 	public String register() throws Exception{
 		memberService.register(member);
 		return "toIndex";
 	}
 	
+	//分页显示所有的用户
+	public String findAllMember() throws Exception{
+		//创建我们的查询条件
+		PageBean<Member> pageBean = new PageBean<Member>();
+		//设置当前页和每页的数量
+		pageBean.setCurrentPage(currentPage);
+		pageBean.setPageSize(5);
+		
+		PageBean<Member> members = memberService.findAllGoods(pageBean);
+		
+		//放入到域对象里
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("members", members);
+		
+		return "findAllMember";
+	}
+	
+	//查看用户的详细信息
+	public String showMember() throws Exception{
+		Member findMemberById = memberService.findMemberById(member.getId());
+		ServletActionContext.getRequest().setAttribute("member", findMemberById);
+		return "showMember";
+	}
+	
+	
+	
+//	删除用户
+	public String deleteMember() throws Exception{
+		String result = "删除会员信息失败，请先删除该会员订货信息!";
+		try {
+			memberService.deleteMemberById(member.getId());
+			result = "删除成功";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		ServletActionContext.getRequest().setAttribute("result", result);
+		return "toMemberResult";
+	}
 	//登录
 	public String login() throws Exception{
 		Member loginMember = memberService.login(member);
@@ -165,6 +207,14 @@ public class MemberAction extends ActionSupport implements ModelDriven<Member>{
 
 	public void setOldPassword(String oldPassword) {
 		this.oldPassword = oldPassword;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
 	}
 	
 	

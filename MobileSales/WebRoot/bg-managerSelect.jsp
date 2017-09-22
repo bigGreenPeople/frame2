@@ -1,16 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
  <script Language="JavaScript">
  function deleteManager(date) {
-  if(confirm("È·¶¨ÒªÉ¾³ıÂğ£¿")){
-    window.location="managerAction.do?action=4&id="+date;
+  if(confirm("ç¡®å®šè¦åˆ é™¤å—ï¼Ÿ")){
+    window.location="manager_deleteManager?id="+date;
 	}
   }
  </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -23,48 +24,63 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>¹ÜÀíÔ±ĞÅÏ¢µÄ²éÑ¯</strong></div></td>
+            <td><div align="center"><strong>ç®¡ç†å‘˜ä¿¡æ¯çš„æŸ¥è¯¢</strong></div></td>
           </tr>
         </table>
         <br>
 	 <table width="90%"  border="0" cellspacing="0" cellpadding="0">
             <tr>
-          <td width="20%" height="20" colspan="4"><div align="right"><a href="bg-managerUpdatePassword.jsp">ĞŞ¸ÄÄúµÄÃÜÂë</a>&nbsp;&nbsp;&nbsp;</div></td>
+          <td width="20%" height="20" colspan="4"><div align="right"><a href="bg-managerUpdatePassword.jsp">ä¿®æ”¹æ‚¨çš„å¯†ç </a>&nbsp;&nbsp;&nbsp;</div></td>
         <tr>
       </table>
 	    <table width="90%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">    
-	    <tr>
-          <td width="20%" height="25"><div align="center">Êı¾İ±àºÅ</div></td>
-          <td width="20%"><div align="center">¹ÜÀíÔ±ÓÃ»§Ãû</div></td>
-          <td width="20%"><div align="center">¹ÜÀíÔ±ĞÕÃû</div></td>
-          <td width="44%"><div align="center">²Ù×÷</div></td>
+	    <tr style="font-size: 14px;">
+          <td width="20%" height="25"><div align="center">æ•°æ®ç¼–å·</div></td>
+          <td width="20%"><div align="center">ç®¡ç†å‘˜ç”¨æˆ·å</div></td>
+          <td width="20%"><div align="center">ç®¡ç†å‘˜å§“å</div></td>
+          <td width="44%"><div align="center">æ“ä½œ</div></td>
         </tr>
-
-        <tr bgcolor="#FFFFFF">
-          <td height="30"><div align="center">3</div></td>
-          <td><div align="center">admin</div></td>
-          <td><div align="center">ÀîËÄ</div></td>
-          <td><div align="center">
-
-         <a href="javascript:deleteManager(' ')">É¾³ı</a> 
-É¾³ı
-          </div></td>
-        </tr>
+		<c:forEach items="${managers.list}" var="manager">
+        <tr bgcolor="#FFFFFF" style="font-size:12px;">
+	          <td height="30"><div align="center">${manager.id}</div></td>
+	          <td><div align="center">${manager.account}</div></td>
+	          <td><div align="center">${manager.name}</div></td>
+	          <td><div align="center">
+	
+	         <a href="javascript:deleteManager('${manager.id}')">åˆ é™¤</a> 
+	          </div></td>
+	        </tr>
+        </c:forEach>
 	
       </table><br>
 	   <table width="90%"  border="0" align="center" cellpadding="0" cellspacing="0">
-   <tr align="center">
-    <td width="13%">¹²Îª4Ò³</td>
-			<td width="16%">¹²ÓĞ33Ìõ¼ÇÂ¼</td>
-            <td width="14%">µ±Ç°ÎªµÚ2Ò³</td>
-    <td width="19%">ÉÏÒ»Ò³<a href="managerAction.do?action=1&i=">ÉÏÒ»Ò³</a></td>
-            <td width="18%">ÏÂÒ»Ò³<a href="managerAction.do?action=1&i=">ÏÂÒ»Ò³</a></td>
+        <tr align="center">
+          <td style="font-size: 12px;" width="13%">å…±ä¸º${managers.totalPage }é¡µ</td>
+          <td  style="font-size: 12px;" width="16%">å…±æœ‰${managers.totalCount }æ¡è®°å½•</td>
+          <td style="font-size: 12px;" width="14%">å½“å‰ä¸ºç¬¬${managers.currentPage }é¡µ</td>
+          <td style="font-size: 12px;" width="19%">
+       
+        <c:if test="${1!=managers.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/manager_findAllManager?currentPage=${smallTypes.currentPage-1}'>ä¸Šä¸€é¡µ</a></li>
+			</c:if>
+        </td>
+      
+          <td width="18%">
+            
+              <c:if test="${managers.totalPage!=managers.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/manager_findAllManager?currentPage=${smallTypes.currentPage+1}'>ä¸‹ä¸€é¡µ</a></li>
+			</c:if>
+       	</td>
 
-			<td width="20%">	<div align="right"><a href="bg-managerInsert.jsp">Ìí¼Ó¹ÜÀíÔ±</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-	</td>
+          <td width="20%">
+            <div align="right"><img src="image/bg-add.gif" width="9" height="9"><a href="${pageContext.request.contextPath}/bg-managerInsert.jsp">&nbsp;æ·»åŠ ç®¡ç†å‘˜&nbsp;</a></div></td>
+		</tr>
+      </table>
 
-   </tr>
- </table>  
+<P align="center"></P>
+	
+    </td>
+  </tr>
  
  <%
 if(request.getAttribute("reslut")!=null){

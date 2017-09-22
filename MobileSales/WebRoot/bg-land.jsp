@@ -38,7 +38,7 @@ body {
   <tr>
     <td width="125">&nbsp;</td>
     <td width="422" valign="bottom"><table width="411" border="0">
-      <tr>
+      <tr style="font-size: 12px;">
         <td width="55" height="38"><font color="#9A6634"><strong>用户名：</strong></font>          </td>
         <td width="104"><input name="account" type="account" class="bgtext" size="15"></td>
         <td width="45">&nbsp;<font color="#9A6634"><strong>密码：</strong></font>          </td>

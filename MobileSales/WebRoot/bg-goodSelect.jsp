@@ -1,16 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
  <script Language="JavaScript">
  function deleteType(date) {
-  if(confirm("х╥╤╗р╙и╬ЁЩбПё©")){
+  if(confirm("Г║╝Е╝ Х╕│Е┬═И≥╓Е░≈О╪÷")){
     window.location="bigTypeAction.do?action=3&id="+date;
 	}
   }
  </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>йж╩ЗоЗйшо╣мЁ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ф┴▀Ф°╨И■─Е■╝ГЁ╩Г╩÷</title>
 
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
@@ -24,53 +25,65 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>илф╥╢СюЮ╠П╡Ия╞</strong></div></td>
+            <td><div align="center"><strong>Е∙├Е⌠│Ф÷╔Х╞╒</strong></div></td>
           </tr>
         </table>
         <br>
-		  <table width="90%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+		  <table width="90%"   border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
         <tr>
-          <td width="14%" height="25"><div align="center">йЩ╬щ╠Ю╨е</div></td>
-          <td width="19%"><div align="center">илф╥цШЁф</div></td>
-          <td width="14%"><div align="center">╢СюЮ╠П</div></td>
-          <td width="14%"><div align="center">п║юЮ╠П</div></td>
-          <td width="14%"><div align="center">йг╥Яль╪ш</div></td>
-          <td width="25%"><div align="center">╡ывВ</div></td>
+          <td width="14%" height="25"><div style="font-size: 14px;" align="center">Ф∙╟Ф█╝Г╪√Е▐╥</div></td>
+          <td width="19%"><div style="font-size: 14px;" align="center">Е∙├Е⌠│Е░█Г╖╟</div></td>
+          <td width="14%"><div style="font-size: 14px;" align="center">Е╓╖Г╠╩Е┬╚</div></td>
+          <td width="14%"><div style="font-size: 14px;" align="center">Е╟▐Г╠╩Е┬╚</div></td>
+          <td width="14%"><div style="font-size: 14px;" align="center">Ф≤╞Е░╕Г┴╧Д╩╥</div></td>
+          <td width="25%"><div style="font-size: 14px;" align="center">Ф⌠█Д╫°</div></td>
         </tr>
-
-        <tr bgcolor="#FFFFFF">
-          <td height="30"><div align="center">11</div></td>
-          <td><div align="center"><a href="#" target="_blank">╩╙н╙</a></div></td>
-
-          <td><div align="center"><a href="bg-goodSelectBig.jsp">╩╙н╙йж╩З</a></div></td>
-
-          <td><div align="center"><a href="bg-goodSelectSmall.jsp">хыр╚5XпРап</a></div></td>
-          <td><div align="center"><a href="goodsAction.do?action=7&mark=">╥Яйг</a></div></td>
-          <td><div align="center"><a href="bg-goodSelectContent.jsp">оЙо╦пео╒</a>&nbsp;&nbsp;
-		 
-		 <a href="goodsAction.do?action=6&id=">и╬ЁЩ</a>
-		 
-		  </div></td>
-          </tr>
+		<c:forEach items="${goodss.list }" var="goods">
+	        <tr bgcolor="#FFFFFF">
+	          <td height="30"><div align="center">${goods.id }</div></td>
+	          <td><div align="center"><a href="#" target="_blank">${goods.goodsName }</a></div></td>
+	
+	          <td><div align="center"><a href="bg-goodSelectBig.jsp">${goods.smallType.bigType.bigName }</a></div></td>
+	
+	          <td><div align="center"><a href="bg-goodSelectSmall.jsp">${goods.smallType.smallName }</a></div></td>
+	          <td><div align="center"><a href="goodsAction.do?action=7&mark=">
+	          	<c:if test="${goods.mark==0}">Е░╕</c:if>
+	          	<c:if test="${goods.mark==1}">Ф≤╞</c:if>
+	          </a></div></td>
+	          <td><div align="center"><a href="${pageContext.request.contextPath }/goods_showGoods?goods.id=${goods.id }">Х╞╕Г╩├Д©║Ф│╞</a>&nbsp;&nbsp;
+			 
+			 <a href="goods_deleteGoods?goods.id=${goods.id}">Е┬═И≥╓</a>
+			 
+			  </div></td>
+	          </tr>
+          </c:forEach>
       </table>
 	  <br>
 	  <table width="90%"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr align="center">
-          <td width="13%">╧╡н╙4рЁ</td>
-          <td width="16%">╧╡сп22лУ╪гб╪</td>
-          <td width="14%">╣╠г╟н╙╣з3рЁ</td>
-          <td width="19%">
-	  иор╩рЁ  
-		<a href="goodsAction.do?action=0&i=">
-		  иор╩рЁ</a></td>
+          <td style="font-size: 12px;" width="13%">Е┘╠Д╦╨${goodss.totalPage }И║╣</td>
+          <td  style="font-size: 12px;" width="16%">Е┘╠Ф°┴${goodss.totalCount }Ф²║Х╝╟Е╫∙</td>
+          <td style="font-size: 12px;" width="14%">Е╫⌠Е┴█Д╦╨Г╛╛${goodss.currentPage }И║╣</td>
+          <td style="font-size: 12px;" width="19%">
+       
+        <c:if test="${1!=goodss.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/goods_findAllGoods?currentPage=${goodss.currentPage-1}'>Д╦┼Д╦─И║╣</a></li>
+			</c:if>
+        </td>
+      
           <td width="18%">
-            обр╩рЁ
-          
-		<a href="goodsAction.do?action=0&i=">обр╩рЁ</a>
+            
+              <c:if test="${goodss.totalPage!=goodss.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/goods_findAllGoods?currentPage=${goodss.currentPage+1}'>Д╦▀Д╦─И║╣</a></li>
+			</c:if>
+       	</td>
+
           <td width="20%">
-            <div align="right"><img src="image/bg-add.gif" width="9" height="9">&nbsp;<a href="bg-goodInsert.jsp">лМ╪силф╥</a>&nbsp;</div></td>
-        </tr>
+            <div align="right"><img src="image/bg-add.gif" width="9" height="9"><a href="${pageContext.request.contextPath}/goods_toAddGoods">&nbsp;Ф╥╩Е┼═Е∙├Е⌠│&nbsp;</a></div></td>
+		</tr>
       </table>
+
+<P align="center"></P>
 	
     </td>
   </tr>

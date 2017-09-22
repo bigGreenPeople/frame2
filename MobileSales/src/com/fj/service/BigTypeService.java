@@ -23,4 +23,8 @@ public interface BigTypeService {
 	public void deleteBigType(BigType bigType) throws Exception;
 	//删除小类别
 	public void deleteSmallType(SmallType smallType) throws Exception;
+	//依靠条件查找小类别
+	public List<SmallType> findSmallTypesByCondition(SmallType smallType) throws Exception;
+	//依靠ID查找大类别
+	public BigType findBigTypeById(int id) throws Exception;
 }

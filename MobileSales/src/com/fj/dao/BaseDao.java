@@ -21,4 +21,7 @@ public interface BaseDao<T> {
 	public Integer getCount();
 	//条件查询	返回一个结果
 	public T findOneByCondition(T t) throws Exception;
+	//条件查询 返回多个结果
+	public List<T> findListByCondition(T t) throws Exception;
+	
 }

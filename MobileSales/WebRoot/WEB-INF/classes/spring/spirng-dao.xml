@@ -16,4 +16,8 @@
 	<bean id="smallTypeDaoImp" class="com.fj.dao.imp.SmallTypeDaoImp">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<!-- 商品 -->
+	<bean id="goodsDaoImp" class="com.fj.dao.imp.GoodsDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

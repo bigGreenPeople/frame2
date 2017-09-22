@@ -17,12 +17,12 @@ public class Goods  implements Serializable{
 	private Double nowPrice;
 	//商品特价
 	private Double freePrice;
-	//数量
-	private Integer number;
+	//数量	初始0
+	private Integer number=0;
 	//商品图片
 	private String pirture;
-	//是否特价
-	private Integer mark;
+	//是否特价	0不是特价 1是特价
+	private Integer mark=0;
 	
 	//一对多的属性
 	//private BigType bigType;

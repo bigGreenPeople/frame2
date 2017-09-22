@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=gb2312"%>
-<%@page import="java.sql.*,java.util.*"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -15,42 +15,42 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>²é¿´»áÔ±µÄÏêÏ¸Çé¿ö</strong></div></td>
+            <td><div align="center"><strong>æŸ¥çœ‹ä¼šå‘˜çš„è¯¦ç»†æƒ…å†µ</strong></div></td>
           </tr>
         </table>
         <br>
 
  <table width="71%" height="130"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="20%" height="26"><div align="center">Êı¾İ±àºÅ</div></td>
-            <td width="31%" bgcolor="#FFFFFF"><div align="center">11</div></td>
-            <td width="20%"><div align="center">»áÔ±ÕËºÅ</div></td>
-            <td width="31%" bgcolor="#FFFFFF"><div align="center">34534</div></td>
+            <td width="20%" height="26"><div align="center">æ•°æ®ç¼–å·</div></td>
+            <td width="31%" bgcolor="#FFFFFF"><div align="center">${member.id }</div></td>
+            <td width="20%"><div align="center">ä¼šå‘˜è´¦å·</div></td>
+            <td width="31%" bgcolor="#FFFFFF"><div align="center">${member.name }</div></td>
           </tr>
           <tr>
-            <td height="25"><div align="center">»áÔ±ĞÕÃû</div></td>
-            <td bgcolor="#FFFFFF"><div align="center">ÀîËÄ</div></td>
-            <td><div align="center">»áÔ±ÄêÁä</div></td>
-            <td bgcolor="#FFFFFF"><div align="center">23Ëê</div></td>
+            <td height="25"><div align="center">ä¼šå‘˜å§“å</div></td>
+            <td bgcolor="#FFFFFF"><div align="center">${member.reallyName }</div></td>
+            <td><div align="center">ä¼šå‘˜å¹´é¾„</div></td>
+            <td bgcolor="#FFFFFF"><div align="center">${member.age }</div></td>
           </tr>
           <tr>
-            <td height="27"><div align="center">»áÔ±Ö°Òµ</div></td>
-            <td bgcolor="#FFFFFF"><div align="center">Ñ§Éú</div></td>
-            <td><div align="center">µç×ÓÓÊ¼ş</div></td>
-            <td bgcolor="#FFFFFF"><div align="center">lisi@126.com</div></td>
+            <td height="27"><div align="center">ä¼šå‘˜èŒä¸š</div></td>
+            <td bgcolor="#FFFFFF"><div align="center">${member.profession }</div></td>
+            <td><div align="center">ç”µå­é‚®ä»¶</div></td>
+            <td bgcolor="#FFFFFF"><div align="center">${member.email }</div></td>
           </tr>
 
           <tr>
-           <td height="27"><div align="center">ÎÊ&nbsp;&nbsp;&nbsp;&nbsp;Ìâ</div></td>
-            <td bgcolor="#FFFFFF"><div align="center">ÎÒµÄ¼ÒÏçÔÚÄÄ£¿</div></td>
-            <td><div align="center">´ğ&nbsp;&nbsp;&nbsp;&nbsp;°¸</div></td>
-            <td bgcolor="#FFFFFF"><div align="center">¾Å½­</div></td>
+           <td height="27"><div align="center">é—®&nbsp;&nbsp;&nbsp;&nbsp;é¢˜</div></td>
+            <td bgcolor="#FFFFFF"><div align="center">${member.question }</div></td>
+            <td><div align="center">ç­”&nbsp;&nbsp;&nbsp;&nbsp;æ¡ˆ</div></td>
+            <td bgcolor="#FFFFFF"><div align="center">${member.result }</div></td>
           </tr>
       </table>
         <table width="71%"  border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="87%" height="29">&nbsp;</td>
-            <td width="13%"> <a href="javascript:history.back();">·µ»Ø</a></td>
+            <td width="13%"> <a href="javascript:history.back();">è¿”å›</a></td>
           </tr>
         </table>	
 </table>	

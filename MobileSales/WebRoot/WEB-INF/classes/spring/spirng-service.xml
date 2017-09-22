@@ -13,4 +13,8 @@
 		<property name="bigTypeDao" ref="bigTypeDaoImp"></property>
 		<property name="smallTypeDao" ref="smallTypeDaoImp"></property>
 	</bean>
+	<!--商品 -->
+	<bean id="goodsServiceImp" class="com.fj.service.imp.GoodsServiceImp">
+		<property name="goodsDao" ref="goodsDaoImp"></property>
+	</bean>
 </beans>
