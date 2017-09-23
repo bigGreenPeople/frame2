@@ -17,4 +17,22 @@
 		<property name="goodsService" ref="goodsServiceImp"></property>
 		<property name="bigTypeService" ref="bigTypeServiceImp"></property>
 	</bean>
+	<!--公告 -->
+	<bean id="afficheAction" class="com.fj.action.AfficheAction" scope="prototype">
+		<property name="afficheService" ref="afficheServiceImp"></property>
+	</bean>
+	<!--连接-->
+	<bean id="linkAction" class="com.fj.action.LinkAction" scope="prototype">
+		<property name="linkService" ref="linkServiceImp"></property>
+	</bean>
+	<!--订单-->
+	<bean id="orderAction" class="com.fj.action.OrderAction" scope="prototype">
+		<property name="orderService" ref="orderServiceImp"></property>
+	</bean>
+	<!--首页-->
+	<bean id="indexAction" class="com.fj.action.IndexAction" scope="prototype">
+		<property name="afficheService" ref="afficheServiceImp"></property>
+		<property name="goodsService" ref="goodsServiceImp"></property>
+		<property name="linkService" ref="linkServiceImp"></property>
+	</bean>
 </beans>

@@ -9,7 +9,7 @@
 
 <body>
 <%if(request.getAttribute("result")==null){%>
-	<script language=javascript>window.location.href='bg-orderSelect.jsp';</script>
+	<script language=javascript>window.location.href='${pageContext.request.contextPath}/order_findAllOrder';</script>
 	<%}else{%>
 	<script language='javascript'>alert('<%=request.getAttribute("result")%>');location.href='bg-land.jsp'</script>
 	<%}%>

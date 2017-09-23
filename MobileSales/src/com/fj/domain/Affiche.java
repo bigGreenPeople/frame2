@@ -10,8 +10,8 @@ import java.util.Date;
 public class Affiche implements Serializable{
 	private Integer id;
 	private String name;//公告标题
-	private String content;//公告内容
 	private Date issue_Time = new Date();//发布时间
+	private String content;//公告内容
 	
 	public Integer getId() {
 		return id;
@@ -25,17 +25,17 @@ public class Affiche implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
 	public Date getIssue_Time() {
 		return issue_Time;
 	}
 	public void setIssue_Time(Date issue_Time) {
 		this.issue_Time = issue_Time;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	

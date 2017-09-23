@@ -1,16 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
  <script Language="JavaScript">
- function deleteAffiche(date) {
-  if(confirm("È·¶¨ÒªÉ¾³ıÂğ£¿")){
-    window.location="afficheAction.do?action=3&id="+date;
+ function deleteLink(date) {
+  if(confirm("ç¡®å®šè¦åˆ é™¤å—ï¼Ÿ")){
+    window.location="link_deleteLink?id="+date;
 	}
   }
  </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -22,52 +23,56 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>Á¬½ÓÍøÕ¾ĞÅÏ¢µÄ²éÑ¯</strong></div></td>
+            <td><div align="center"><strong>è¿æ¥ç½‘ç«™ä¿¡æ¯çš„æŸ¥è¯¢</strong></div></td>
           </tr>
         </table>
         <br>
  <table width="90%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="CCCCCC">
-        <tr>
-          <td width="14%" height="25"><div align="center">Êı¾İ±àºÅ</div></td>
-          <td width="28%"><div align="center">ÍøÕ¾Ãû³Æ</div></td>
-          <td width="28%"><div align="center">ÍøÕ¾Á¬½ÓµØÖ·</div></td>
-          <td width="30%"><div align="center">²Ù×÷</div></td>
+        <tr style="font-size: 14px;">
+          <td width="14%" height="25"><div align="center">æ•°æ®ç¼–å·</div></td>
+          <td width="28%"><div align="center">ç½‘ç«™åç§°</div></td>
+          <td width="28%"><div align="center">ç½‘ç«™è¿æ¥åœ°å€</div></td>
+          <td width="30%"><div align="center">æ“ä½œ</div></td>
         </tr>
-		   
-        <tr bgcolor="#FFFFFF">
-          <td height="30"><div align="center">11</div></td>
-          <td><div align="center">ËÑºü</div></td>
-          <td><div align="center">http://www.sohu.com</div></td>
-          <td><div align="center"><a href="linkAction.do?action=4&id=">É¾³ı</a></div></td>
+		 <c:forEach items="${links.list }" var="link">
+        <tr bgcolor="#FFFFFF"  style="font-size: 12px;">
+          <td height="30"><div align="center">${link.id }</div></td>
+          <td><div align="center">${link.linkName}</div></td>
+          <td><div align="center">${link.linkAddress }</div></td>
+          <td><div align="center"><a href="javascript:deleteLink('${link.id}')">åˆ é™¤</a></div></td>
   </tr>
+  </c:forEach>
       </table>
 	  <br>
 	  <table width="90%"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr align="center">
-          <td width="13%">¹²Îª4Ò³</td>
-          <td width="16%">¹²ÓĞ34Ìõ¼ÇÂ¼</td>
-          <td width="14%">µ±Ç°ÎªµÚ3Ò³</td>
-          <td width="19%">
-      ÉÏÒ»Ò³
-
-        <a href="linkAction.do?action=0&i=">ÉÏÒ»Ò³</a></td>
-
+          <td style="font-size: 12px;" width="13%">å…±ä¸º${links.totalPage }é¡µ</td>
+          <td  style="font-size: 12px;" width="16%">å…±æœ‰${links.totalCount }æ¡è®°å½•</td>
+          <td style="font-size: 12px;" width="14%">å½“å‰ä¸ºç¬¬${links.currentPage }é¡µ</td>
+          <td style="font-size: 12px;" width="19%">
+       
+        <c:if test="${1!=links.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/link_findAllLink?currentPage=${links.currentPage-1}'>ä¸Šä¸€é¡µ</a></li>
+			</c:if>
+        </td>
+      
           <td width="18%">
-            ÏÂÒ»Ò³
-             
-              <a href="linkAction.do?action=0&i=">ÏÂÒ»Ò³</a></td>
-   
+            
+              <c:if test="${links.totalPage!=links.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/link_findAllLink?currentPage=${links.currentPage+1}'>ä¸‹ä¸€é¡µ</a></li>
+			</c:if>
+       	</td>
 
           <td width="20%">
-            <img src="image/bg-add.gif" width="9" height="9">&nbsp;<a href="bg-linkInsert.jsp">Ìí¼ÓÍøÕ¾ĞÅÏ¢</a></td>
-
-        </tr>
+            <div align="right"><img src="image/bg-add.gif" width="9" height="9"><a href="${pageContext.request.contextPath}/bg-linkInsert.jsp">&nbsp;æ·»åŠ ç½‘ç«™ä¿¡æ¯&nbsp;</a></div></td>
+		</tr>
       </table>
+
+<P align="center"></P>
+	
     </td>
   </tr>
 </table>
-
 <jsp:include page="bg-down.jsp" flush="true" />
-
 </body>
 </html>

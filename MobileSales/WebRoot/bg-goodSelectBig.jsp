@@ -1,16 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
  <script Language="JavaScript">
  function deleteType(date) {
-  if(confirm("х╥╤╗р╙и╬ЁЩбПё©")){
+  if(confirm("Г║╝Е╝ Х╕│Е┬═И≥╓Е░≈О╪÷")){
     window.location="bigTypeAction.do?action=3&id="+date;
 	}
   }
  </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>йж╩ЗоЗйшо╣мЁ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ф┴▀Ф°╨И■─Е■╝ГЁ╩Г╩÷</title>
 
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
@@ -24,29 +25,29 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>╟╢╢СюЮ╠Пилф╥пео╒╡Ия╞</strong></div></td>
+            <td><div align="center"><strong>Ф▄┴Е╓╖Г╠╩Е┬╚Е∙├Е⌠│Д©║Ф│╞Ф÷╔Х╞╒</strong></div></td>
           </tr>
         </table>
         <br>
 				  <table width="90%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
         <tr>
-          <td width="14%" height="25"><div align="center">йЩ╬щ╠Ю╨е</div></td>
-          <td width="19%"><div align="center">илф╥цШЁф</div></td>
-          <td width="14%"><div align="center">╢СюЮ╠П</div></td>
-          <td width="14%"><div align="center">п║юЮ╠П</div></td>
-          <td width="14%"><div align="center">йг╥Яль╪ш</div></td>
-          <td width="25%"><div align="center">╡ывВ</div></td>
+          <td width="14%" height="25"><div align="center">Ф∙╟Ф█╝Г╪√Е▐╥</div></td>
+          <td width="19%"><div align="center">Е∙├Е⌠│Е░█Г╖╟</div></td>
+          <td width="14%"><div align="center">Е╓╖Г╠╩Е┬╚</div></td>
+          <td width="14%"><div align="center">Е╟▐Г╠╩Е┬╚</div></td>
+          <td width="14%"><div align="center">Ф≤╞Е░╕Г┴╧Д╩╥</div></td>
+          <td width="25%"><div align="center">Ф⌠█Д╫°</div></td>
         </tr>
 		  
         <tr bgcolor="#FFFFFF">
           <td height="30"><div align="center">11</div></td>
-          <td><div align="center"><a href="#" target="_blank">йж╩З</a></div></td>
+          <td><div align="center"><a href="#" target="_blank">Ф┴▀Ф°╨</a></div></td>
 
-          <td><div align="center">╩╙н╙</div></td>
+          <td><div align="center">Е█▌Д╦╨</div></td>
 
-          <td><div align="center">╩╙н╙хыр╚4C</div></td>
-          <td><div align="center">╥Яйг</div></td>
-          <td><div align="center"><a href="goodsAction.do?action=5&id=">оЙо╦пео╒</a>
+          <td><div align="center">Е█▌Д╦╨Х█ёХ──4C</div></td>
+          <td><div align="center">Е░╕Ф≤╞</div></td>
+          <td><div align="center"><a href="goodsAction.do?action=5&id=">Х╞╕Г╩├Д©║Ф│╞</a>
 		 
 		  </div></td>
       </tr>
@@ -54,18 +55,18 @@
 	  <br>
 	  <table width="90%"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr align="center">
-          <td width="13%">╧╡н╙4рЁ</td>
-          <td width="16%">╧╡сп23лУ╪гб╪</td>
-          <td width="14%">╣╠г╟н╙╣з3рЁ</td>
+          <td width="13%">Е┘╠Д╦╨4И║╣</td>
+          <td width="16%">Е┘╠Ф°┴23Ф²║Х╝╟Е╫∙</td>
+          <td width="14%">Е╫⌠Е┴█Д╦╨Г╛╛3И║╣</td>
           <td width="19%">  
-	  иор╩рЁ  
+	  Д╦┼Д╦─И║╣  
 		
 		<a href="goodsAction.do?action=9&i=&big=">
-		  иор╩рЁ</a></td>
+		  Д╦┼Д╦─И║╣</a></td>
           <td width="18%">
-            обр╩рЁ
+            Д╦▀Д╦─И║╣
 	 
-		<a href="goodsAction.do?action=9&i=&big=">обр╩рЁ</a>
+		<a href="goodsAction.do?action=9&i=&big=">Д╦▀Д╦─И║╣</a>
 
         </tr>
       </table>

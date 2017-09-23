@@ -1,17 +1,18 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
  <script Language="JavaScript">
  function deleteOrder(date) {
-  if(confirm("х╥╤╗р╙и╬ЁЩбПё©")){
-    window.location="orderAction.do?action=2&number="+date;
+  if(confirm("Г║╝Е╝ Х╕│Е┬═И≥╓Е░≈О╪÷")){
+    window.location="order_deleteOrder?id="+date;
 	}
   }
  </script>
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>йж╩ЗоЗйшо╣мЁ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ф┴▀Ф°╨И■─Е■╝ГЁ╩Г╩÷</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 
@@ -29,65 +30,58 @@
 
 	<table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
       <tr>
-        <td><div align="center"><strong>╤╘╣╔╣д╡Ия╞</strong></div></td>
+        <td><div align="center"><strong>Х╝╒Е█∙Г └Ф÷╔Х╞╒</strong></div></td>
       </tr>
     </table>	<br>
 	    <table width="96%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="CCCCCC">
 
-	    <tr bgcolor="#DCDCDC">
-          <td width="15%" height="25"><div align="center">╠Ю╨е</div></td>
-          <td width="14%"><div align="center">уФй╣пуцШ</div></td>
+	    <tr bgcolor="#DCDCDC" style="font-size: 14px;">
+          <td width="15%" height="25"><div align="center">Г╪√Е▐╥</div></td>
+          <td width="14%"><div align="center">Г°÷Е╝·Е╖⌠Е░█</div></td>
 
-         <td width="16%"><div align="center">йг╥ЯЁЖ╩У</div></td>
-        <td width="26%"><div align="center">╤╘╩Уй╠╪Д</div></td>
-   <td width="29%"><div align="center">╡ывВ</div></td>
+         <td width="16%"><div align="center">Ф≤╞Е░╕Е┤╨Х╢╖</div></td>
+        <td width="26%"><div align="center">Х╝╒Х╢╖Ф≈╤И≈╢</div></td>
+   <td width="29%"><div align="center">Ф⌠█Д╫°</div></td>
         </tr>
-    
-        <tr align="center" bgcolor="#FFFFFF">
-          <td height="25">232</td>
-          <td>юНкд</td>
+    	<c:forEach items="${orders.list }" var="order">
+        <tr align="center" bgcolor="#FFFFFF" style="font-size: 12px;">
+          <td height="25">${order.id}</td>
+          <td>${order.member.reallyName }</td>
 
 		  <td>
-                    <a href="orderAction.do?action=0&sign=">╥Я</a>
-                  
-                    <a href="orderAction.do?action=0&sign=">йг</a>
+		  <c:if test="${order.sign==0}">Е░╕</c:if>
+		   <c:if test="${order.sign==1}">Ф≤╞</c:if>
          </td>
-		  <td>2017-09-07 22:41:51</td>
-        <td><a href="bg-orderContent.jsp">оЙо╦пео╒</a>
+		  <td>${order.creaTime }</td>
+        <td><a href="order_showOrderInfo?id=${order.id}">Х╞╕Г╩├Д©║Ф│╞</a>
                              &nbsp;&nbsp;
-	  
-		 ряЁЖ
-		 
-		  <a href="orderAction.do?action=1&number=">ЁЖ╩У</a>
-		
-		  <a href="orderAction.do?action=1&sign=&number=">ЁЖ╩У</a>
-	
+	  		 <c:if test="${order.sign==1}"> Е╥╡Е┤╨</c:if>
+		  <!-- <a href="orderAction.do?action=1&number=">Е┤╨Х╢╖</a> -->
+		 <c:if test="${order.sign==0}"> <a href="order_sendGoods?id=${order.id}">Е┤╨Х╢╖</a></c:if>
 		 &nbsp;&nbsp;
-
-		 <a href="javascript:deleteOrder('')">и╬ЁЩ</a></td>
+		 <a href="javascript:deleteOrder('${order.id}')">Е┬═И≥╓</a></td>
         </tr>
-  
+  </c:forEach>
       </table><br>
 
   <table width="96%"  border="0" align="center" cellpadding="0" cellspacing="0">
     <tr align="center">
-    <td width="17%">╧╡н╙4рЁ</td>
-    <td width="22%">╧╡сп23лУ╪гб╪</td>
-    <td width="26%">╣╠г╟н╙╣з2рЁ</td>
-    <td width="19%">иор╩рЁ<a href="orderAction.do?action=0&i=">иор╩рЁ</a></td>
-    <td width="16%">обр╩рЁ<a href="orderAction.do?action=0&i=">обр╩рЁ</a></td>
-   </tr>
- </table>
+          <td style="font-size: 12px;" width="13%">Е┘╠Д╦╨${orders.totalPage }И║╣</td>
+          <td  style="font-size: 12px;" width="16%">Е┘╠Ф°┴${orders.totalCount }Ф²║Х╝╟Е╫∙</td>
+          <td style="font-size: 12px;" width="14%">Е╫⌠Е┴█Д╦╨Г╛╛${orders.currentPage }И║╣</td>
+          <td style="font-size: 12px;" width="19%">
+        <c:if test="${1!=orders.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/order_findAllOrder?currentPage=${orders.currentPage-1}'>Д╦┼Д╦─И║╣</a></li>
+			</c:if>
+        </td>
+      
+          <td width="18%">
+              <c:if test="${orders.totalPage!=orders.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/order_findAllOrder?currentPage=${orders.currentPage+1}'>Д╦▀Д╦─И║╣</a></li>
+			</c:if>
+       	</td>
 
- <table width="96%"  border="0" align="center" cellpadding="0" cellspacing="0">
-    <tr align="center">
-    <td width="14%">╧╡н╙4рЁ</td>
-    <td width="18%">╧╡сп34лУ╪гб╪</td>
-    <td width="22%">╣╠г╟н╙╣з3рЁ</td>
-    <td width="16%">иор╩рЁ<a href="orderAction.do?action=0&i=&sign=">иор╩рЁ</a></td>
-    <td width="12%">обр╩рЁ<a href="orderAction.do?action=0&i=&sign=">обр╩рЁ</a></td>
-    <td width="18%"><a href="orderAction.do?action=0">╥╣╩ь</a></td>
-   </tr>
+		</tr>
  </table>
 
 </td>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fj.domain.BigType;
 import com.fj.domain.Goods;
+import com.fj.domain.GoodsCondition;
 import com.fj.domain.PageBean;
 
 public interface GoodsService {
@@ -21,4 +22,7 @@ public interface GoodsService {
 	public void deleteFreePrice(Goods goods) throws Exception;
 	//依靠id去查询商品
 	public Goods findGoodsById(int id) throws Exception;
+	
+	//分页条件查询所有的商品(开始位置 和条件对象)
+	public PageBean<Goods> findAllGoods(int currentPage,GoodsCondition goodsCondition) throws Exception;
 }

@@ -1,9 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -17,64 +18,67 @@
     <td width="618" align="center" valign="top" bgcolor="#FFFFFF"> <br>
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td align="center"><strong>¶©µ¥ºÅÎª£º20170823033µÄÏêÏ¸ĞÅÏ¢</strong></td>
+            <td align="center"><strong>è®¢å•å·ä¸ºï¼š${order.id }çš„è¯¦ç»†ä¿¡æ¯</strong></td>
           </tr>
         </table>
         <br>
 
-<table width="76%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#DCDCDC">
+<table style="font-size: 12px;"  width="76%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#DCDCDC">
       <tr align="center" >
-        <td width="26%" height="25">»áÔ±ÕËºÅ</td>
-        <td width="22%" bgcolor="#FFFFFF">yf0001</td>
-        <td width="26%">»áÔ±ĞÕÃû</td>
-        <td width="22%" bgcolor="#FFFFFF">ÕÅÈı</td>
+        <td width="26%" height="25">ä¼šå‘˜è´¦å·</td>
+        <td width="22%" bgcolor="#FFFFFF">${order.member.name }</td>
+        <td width="26%">ä¼šå‘˜å§“å</td>
+        <td width="22%" bgcolor="#FFFFFF">${order.member.reallyName }</td>
       </tr>
       <tr  align="center">
-        <td height="25">ËÍ»õµç»°</td>
-        <td bgcolor="#FFFFFF">13454656</td>
-        <td>ËÍ»õµØÖ·</td>
-        <td bgcolor="#FFFFFF">½­Î÷ÄÏ²ıXXXXX</td>
+        <td height="25">é€è´§ç”µè¯</td>
+        <td bgcolor="#FFFFFF">${order.tel}</td>
+        <td>é€è´§åœ°å€</td>
+        <td bgcolor="#FFFFFF">${order.address}</td>
       </tr>
       <tr  align="center">
-        <td height="25">¸¶¿î·½Ê½</td>
-        <td bgcolor="#FFFFFF">Î¢ĞÅ</td>
-        <td>ÔËËÍ·½Ê½</td>
-        <td bgcolor="#FFFFFF">EMS</td>
+        <td height="25">ä»˜æ¬¾æ–¹å¼</td>
+        <td bgcolor="#FFFFFF">${order.setMoney }</td>
+        <td>è¿é€æ–¹å¼</td>
+        <td bgcolor="#FFFFFF">${order.post }</td>
       </tr>
       <tr align="center">
-        <td height="25" >±¸×¢ĞÅÏ¢</td>
-        <td bgcolor="#FFFFFF">×¢Òâ±£´æºÃÎïÆ·¡£</td>
-        <td>¶©»õÊ±¼ä</td>
-        <td bgcolor="#FFFFFF">2017.8.33</td>
+        <td height="25" >å¤‡æ³¨ä¿¡æ¯</td>
+        <td bgcolor="#FFFFFF">${order.bz }</td>
+        <td>è®¢è´§æ—¶é—´</td>
+        <td bgcolor="#FFFFFF">${order.creaTime }</td>
       </tr>
     </table>
 	<br>
-	    <strong>ÉÌÆ·ÏêÏ¸ĞÅÏ¢</strong>	  <br><br>
-	    <table width="74%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#DCDCDC">
+	    <strong>å•†å“è¯¦ç»†ä¿¡æ¯</strong>	  <br><br>
+	    <table style="font-size: 12px;"  width="74%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#DCDCDC">
           <tr>
-            <td><div align="center">ÉÌÆ·Ãû³Æ</div></td>
-            <td><div align="center">ÉÌÆ·ÊıÁ¿</div></td>
-            <td><div align="center">ÉÌÆ·¼Û¸ñ</div></td>
+            <td><div align="center">å•†å“åç§°</div></td>
+            <td><div align="center">å•†å“æ•°é‡</div></td>
+            <td><div align="center">å•†å“ä»·æ ¼</div></td>
           </tr>
 
-          <tr bgcolor="#FFFFFF">
-            <td><div align="center">ÊÖ»ú</div></td>
-            <td><div align="center">33</div></td>
-            <td><div align="center">2332Ôª</div></td>
-          </tr> 
+          
+          	<c:forEach items="${order.orderDetailSet }" var="orderDetail">
+          	<tr bgcolor="#FFFFFF">
+          		<td><div align="center">${orderDetail.goods.goodsName }</div></td>
+	            <td><div align="center">${orderDetail.number }</div></td>
+	            <td><div align="center">${orderDetail.number*orderDetail.price}å…ƒ</div></td></tr>
+	            <input type="hidden" value="${i=i+orderDetail.number*orderDetail.price}"/>
+          	</c:forEach>
+           
       </table>
 	    <br>
-    ×Ü½ğ¶î:3213213<br>
+    æ€»é‡‘é¢:${i }å…ƒ<br>
     <table width="76%" height="19"  border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td width="72%">
-              <div align="left">
-              
-                ÒÑ¾­³ö»õ
+              <div align="left" style="font-size: 16px; color: navy;">
+             <c:if test="${order.sign==1}">å·²ç»å‡ºè´§</c:if> 
              
-                Ã»ÓĞ³ö»õ
+             <c:if test="${order.sign==0}">æ²¡æœ‰å‡ºè´§</c:if> 
               
-              </div></td><td width="28%"><div align="right"><a href="javascript:history.go(-1)">·µ»Ø</a></div></td>
+              </div></td><td width="28%"><div align="right"><a href="javascript:history.go(-1)">è¿”å›</a></div></td>
       </tr>
     </table>
 

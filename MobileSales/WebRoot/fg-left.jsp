@@ -133,9 +133,9 @@ function quit() {
                   <td height="38">
 				  <MARQUEE direction="up" height="114" onmouseout="this.start()" 
              onmouseover="this.stop()" scrollAmount="1" scrollDelay="1">	  
-		          
-					<img src="image/sign1.gif">&nbsp; <a href="https://ai.taobao.com" target="_blank">淘宝网</a><br><br>
-					<img src="image/sign1.gif">&nbsp; <a href="https://www.jd.com" target="_blank">京东商城</a><br><br>
+		          <c:forEach items="${links }" var="link">
+		          	<img src="image/sign1.gif">&nbsp; <a href="${link.linkAddress}" target="_blank">${link.linkName  }</a><br><br>
+		          </c:forEach>
 				
             </marquee>				 </td>
                 </tr>

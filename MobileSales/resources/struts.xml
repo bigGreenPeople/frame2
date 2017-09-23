@@ -7,6 +7,14 @@
 	<constant name="struts.multipart.maxSize" value="2097150"></constant>
 
 	<package name="phone" extends="struts-default,json-default" namespace="/">
+		<!-- 首页action -->
+		<action name="index_*" class="indexAction" method="{1}">
+			<!-- 到首页 -->
+			<result name="toIndex">
+				/index.jsp
+			</result>
+			
+		</action>
 		<!-- 用户 -->
 		<action name="member_*" class="memberAction" method="{1}">
 			<!-- 到首页 -->
@@ -115,8 +123,63 @@
 			<result name="tosetGoods">
 				/bg-goodsFreePirce.jsp
 			</result>
+			<!-- 到查询界面 -->
+			<result name="toFindGoods">
+				/bg-findGood.jsp
+			</result>
+			<!-- 到查询结果界面 -->
+			<result name="findGoods">
+				/bg-goodSelectByCondition.jsp
+			</result>
 			<!-- ajax -->			
 			<result name="bigTypeAjax" type="json">
+			</result>
+		</action>
+		
+		<!-- 公告 -->
+		<action name="affiche_*" class="afficheAction" method="{1}">
+			<!-- 到判断结果提示界面 -->
+			<result name="toAfficheResult">
+				/bg-afficheResult.jsp
+			</result>
+			<!-- 到显示所有公告页面  -->
+			<result name="findAllAffiche">
+				/bg-afficheSelect.jsp
+			</result>
+			<!-- 到修改界面 -->
+			<result name="toUpdateAffiche">
+				/bg-afficheUpdate.jsp
+			</result>
+			<!-- 到显示公告信息界面 -->
+			<result name="showAfficheInfo">
+				/bg-afficheContent.jsp
+			</result>
+		</action>
+		
+		<!-- 友情链接 -->
+		<action name="link_*" class="linkAction" method="{1}">
+			<!-- 到判断结果提示界面 -->
+			<result name="toLinkResult">
+				/bg-linkResult.jsp
+			</result>
+			<!-- 到显示所有连接页面  -->
+			<result name="findAllLink">
+				/bg-linkSelect.jsp
+			</result>
+		</action>
+		
+		<!-- 订单 -->
+		<action name="order_*" class="orderAction" method="{1}">
+			<result name="findAllOrder">
+				/bg-orderSelect.jsp
+			</result>
+			<!-- 判断结果界面 -->
+			<result name="toOrderResult">
+				/bg-orderResult.jsp
+			</result>
+			<!-- 到订单详情界面 -->
+			<result name="showOrderInfo">
+				/bg-orderContent.jsp
 			</result>
 		</action>
 	</package>

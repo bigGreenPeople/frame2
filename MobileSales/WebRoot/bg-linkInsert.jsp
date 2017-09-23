@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@page import="java.sql.*,java.util.*"%>
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("表单信息不能为空");
+alert("琛ㄥ崟淇℃伅涓嶈兘涓虹┖");
 return false;
 }
 }
@@ -12,8 +12,8 @@ return false;
 </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>手机销售系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>鎵嬫満閿�鍞郴缁�</title>
 </head>
 <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -27,22 +27,22 @@ return false;
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>添加网站信息</strong></div></td>
+            <td><div align="center"><strong>娣诲姞缃戠珯淇℃伅</strong></div></td>
           </tr>
         </table>
         <br>
-        <form action="linkAction.do?action=2" onsubmit="return checkEmpty(linkForm)">
+        <form action="${pageContext.request.contextPath }/link_addLink" onsubmit="return checkEmpty(linkForm)">
         
    
-        <table width="53%" height="60"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+        <table style="font-size: 12px;" width="53%" height="60"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="25%" height="30"><div align="center">网站名称</div></td>
+            <td width="25%" height="30"><div align="center">缃戠珯鍚嶇О</div></td>
             <td width="75%" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;
              <input type="text"  name="linkName"/>
             </td>
           </tr>
           <tr>
-            <td height="30"><div align="center">网站地址</div></td>
+            <td height="30"><div align="center">缃戠珯鍦板潃</div></td>
             <td bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="text"  name="linkAddress"/>
             </td>

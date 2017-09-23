@@ -20,4 +20,16 @@
 	<bean id="goodsDaoImp" class="com.fj.dao.imp.GoodsDaoImp">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<!-- 公告 -->
+	<bean id="afficheDaoImp" class="com.fj.dao.imp.AfficheDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 链接 -->
+	<bean id="linkDaoImp" class="com.fj.dao.imp.LinkDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 订单 -->
+	<bean id="orderDaoImp" class="com.fj.dao.imp.OrderDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

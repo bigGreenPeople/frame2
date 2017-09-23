@@ -41,15 +41,15 @@
 		<c:forEach items="${goodss.list }" var="goods">
 	        <tr bgcolor="#FFFFFF">
 	          <td height="30"><div align="center">${goods.id }</div></td>
-	          <td><div align="center"><a href="#" target="_blank">${goods.goodsName }</a></div></td>
+	          <td><div align="center">${goods.goodsName }</div></td>
 	
-	          <td><div align="center"><a href="bg-goodSelectBig.jsp">${goods.smallType.bigType.bigName }</a></div></td>
+	          <td><div align="center">${goods.smallType.bigType.bigName }</div></td>
 	
-	          <td><div align="center"><a href="bg-goodSelectSmall.jsp">${goods.smallType.smallName }</a></div></td>
-	          <td><div align="center"><a href="goodsAction.do?action=7&mark=">
+	          <td><div align="center">${goods.smallType.smallName }</div></td>
+	          <td><div align="center">
 	          	<c:if test="${goods.mark==0}">否</c:if>
 	          	<c:if test="${goods.mark==1}">是</c:if>
-	          </a></div></td>
+	          </div></td>
 	          <td><div align="center"><a href="${pageContext.request.contextPath }/goods_showGoods?goods.id=${goods.id }">详细信息</a>&nbsp;&nbsp;
 			 
 			 <a href="goods_deleteGoods?goods.id=${goods.id}">删除</a>

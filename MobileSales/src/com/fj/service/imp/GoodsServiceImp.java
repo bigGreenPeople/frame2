@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fj.dao.GoodsDao;
 import com.fj.domain.Goods;
+import com.fj.domain.GoodsCondition;
 import com.fj.domain.PageBean;
 import com.fj.service.GoodsService;
 @Transactional
@@ -11,6 +12,13 @@ public class GoodsServiceImp implements GoodsService{
 
 	//定义好dao类
 	private GoodsDao goodsDao;
+	
+	@Override
+	public PageBean<Goods> findAllGoods(int currentPage,
+			GoodsCondition goodsCondition) throws Exception {
+		// TODO Auto-generated method stub
+		return goodsDao.findGoodsByCondition(currentPage, goodsCondition);
+	}
 	
 	@Override
 	public void deleteFreePrice(Goods goods) throws Exception {

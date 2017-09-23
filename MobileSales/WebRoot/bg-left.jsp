@@ -74,7 +74,7 @@
         <tr>
           <td><table width="118" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-orderSelect.jsp" class="a3">订单设置</a></div></td>
+                <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="${pageContext.request.contextPath}/order_findAllOrder" class="a3">订单设置</a></div></td>
               </tr>
               <tr>
                 <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Order Manage</font></div></td>
@@ -86,7 +86,7 @@
         <tr>
           <td><table width="118" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-afficheSelect.jsp" class="a3">公告设置</a></div></td>
+                <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="${pageContext.request.contextPath}/affiche_findAllAffiche" class="a3">公告设置</a></div></td>
               </tr>
               <tr>
                 <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Placard Manage</font></div></td>
@@ -98,7 +98,7 @@
         <tr>
           <td><table width="118" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="bg-linkSelect.jsp" class="a3">友情设置</a></div></td>
+                <td width="127" height="17" align="center" valign="bottom"><div align="left"><a href="link_findAllLink" class="a3">友情设置</a></div></td>
               </tr>
               <tr>
                 <td height="17" align="center"><div align="left"><font color="#FFFFFF" style="font-size: 12px;">Link Manage</font></div></td>

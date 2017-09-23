@@ -1,16 +1,17 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
  <script Language="JavaScript">
  function deleteAffiche(date) {
-  if(confirm("È·¶¨ÒªÉ¾³ıÂğ£¿")){
-    window.location="afficheAction.do?action=3&id="+date;
+  if(confirm("ç¡®å®šè¦åˆ é™¤å—ï¼Ÿ")){
+    window.location="${pageContext.request.contextPath}/affiche_deleteAffiche?id="+date;
 	}
   }
  </script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 <style type="text/css">
 <!--
 .style1 {color: #5F5F5F}
@@ -29,47 +30,56 @@
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>¹«¸æĞÅÏ¢µÄ²éÑ¯</strong></div></td>
+            <td><div align="center"><strong>å…¬å‘Šä¿¡æ¯çš„æŸ¥è¯¢</strong></div></td>
           </tr>
         </table>
         <br>
-
+		
 	  <table width="90%"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
-        <tr>
-          <td width="17%" height="25"><div align="center">Êı¾İ±àºÅ</div></td>
-          <td width="19%"><div align="center">¹«¸æ±êÌâ</div></td>
-          <td width="27%"><div align="center">¹«¸æ·¢²¼Ê±¼ä</div></td>
-          <td width="37%"><div align="center">²Ù×÷</div></td>
+        <tr style="font-size: 14px;">
+          <td width="17%" height="25"><div align="center">æ•°æ®ç¼–å·</div></td>
+          <td width="19%"><div align="center">å…¬å‘Šæ ‡é¢˜</div></td>
+          <td width="27%"><div align="center">å…¬å‘Šå‘å¸ƒæ—¶é—´</div></td>
+          <td width="37%"><div align="center">æ“ä½œ</div></td>
         </tr>
-		   
-        <tr bgcolor="#FFFFFF">
-          <td height="30"><div align="center" >11</div></td>
-          <td><div align="center">2017Äê¹úÇì·Å¼Ù</div></td>
-          <td><div align="center">2017-8-11 12:44:23</div></td>
-          <td><div align="center" ><a href="bg-afficheUpdate.jsp">ĞŞ¸Ä</a>&nbsp;&nbsp;<a href="bg-afficheContent.jsp">²éÑ¯ÄÚÈİ</a>&nbsp;&nbsp;<a href="javascript:deleteAffiche('')">É¾³ı</a></div></td>
+		  <c:forEach items="${affiches.list }" var="affiche">
+        <tr bgcolor="#FFFFFF" style="font-size: 12px;">
+          <td height="30"><div align="center" >${affiche.id}</div></td>
+          <td><div align="center">${affiche.name}</div></td>
+          <td><div align="center">${affiche.issue_Time}</div></td>
+          <td><div align="center" ><a href="${pageContext.request.contextPath}/affiche_toUpdateAffiche?id=${affiche.id}">ä¿®æ”¹</a>&nbsp;&nbsp;
+          <a href="${pageContext.request.contextPath}/affiche_showAfficheInfo?id=${affiche.id}">æŸ¥è¯¢å†…å®¹</a>&nbsp;&nbsp;
+          <a href="javascript:deleteAffiche('${affiche.id}')">åˆ é™¤</a></div></td>
      </tr>
+     </c:forEach>
       </table>
 	  <br>
 	  <table width="90%"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr align="center">
-          <td width="13%">¹²Îª4Ò³</td>
-          <td width="16%">¹²ÓĞ22Ìõ¼ÇÂ¼</td>
-          <td width="14%">µ±Ç°ÎªµÚ2Ò³</td>
-          <td width="19%">
-      ÉÏÒ»Ò³
+          <td style="font-size: 12px;" width="13%">å…±ä¸º${affiches.totalPage }é¡µ</td>
+          <td  style="font-size: 12px;" width="16%">å…±æœ‰${affiches.totalCount }æ¡è®°å½•</td>
+          <td style="font-size: 12px;" width="14%">å½“å‰ä¸ºç¬¬${affiches.currentPage }é¡µ</td>
+          <td style="font-size: 12px;" width="19%">
        
-        <a href="afficheAction.do?action=0&i=">ÉÏÒ»Ò³</a></td>
-
+        <c:if test="${1!=affiches.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/affiche_findAllAffiche?currentPage=${affiches.currentPage-1}'>ä¸Šä¸€é¡µ</a></li>
+			</c:if>
+        </td>
+      
           <td width="18%">
-              <a href="afficheAction.do?action=0&i=">ÏÂÒ»Ò³</a></td>
-    
+            
+              <c:if test="${affiches.totalPage!=affiches.currentPage}">
+				<li class="current"><a href='${pageContext.request.contextPath}/affiche_findAllAffiche?currentPage=${affiches.currentPage+1}'>ä¸‹ä¸€é¡µ</a></li>
+			</c:if>
+       	</td>
 
-          <td width="20%">&nbsp;
-          <a href="bg-afficheInsert.jsp"><img src="image/bg-add.gif" width="9" height="9">&nbsp;Ìí¼Ó¹«¸æ</a></td>
-
-        </tr>
+          <td width="20%">
+            <div align="right"><img src="image/bg-add.gif" width="9" height="9"><a href="${pageContext.request.contextPath}/bg-afficheInsert.jsp">&nbsp;æ·»åŠ å…¬å‘Š&nbsp;</a></div></td>
+		</tr>
       </table>
 
+<P align="center"></P>
+	
     </td>
   </tr>
 </table>

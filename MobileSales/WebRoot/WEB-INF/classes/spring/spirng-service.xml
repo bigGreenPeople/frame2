@@ -17,4 +17,17 @@
 	<bean id="goodsServiceImp" class="com.fj.service.imp.GoodsServiceImp">
 		<property name="goodsDao" ref="goodsDaoImp"></property>
 	</bean>
+	<!--公告-->
+	<bean id="afficheServiceImp" class="com.fj.service.imp.AfficheServiceImp">
+		<property name="afficheDao" ref="afficheDaoImp"></property>
+	</bean>
+	
+	<!--连接-->
+	<bean id="linkServiceImp" class="com.fj.service.imp.LinkServiceImp">
+		<property name="linkDao" ref="linkDaoImp"></property>
+	</bean>
+	<!--订单-->
+	<bean id="orderServiceImp" class="com.fj.service.imp.OrderServiceImp">
+		<property name="orderDao" ref="orderDaoImp"></property>
+	</bean>
 </beans>

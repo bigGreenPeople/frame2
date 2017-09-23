@@ -1,10 +1,11 @@
-<%@ page contentType="text/html; charset=gb2312"%>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
 <script language="javascript">
 function checkEmpty(form){
 for(i=0;i<form.length;i++){
 if(form.elements[i].value==""){
-alert("表单信息不能为空");
+alert("琛ㄥ崟淇℃伅涓嶈兘涓虹┖");
 return false;
 }
 }
@@ -13,7 +14,7 @@ return false;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>手机销售系统</title>
+<title>鎵嬫満閿�鍞郴缁�</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -26,7 +27,7 @@ return false;
 	
         <table width="610" height="25" border="0" cellpadding="0" cellspacing="0" background="image/bg_02.jpg">
           <tr>
-            <td><div align="center"><strong>查看公告信息</strong></div></td>
+            <td><div align="center"><strong>鏌ョ湅鍏憡淇℃伅</strong></div></td>
           </tr>
         </table>
         <br>
@@ -34,19 +35,19 @@ return false;
 	 
         <table width="90%" height="243"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
           <tr>
-            <td width="23%" height="30"><div align="center">公告标题</div></td>
-            <td width="77%" bgcolor="#FFFFFF">&nbsp;2017年国庆放假</td>
+            <td width="23%" height="30"><div align="center">鍏憡鏍囬</div></td>
+            <td width="77%" bgcolor="#FFFFFF">&nbsp;${affiche.name }</td>
           </tr>
             <tr>
-            <td width="23%" height="208"><div align="center">公告内容</div></td>
-            <td width="77%" bgcolor="#FFFFFF">&nbsp;2017年国庆放假7天.....</td>
+            <td width="23%" height="208"><div align="center">鍏憡鍐呭</div></td>
+            <td width="77%" bgcolor="#FFFFFF">&nbsp;${affiche.content }</td>
           </tr>
       </table>
     
 	    <table width="82%" height="30"  border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td>&nbsp;</td>
-            <td><div align="right"><a href="javascript:history.go(-1)">返回</a></div></td>
+            <td><div align="right"><a href="javascript:history.go(-1)">杩斿洖</a></div></td>
           </tr>
         </table>
 

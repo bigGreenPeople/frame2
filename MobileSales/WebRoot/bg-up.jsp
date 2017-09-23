@@ -7,7 +7,7 @@
     <td valign="top"><table width="770" border="0" align="center">
       <tr >
         <td width="413" height="53" valign="bottom"><div align="right"></div></td>
-        <td width="347" valign="bottom" align="right"><font color="#FFFFFF"><a href="bg-orderSelect.jsp" class="a2">商品查询</a> | 
+        <td width="347" valign="bottom" align="right"><font color="#FFFFFF"><a href="${pageContext.request.contextPath }/goods_toFindGoods" class="a2">商品查询</a> | 
         <a href="${pageContext.request.contextPath }/type_findAllBigType" class="a2">大类别查询</a> | 
         <a href="${pageContext.request.contextPath }/type_findAllSmallType" class="a2">小类别查询</a> | 
         <a href="bg-orderSelect.jsp" class="a2">返回首页</a></font></td>

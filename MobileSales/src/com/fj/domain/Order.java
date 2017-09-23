@@ -17,7 +17,7 @@ public class Order  implements Serializable{
 	//备注信息
 	private String bz;
 	//是否处理
-	private Integer sign;
+	private Integer sign=0;
 	private Date creaTime = new Date();
 	
 	private Member member;

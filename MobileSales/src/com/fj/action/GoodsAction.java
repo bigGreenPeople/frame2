@@ -11,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.fj.domain.BigType;
 import com.fj.domain.Goods;
+import com.fj.domain.GoodsCondition;
 import com.fj.domain.PageBean;
 import com.fj.domain.SmallType;
 import com.fj.service.BigTypeService;
@@ -31,6 +32,8 @@ public class GoodsAction extends ActionSupport{
 	private BigTypeService bigTypeService;
 	//默认当前页是第一页
 	private Integer currentPage=1;
+	//定义条件类
+	private GoodsCondition goodsCondition;
 	//商品
 	private Goods goods;
 	//大类别的id
@@ -116,11 +119,33 @@ public class GoodsAction extends ActionSupport{
 		return "tosetGoods";
 	}
 	
+	//到查询商品界面
+	public String toFindGoods() throws Exception{
+		
+		//得到所有的大类别
+		List<BigType> list = bigTypeService.findAllBigType();
+		//放入request
+		if(list!=null){
+			HttpServletRequest request = ServletActionContext.getRequest();
+			request.setAttribute("list", list);
+		}
+		return "toFindGoods";
+	}
 	
+	//查询商品
+	public String findGoods() throws Exception{
+		
+		PageBean<Goods> findAllGoods = goodsService.findAllGoods(currentPage, goodsCondition);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		request.setAttribute("goodss", findAllGoods);
+		request.setAttribute("goodsCondition", goodsCondition);
+		return "findGoods";
+	}
 	
 	//到添加商品页面
 	public String toAddGoods() throws Exception{
-		//取得所得小类别
+		//取得所得大类别
 		List<BigType> list = bigTypeService.findAllBigType();
 		//放入request
 		if(list!=null){
@@ -229,6 +254,14 @@ public class GoodsAction extends ActionSupport{
 
 	public void setFieldNameFileName(String fieldNameFileName) {
 		this.fieldNameFileName = fieldNameFileName;
+	}
+
+	public GoodsCondition getGoodsCondition() {
+		return goodsCondition;
+	}
+
+	public void setGoodsCondition(GoodsCondition goodsCondition) {
+		this.goodsCondition = goodsCondition;
 	}
 
 	
