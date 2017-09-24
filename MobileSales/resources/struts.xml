@@ -13,13 +13,32 @@
 			<result name="toIndex">
 				/index.jsp
 			</result>
-			
+			<!-- 到新品界面 -->
+			<result name="toNewGoods">
+				/fg-selectNewGoods.jsp
+			</result>
+			<!-- 到特价商品界面 -->
+			<result name="toFreeGoods">
+				/fg-selectFreeGoods.jsp
+			</result>
+			<!-- 到销售前十 -->
+			<result name="toGoodsTen">
+				/bg-resultTen.jsp
+			</result>
+			<!-- 显示商品详细信息界面 -->
+			<result name="showGoodsInfo">
+				/fg-goodSelectOne.jsp
+			</result>
+			<!--添加购物车结果界面  -->
+			<result name="addCart">
+				/fg-addCartResult.jsp
+			</result>
 		</action>
 		<!-- 用户 -->
 		<action name="member_*" class="memberAction" method="{1}">
 			<!-- 到首页 -->
-			<result name="toIndex" type="redirect">
-				/index.jsp
+			<result name="toIndex" type="redirectAction">
+				index_toIndex
 			</result>
 			<!--回应axaj的name查询  -->
 			<result name="findByName" type="stream">

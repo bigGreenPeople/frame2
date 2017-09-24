@@ -9,7 +9,16 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -22,7 +31,7 @@ import com.fj.domain.PageBean;
 public class GoodsDaoImp extends BaseDaoImp<Goods> implements GoodsDao {
 	@Override
 	public PageBean<Goods> findGoodsByCondition(int currentPage,
-			GoodsCondition goodsCondition) throws Exception {
+			GoodsCondition goodsCondition,int pageSize) throws Exception {
 		// TODO Auto-generated method stub
 		String hql = "from Goods where 1=1";
 		
@@ -55,6 +64,7 @@ public class GoodsDaoImp extends BaseDaoImp<Goods> implements GoodsDao {
 		//计算出pageBean的信息
 		//查询得到总记录数
 		PageBean<Goods> pageBean = new PageBean<Goods>();
+		pageBean.setPageSize(pageSize);
 		pageBean.setCurrentPage(currentPage);
 		pageBean.setTotalCount(this.getCount(goodsCondition));
 		//计算开始位置
@@ -111,5 +121,66 @@ public class GoodsDaoImp extends BaseDaoImp<Goods> implements GoodsDao {
 			return list.get(0).intValue();
 		}
 		return 0;		
+	}
+	
+	@Override
+	public PageBean<Goods> findGoodsTheFirst(PageBean<Goods> pageBean)
+			throws Exception {
+		// TODO Auto-generated method stub
+		//使用hql
+		Query query = this.getSessionFactory().getCurrentSession().createQuery("from Goods g order by g.number desc");
+		
+		//查询得到总记录数
+		pageBean.setTotalCount(10);
+		//计算开始位置
+		int begin = (pageBean.getCurrentPage()-1)*pageBean.getPageSize()+1;
+		pageBean.setBegin(begin);
+		//计算出总页数
+		int totalPage=pageBean.getTotalCount()%pageBean.getPageSize()==0?
+				pageBean.getTotalCount()/pageBean.getPageSize():
+					pageBean.getTotalCount()/pageBean.getPageSize()+1;
+		pageBean.setTotalPage(totalPage);
+		//计算出结束位置
+		int end = pageBean.getCurrentPage()*pageBean.getPageSize();
+		pageBean.setEnd(end);
+		List<Goods> list = query.setFirstResult(pageBean.getBegin()-1).setMaxResults(pageBean.getPageSize()).list();
+		pageBean.setList(list);
+		//添加条件
+		return pageBean;
+	}
+	
+	@Override
+	public PageBean<Goods> findGoodsByCreaTime(int day, PageBean<Goods> pageBean)
+			throws Exception {
+		// TODO Auto-generated method stub
+		List<Long> listCount = (List<Long>) this.getSessionFactory().getCurrentSession().createSQLQuery("SELECT count(*) FROM tb_goods WHERE DATE_SUB(CURDATE(), INTERVAL "+day+" DAY) <= DATE(creaTime)").list();
+		//如果不为空
+		if(listCount.size()!=0 && listCount!=null){
+			//返回我们的记录数
+			pageBean.setTotalCount(Integer.parseInt(listCount.get(0)+""));
+		}else{
+			pageBean.setTotalCount(0);
+		}
+		//查询得到总记录数
+		//count.intValue());
+		//计算开始位置
+		int begin = (pageBean.getCurrentPage()-1)*pageBean.getPageSize()+1;
+		pageBean.setBegin(begin);
+		//计算出总页数
+		int totalPage=pageBean.getTotalCount()%pageBean.getPageSize()==0?
+				pageBean.getTotalCount()/pageBean.getPageSize():
+					pageBean.getTotalCount()/pageBean.getPageSize()+1;
+		pageBean.setTotalPage(totalPage);
+		
+		//计算出结束位置
+		int end = pageBean.getCurrentPage()*pageBean.getPageSize();
+		pageBean.setEnd(end);
+		String sql = "SELECT * FROM tb_goods WHERE DATE_SUB(CURDATE(), INTERVAL "+day+" DAY) <= DATE(creaTime) LIMIT "+(pageBean.getBegin()-1)+","+pageBean.getPageSize();
+		SQLQuery sQLQuery = this.getSessionFactory().getCurrentSession().createSQLQuery(sql).addEntity(Goods.class);
+		@SuppressWarnings("unchecked")
+		List<Goods> list = (List<Goods>) sQLQuery.list();
+		pageBean.setList(list);
+		
+		return pageBean;
 	}
 }

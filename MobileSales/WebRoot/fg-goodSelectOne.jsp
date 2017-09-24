@@ -1,10 +1,11 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.*,java.util.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="managerGoods/css/css.css">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 <style type="text/css">
 <!--
 body {
@@ -23,9 +24,9 @@ td {
 </style></head>
 
 <body>
-<form name="form" method="post" action="cart_add.jsp">
+<form name="form" method="post" action="index_addCart">
 <div align="center">
-  <p class="style1">²é¿´ÉÌÆ·Çåµ¥</p>
+  <p class="style1">æŸ¥çœ‹å•†å“æ¸…å•</p>
 </div>
 <table width="500"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#819BBC">
   <tr>
@@ -35,7 +36,7 @@ td {
     <td width="64%" height="30"><div align="center">
       <table width="71%" height="20"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td>»õÆ·Ãû³Æ£º»ªÎªÈÙÒ«5C <input type="hidden" name="goodsId" value="#" /></td>
+          <td>è´§å“åç§°ï¼š${goods.goodsName } <input type="hidden" name="goods.id" value="#" /></td>
         </tr>
       </table>
     </div></td>
@@ -45,9 +46,14 @@ td {
         <table width="71%"  border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td>
-ÌØ&nbsp;&nbsp;&nbsp;&nbsp;¼Û£º3434Ôª<input  type="hidden" name="price" value="3434"/>
+        <c:if test="${goods.mark==1 }">
+ç‰¹&nbsp;&nbsp;&nbsp;&nbsp;ä»·ï¼š${goods.freePrice }å…ƒ<input  type="hidden" name="goods.nowPrice" value="${goods.freePrice }"/>
 
-ÏÖ&nbsp;&nbsp;&nbsp;&nbsp;¼Û£º1222Ôª<input type="hidden" name="price" value="1222"/>
+ç°&nbsp;&nbsp;&nbsp;&nbsp;ä»·ï¼š${goods.nowPrice }å…ƒ<input type="hidden" name="price" value="${goods.nowPrice }"/>
+</c:if>
+<c:if test="${goods.mark==0 }">
+ ç°&nbsp;&nbsp;&nbsp;&nbsp;ä»·ï¼š${goods.nowPrice }å…ƒ<input type="hidden" name="goods.nowPrice" value="${goods.nowPrice }"/>
+ </c:if>
 </td>
       </tr>
     </table>
@@ -57,7 +63,7 @@ td {
     <td height="30"><div align="center">
       <table width="71%"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td>¼ò&nbsp;&nbsp;&nbsp;&nbsp;½é£º»ªÎªÈÙÒ«5CÊÖ»úÕæºÃÓÃ..... </td>
+          <td>ç®€&nbsp;&nbsp;&nbsp;&nbsp;ä»‹ï¼š${goods.introduce }</td>
         </tr>
       </table>
     </div></td>
@@ -65,7 +71,7 @@ td {
   <tr align="center">
     <td height="30">
 	<img src="image/1.jpg" onClick="window.close()">
-	&nbsp;&nbsp;<input type="image" src="image/2.jpg" name="Submit" value="·ÅÈë¹ºÎï³µ"></td>
+	&nbsp;&nbsp;<input type="image" src="image/2.jpg" name="Submit" value="æ”¾å…¥è´­ç‰©è½¦"></td>
   </tr>
 </table>
 </form>

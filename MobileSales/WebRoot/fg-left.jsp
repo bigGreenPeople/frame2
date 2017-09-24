@@ -34,7 +34,8 @@ function quit() {
           </tr>
         </table>
         <form name="form" method="post" action="${pageContext.request.contextPath }/member_login" onSubmit="return checkEmpty(form)">
-          <table width="185" border="0" align="center">
+          <table width="185" border="0" align="center" style="font-size: 12px;">
+          	<tr><br></tr>
             <tr>
               <td width="60" height="25">用户名：</td>
               <td width="115"> <input name="name" type="text" size="17"></td>
@@ -93,11 +94,9 @@ function quit() {
                   <td width="171" height="143" ><font color="red">
 				  <marquee direction="up" height="114" onmouseout="this.start()" 
              onmouseover="this.stop()" scrollAmount="1" scrollDelay="1">	  
-		           
-						<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">好消息！2017年国庆期间本商城所有的华为手机打8折。
-</a><br><br>
-<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">关于2017年国庆期间商场活动通知
-</a><br><br>
+		            <c:forEach items="${affiches }" var="affiche">
+						<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">${affiche.name }
+</a><br><br></c:forEach>
 					
             </marquee></font>			      </td>
                 </tr>
@@ -112,11 +111,13 @@ function quit() {
               </tr>
             </table>          
 		
-			  <table width="178" height="19" border="0" align="center" cellpadding="0" cellspacing="0" background="image/fg_left04.jpg">
-			    <tr>
-			    <td width="14"></td>
-                <td width="164"><a href="bg-sellResult.jsp?id=%>&account=">1&nbsp;&nbsp;华为荣耀5X</a></td>
-				</tr>   
+			  <table width="178" style="line-height: 19px;" height="19" border="0" align="center" cellpadding="0" cellspacing="0" background="image/fg_left04.jpg">
+			   
+			    <c:forEach items="${goodss.list }" varStatus="status" var="goods"> <tr>
+			    <td width="14"></td><td width="164">
+                <a href="bg-sellResult.jsp?id=%>&account=">${status.index+1}&nbsp;&nbsp;${goods.goodsName }</a></td>
+				</tr> 
+                </c:forEach>  
             </table>				
 			</td>
           </tr>
@@ -134,7 +135,7 @@ function quit() {
 				  <MARQUEE direction="up" height="114" onmouseout="this.start()" 
              onmouseover="this.stop()" scrollAmount="1" scrollDelay="1">	  
 		          <c:forEach items="${links }" var="link">
-		          	<img src="image/sign1.gif">&nbsp; <a href="${link.linkAddress}" target="_blank">${link.linkName  }</a><br><br>
+		          	<img src="image/sign1.gif">&nbsp; <a href="http://${link.linkAddress}" target="_blank">${link.linkName  }</a><br><br>
 		          </c:forEach>
 				
             </marquee>				 </td>

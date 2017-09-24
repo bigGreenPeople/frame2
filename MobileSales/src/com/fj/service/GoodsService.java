@@ -25,4 +25,9 @@ public interface GoodsService {
 	
 	//分页条件查询所有的商品(开始位置 和条件对象)
 	public PageBean<Goods> findAllGoods(int currentPage,GoodsCondition goodsCondition) throws Exception;
+	public PageBean<Goods> findAllGoods(int currentPage,GoodsCondition goodsCondition,int pageSize) throws Exception;
+	//分页查询销量前十的商品
+	public PageBean<Goods> findGoodsByTheFirstTen(PageBean<Goods> pageBean) throws Exception;
+	//分页查询最近几天发售的商品
+	public PageBean<Goods> findGoodsByCreaTime(int day,PageBean<Goods> pageBean) throws Exception;
 }

@@ -1,9 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css"> 
 <body>
@@ -11,34 +12,39 @@
 <table width="766" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="207" valign="top" bgcolor="#F5F5F5">
-    <!--×ó²à01-->
+    <!--å·¦ä¾§01-->
     <jsp:include page="fg-left.jsp" flush="true"/></td>
     <td width="559" valign="top" bgcolor="#FFFFFF" align="center">
-    <!--ÓÒ²à01-->	
+    <!--å³ä¾§01-->	
 	<jsp:include page="fg-goodSorts.jsp" flush="true"/>	
-	ÉÌÆ·ÏúÊÛÅÅÐÐ TOP5
+	å•†å“é”€å”®æŽ’è¡Œ TOP5
 	<br><br>
-        µÚ1Ãû
+	<c:forEach items="${goodssTen.list }" varStatus="status" var="goods">
+        ç¬¬${status.index+1 }å
 		<table width="99%"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#819BBC">
           <tr>
             <td width="36%" rowspan="4" height="84"><div align="center">
                 <input name="pricture" type="image" src="goodsPicture/huawei/1492255388853.jpg" width="110" height="100">
             </div></td>
-            <td width="64%" height="21"><div align="center">»ªÎªÈÙÒ«5C</div></td>
+            <td width="64%" height="21"><div align="center">${goods.goodsName }</div></td>
           </tr>
           <tr>
-            <td height="21"><div align="center">µ¥¼Û£º1984Ôª</div></td>
+            <td height="21"><div align="center">å•ä»·ï¼š<c:if test="${goods.mark==0}">${goods.nowPrice }</c:if>
+                          	<c:if test="${goods.mark==1}">${goods.freePrice }</c:if>å…ƒ</div></td>
           </tr>
           <tr>
-            <td height="21"><div align="center">´Ë¿îÊÖ»ú¹¦ÄÜ·Ç³£¶à£¬ºÃÓÃ...</div></td>
+            <td height="21"><div align="center">${goods.introduce}</div></td>
           </tr>
           <tr>
           
             <td height="21" align="center"> 
-			<a href="#" onClick="window.open('goodsAction.do?action=16&id=','','width=500,height=200');">²é¿´ÏêÏ¸ÄÚÈÝ</a>
-           µÇÂ¼ºó²ÅÄÜ¹ºÂò</td>
+            <c:if test="${loginMember!=null }">
+			<a href="#" onClick="window.open('goodsAction.do?action=16&id=','','width=500,height=200');">æŸ¥çœ‹è¯¦ç»†å†…å®¹</a>
+			</c:if>
+        <c:if test="${loginMember==null }">   ç™»å½•åŽæ‰èƒ½è´­ä¹°</c:if></td>
           </tr>
-        </table><br>
+        </table><hr/>
+        </c:forEach><br>
 	</td>
   </tr>
 </table>

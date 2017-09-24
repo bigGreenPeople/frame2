@@ -14,10 +14,31 @@ public class GoodsServiceImp implements GoodsService{
 	private GoodsDao goodsDao;
 	
 	@Override
+	public PageBean<Goods> findGoodsByTheFirstTen(PageBean<Goods> pageBean)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return goodsDao.findGoodsTheFirst(pageBean);
+	}
+	
+	@Override
 	public PageBean<Goods> findAllGoods(int currentPage,
 			GoodsCondition goodsCondition) throws Exception {
 		// TODO Auto-generated method stub
-		return goodsDao.findGoodsByCondition(currentPage, goodsCondition);
+		return goodsDao.findGoodsByCondition(currentPage, goodsCondition,5);
+	}
+	
+	@Override
+	public PageBean<Goods> findAllGoods(int currentPage,
+			GoodsCondition goodsCondition, int pageSize) throws Exception {
+		// TODO Auto-generated method stub
+		return goodsDao.findGoodsByCondition(currentPage, goodsCondition, pageSize);
+	}
+	
+	@Override
+	public PageBean<Goods> findGoodsByCreaTime(int day, PageBean<Goods> pageBean)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return goodsDao.findGoodsByCreaTime(day, pageBean);
 	}
 	
 	@Override
