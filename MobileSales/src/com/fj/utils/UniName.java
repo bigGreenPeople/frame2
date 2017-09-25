@@ -19,6 +19,6 @@ public class UniName {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getFname("fujie.jpg"));
+		System.out.println(getFname());
 	}
 }

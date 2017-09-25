@@ -81,6 +81,14 @@ public class AfficheAction extends ActionSupport implements ModelDriven<Affiche>
 		request.setAttribute("affiche", findAfficheById);
 		return "showAfficheInfo";
 	}
+	
+	//查询公告内容
+	public String showAffiche() throws Exception{
+		Affiche findAfficheById = afficheService.findAfficheById(affiche.getId());
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("affiche", findAfficheById);
+		return "showAffiche";
+	}
 
 	//删除公告
 	public String deleteAffiche() throws Exception{

@@ -1,9 +1,11 @@
-<%@ page contentType="text/html; charset=gb2312" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
 <body>
@@ -12,73 +14,47 @@
 <table width="766" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="207" bgcolor="#F5F5F5">
-    <!--×ó²à01-->
+    <!--å·¦ä¾§01-->
     <jsp:include page="fg-left.jsp" flush="true"/></td>
     <td width="559" valign="top" bgcolor="#FFFFFF" align="center">
-    <!--ÓÒ²à01-->	
+    <!--å³ä¾§01-->	
 	<jsp:include page="fg-goodSorts.jsp" flush="true"/>	
 	
 	<br><br>
-	<strong>¶©µ¥²é¿´</strong>
+	<strong>è®¢å•æŸ¥çœ‹</strong>
 	 <br>	 <br>	 <br>
-            
-     Ã»ÓÐ¶©»õÐÅÏ¢
- 
-
+            <c:if test="${fn:length(orderSet)==0}">
+     æ²¡æœ‰è®¢è´§ä¿¡æ¯
+ 	</c:if>
+<c:if test="${fn:length(orderSet)!=0}">
 		  <table width="95%"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#819BBC">
 
-       <tr align="center">
-            <td width="15%" height="21">±àºÅ</td>
+       <tr align="center" style="font-size: 14px; font-weight: bold;">
+            <td width="15%" height="21">ç¼–å·</td>
 
-            <td width="15%">µç»°</td>
-            <td width="21%">µØÖ·</td>
+            <td width="15%">ç”µè¯</td>
+            <td width="21%">åœ°å€</td>
 
-            <td width="19%">¶©»õÊ±¼ä</td>
-            <td width="18%">ÊÇ·ñ³ö»õ</td> <td width="12%">²Ù×÷</td>
+            <td width="19%">è®¢è´§æ—¶é—´</td>
+            <td width="18%">æ˜¯å¦å‡ºè´§</td> <td width="12%">æ“ä½œ</td>
           </tr>
-    
-          <tr align="center">
-            <td height="24">23233</td>
+    	<c:forEach items="${orderSet }" var="order">
+          <tr align="center" style="font-size: 12px;">
+            <td height="24">${order.id }</td>
 
-            <td>13565667784</td>
-            <td>½­Î÷µØÖ·</td>
+            <td>${order.tel }</td>
+            <td>${order.address }</td>
 
-            <td>2017-08-12</td>
+            <td>${order.creaTime }</td>
             <td>
-            ·ñ ÊÇ
+            <c:if test="${order.sign==0 }"> å¦</c:if>
+           		<c:if test="${order.sign==1 }">  æ˜¯</c:if>
             </td>
-             <td><a href="cart_detail.jsp?number=">²é¿´Ã÷Ï¸</a></td>
+             <td><a href="index_showOrderDetail?order.id=${order.id }">æŸ¥çœ‹æ˜Žç»†</a></td>
           </tr>
-
+</c:forEach>
       </table>
-      <div align="center">
-		   <br>
-	      <br>
-	      ¶©»õÃ÷Ï¸²éÑ¯
-	      <br>
-<br>
-
-      <table width="89%"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#819BBC">
-
-        <tr align="center">
-          <td width="25%" height="21">±àºÅ</td>
-          <td width="24%">ÉÌÆ·Ãû³Æ</td>
-          <td width="28%">ÉÌÆ·¼Û¸ñ</td>
-          <td width="23%">ÉÌÆ·ÊýÁ¿</td>
-        </tr>  
-        <tr  align="center" >
-          <td height="21">1111</td>
-          <td>»ªÎªÈÙÒ«5C></td>
-          <td>2334Ôª</td>
-          <td>23</td>
-        </tr>
-      </table>
-
-	   <table width="89%"  border="0" cellspacing="0" cellpadding="0">
-         <tr>
-           <td height="24"><div align="right">×Ü½ð¶î£º2333Ôª</div></td>
-         </tr>
-       </table>
+      </c:if>
       </div>
 </td>
   </tr>

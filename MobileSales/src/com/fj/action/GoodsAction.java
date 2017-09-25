@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
+import com.fj.domain.Affiche;
 import com.fj.domain.BigType;
 import com.fj.domain.Goods;
 import com.fj.domain.GoodsCondition;
+import com.fj.domain.Link;
 import com.fj.domain.PageBean;
 import com.fj.domain.SmallType;
 import com.fj.service.BigTypeService;

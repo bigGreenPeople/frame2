@@ -34,5 +34,7 @@
 		<property name="afficheService" ref="afficheServiceImp"></property>
 		<property name="goodsService" ref="goodsServiceImp"></property>
 		<property name="linkService" ref="linkServiceImp"></property>
+		<property name="orderService" ref="orderServiceImp"></property>
+		<property name="memberService" ref="memberServiceImp"></property>
 	</bean>
 </beans>

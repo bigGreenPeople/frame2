@@ -9,6 +9,10 @@
 	<package name="phone" extends="struts-default,json-default" namespace="/">
 		<!-- 首页action -->
 		<action name="index_*" class="indexAction" method="{1}">
+		<!-- 商品排名详细信息 -->
+			<result name="showOrderGoodsInfo">
+				/bg-sellResult.jsp
+			</result>
 			<!-- 到首页 -->
 			<result name="toIndex">
 				/index.jsp
@@ -32,6 +36,30 @@
 			<!--添加购物车结果界面  -->
 			<result name="addCart">
 				/fg-addCartResult.jsp
+			</result>
+			<!-- 显示购物车 -->
+			<result name="showCart">
+				/cart_see.jsp
+			</result>
+			<!-- 清除购物车 -->
+			<result name="cartOut" type="redirectAction">
+				index_showCart
+			</result>
+			<!-- 到提交订单界面 -->
+			<result name="cartCheckOut">
+				/cart_checkOut.jsp
+			</result>
+			<!-- 提交订单完成 -->
+			<result name="commitOrder">
+				/fg-orderCommitResult.jsp
+			</result>
+			<!-- 查询订单 -->
+			<result name="showOrder">
+				/cart_detail.jsp
+			</result>
+			<!-- 查询明细 -->
+			<result name="showOrderDetail">
+				/cart_detailOrder.jsp
 			</result>
 		</action>
 		<!-- 用户 -->
@@ -123,6 +151,7 @@
 		
 		<!--商品  -->
 		<action name="goods_*" class="goodsAction" method="{1}">
+			
 			<result name="findAllGoods">
 				/bg-goodSelect.jsp
 			</result>
@@ -172,6 +201,10 @@
 			<!-- 到显示公告信息界面 -->
 			<result name="showAfficheInfo">
 				/bg-afficheContent.jsp
+			</result>
+			<!-- 查看公告 -->
+			<result name="showAffiche">
+				/fg-afficheSelect.jsp
 			</result>
 		</action>
 		

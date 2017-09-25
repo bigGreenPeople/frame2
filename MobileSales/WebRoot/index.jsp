@@ -27,7 +27,7 @@
             <td valign="top">
             <table width="80%" height="136" border="1" align="center" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#999999">
               <tr>
-                <td width="33%" height="80" rowspan="5" bgcolor="#FFFFFF"><input name="pricture" type="image" src="goodsPicture/zte/1492257114334.jpg" width="140" height="126"></td>
+                <td width="33%" height="80" rowspan="5" bgcolor="#FFFFFF"><input name="pricture" type="image" <c:if test="${goods.pirture!=null}">src="file/${goods.pirture}"</c:if> width="140" height="126"></td>
                 <td width="67%" height="20" bgcolor="#FFFFFF"><div align="center">${goods.goodsName}</div></td>
               </tr>
               <tr>
@@ -65,7 +65,7 @@
                       <table width="96%"  border="1" align="center" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC" >
                         <tr>
                           <td width="36%" rowspan="4" bgcolor="#FFFFFF"><div align="center">
-                              <input name="pricture" type="image" src="goodsPicture/huawei/1492255388853.jpg" width="110" height="100">
+                              <input name="pricture" type="image" <c:if test="${goods.pirture!=null}">src="file/${goods.pirture}"</c:if> width="110" height="100">
                           </div></td>
                           <td width="64%" bgcolor="#FFFFFF"><div align="center">${goods.goodsName}</div></td>
                         </tr>
@@ -79,7 +79,7 @@
                         <tr>
                           <td  bgcolor="#FFFFFF" class="linkBlack"  align="center">
                              <c:if test="${loginMember!=null }">
-               	<a href="#" onClick="window.open('fg-goodSelectOne.jsp','','width=600,height=400');">查看详细内容</a>				
+               	<a href="#" onClick="window.open('index_showGoodsInfo?goods.id=${goods.id}','','width=600,height=400');">查看详细内容</a>				
                </c:if>
                <c:if test="${loginMember==null }">
 			登录后才能购买</c:if></td>

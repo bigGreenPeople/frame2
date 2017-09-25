@@ -1,46 +1,55 @@
-<%@ page contentType="text/html; charset=gb2312" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÊÖ»úÏúÊÛÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æ‰‹æœºé”€å”®ç³»ç»Ÿ</title>
 
 </head>
  <link href="css/css.css" rel="stylesheet" type="text/css">
+ <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <body>
 
 <jsp:include page="fg-top.jsp" flush="true"/>
 <table width="766" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="207" bgcolor="#F5F5F5">
-    <!--×ó²à01-->
+    <!--å·¦ä¾§01-->
     <jsp:include page="fg-left.jsp" flush="true"/></td>
     <td width="559" valign="top" bgcolor="#FFFFFF" align="center">
-    <!--ÓÒ²à01-->	
+    <!--å³ä¾§01-->	
 	<jsp:include page="fg-goodSorts.jsp" flush="true"/>	
 	
 	<br><br>
-	<strong>ÎÒµÄ¹ºÎï³µ</strong>	<div align="center"><br>         
-           Äú»¹Ã»ÓĞ¹ºÎï£¡£¡£¡
-        </div>
-        <form method="post" action="cart_modify.jsp" name="form">
-		  <table width="92%"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#819BBC" bordercolorlight="#FFFFFF">
-          <tr>
-            <td width="16%" height="28"><div align="center">ĞòºÅ</div></td>
-            <td width="23%"><div align="center">ÉÌÆ·µÄÃû³Æ</div></td>
-            <td width="22%"><div align="center">ÉÌÆ·¼Û¸ñ</div></td>
-            <td width="22%"><div align="center">ÉÌÆ·ÊıÁ¿</div></td>
-            <td width="17%"><div align="center">×Ü½ğ¶î</div></td>
-          </tr>
+	<strong>æˆ‘çš„è´­ç‰©è½¦</strong>	<div align="center"><br>         
          
-          <tr>
-            <td height="28"><div align="center">2</div></td>
-            <td><div align="center">»ªÎªÈÙÒ«5C</div></td>
-            <td><div align="center">2300Ôª</div></td>
-            <td><div align="center"><input name="num" size="7" type="text"  value="34" onBlur="check(this.form)"></div></td>
-            <td><div align="center">12223Ôª</div></td>
+           <c:if test="${fn:length(goodsList)==0}">
+           		  æ‚¨è¿˜æ²¡æœ‰è´­ç‰©ï¼ï¼ï¼
+           </c:if>
+        </div>
+        <c:if test="${fn:length(goodsList)>0}">
+        <form method="post" action="index_toCartCheckOut" name="form">
+		  <table width="92%"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#819BBC" bordercolorlight="#FFFFFF">
+          <tr style="font-size: 14xp; font-weight: bold;" >
+            <td width="16%" height="28"><div align="center">åºå·</div></td>
+            <td width="23%"><div align="center">å•†å“çš„åç§°</div></td>
+            <td width="22%"><div align="center">å•†å“ä»·æ ¼</div></td>
+            <td width="22%"><div align="center">å•†å“æ•°é‡</div></td>
+            <td width="17%"><div align="center">æ€»é‡‘é¢</div></td>
           </tr>
-
+         <c:forEach items="${goodsList }" var="goods">
+          <tr style="font-size: 12px;">
+            <td height="28"><div align="center">${goods.id }<input name="ids" size="7" type="hidden"  value="${goods.id }" ></div></td>
+            <td><div align="center">${goods.goodsName }</div></td>
+            <td><div align="center"><c:if test="${goods.mark==0}">${goods.nowPrice }</c:if>
+            	<c:if test="${goods.mark==1}">${goods.freePrice }</c:if>
+            	</div></td>
+            <td class="num" ><div align="center"><input name="nums" size="7" type="text"  value="1" ></div></td>
+            <td><div align="center"><span class="money"><c:if test="${goods.mark==0}">${goods.nowPrice }</c:if><c:if test="${goods.mark==1}">${goods.freePrice }</c:if></span>å…ƒ</div></td>
+          </tr>
+		</c:forEach>
         </table>
         </form>
 
@@ -51,16 +60,48 @@
 		</tr>
       <tr align="center" valign="middle">
         <td height="21" class="tableBorder_B1">&nbsp;</td>
-        <td height="21" colspan="-3" align="left" >ºÏ¼Æ×Ü½ğ¶î£º£¤5456</td>
+        <td height="21" colspan="-3" align="left" >åˆè®¡æ€»é‡‘é¢ï¼š<br/>ï¿¥<span id="numMoney"></span></td>
       </tr>
       <tr align="center" valign="middle">
-        <td height="21" colspan="2"> <a href="index.jsp">¼ÌĞø¹ºÎï</a> | <a href="cart_checkOut.jsp">È¥ÊÕÒøÌ¨½áÕË</a> | <a href="cart_clear.jsp">Çå¿Õ¹ºÎï³µ</a> | <a href="#">ĞŞ¸ÄÊıÁ¿</a></td>
+        <td height="21" colspan="2"> <a href="index_toIndex">ç»§ç»­è´­ç‰©</a> | <a href="javascript:submitt()" onClick="">å»æ”¶é“¶å°ç»“è´¦</a> | <a href="index_cartOut">æ¸…ç©ºè´­ç‰©è½¦</a> 
         </tr>
 </table>
+</c:if>
 </td>
   </tr>
 </table>
 <jsp:include page="fg-down.jsp" flush="true"/>
-
+<script type="text/javascript">
+	function submitt(){
+		$("form").submit();
+	}
+</script>
+<script type="text/javascript">
+	
+	$(".num").keyup(function(){
+		//$("#price").text();
+		var price = $(this).prev().text();
+		var num = $(this).find("input").val();
+		//alert(num);
+		$(this).next().find("span").text((price*num));
+		
+		//æ€»ä»·æ ¼
+		var numMoney = 0;
+		$(".money").each(function(){
+			numMoney = numMoney+parseInt($(this).text());
+			//alert($(this).text());
+		});
+		$("#numMoney").text(numMoney);
+	});
+	$(function(){
+		//æ€»ä»·æ ¼
+		var numMoney = 0;
+		$(".money").each(function(){
+			numMoney = numMoney+parseInt($(this).text());
+			//alert($(this).text());
+		});
+		$("#numMoney").text(numMoney);
+	});
+</script>
 </body>
 </html>

@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class OrderDetail  implements Serializable{
 	private Integer id;
-	private Float price;
+	private Double price;
 	private Integer number;
 	
 	// µÃÂ Ù–‘
@@ -22,10 +22,10 @@ public class OrderDetail  implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Float getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(Float price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	public Integer getNumber() {

@@ -31,12 +31,12 @@ td {
 <table width="500"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#819BBC">
   <tr>
     <td width="36%" rowspan="4" height="120"><div align="center">
-        <input name="pricture" type="image" src="goodsPicture/huawei/1492255388853.jpg" width="110" height="100">
+        <input type="image" <c:if test="${goods.pirture!=null}">src="file/${goods.pirture}"</c:if> width="110" height="100">
     </div></td>
     <td width="64%" height="30"><div align="center">
       <table width="71%" height="20"  border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td>货品名称：${goods.goodsName } <input type="hidden" name="goods.id" value="#" /></td>
+          <td>货品名称：${goods.goodsName } <input type="hidden" name="goods.id" value="${goods.id }" /></td>
         </tr>
       </table>
     </div></td>
@@ -47,12 +47,12 @@ td {
       <tr>
         <td>
         <c:if test="${goods.mark==1 }">
-特&nbsp;&nbsp;&nbsp;&nbsp;价：${goods.freePrice }元<input  type="hidden" name="goods.nowPrice" value="${goods.freePrice }"/>
+特&nbsp;&nbsp;&nbsp;&nbsp;价：${goods.freePrice }元<input  type="hidden" value="${goods.freePrice }"/>
 
-现&nbsp;&nbsp;&nbsp;&nbsp;价：${goods.nowPrice }元<input type="hidden" name="price" value="${goods.nowPrice }"/>
+现&nbsp;&nbsp;&nbsp;&nbsp;价：${goods.nowPrice }元<input type="hidden" value="${goods.nowPrice }"/>
 </c:if>
 <c:if test="${goods.mark==0 }">
- 现&nbsp;&nbsp;&nbsp;&nbsp;价：${goods.nowPrice }元<input type="hidden" name="goods.nowPrice" value="${goods.nowPrice }"/>
+ 现&nbsp;&nbsp;&nbsp;&nbsp;价：${goods.nowPrice }元<input type="hidden" value="${goods.nowPrice }"/>
  </c:if>
 </td>
       </tr>

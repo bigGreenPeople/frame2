@@ -16,16 +16,16 @@
 
   <tr>
     <td width="20%" height="37"><div align="center"><font size="5">标题： </font></div></td>
-    <td width="80%"><font size="4">2017国庆放假 </font></td>
+    <td width="80%"><font size="4">${affiche.name }</font></td>
   </tr>
   <tr>
     <td width="20%" height="27"><div align="center">公告内容：</div></td>
-    <td width="80%" height="27">2017年国庆放假... </td>
+    <td width="80%" height="27">${affiche.content } </td>
   </tr>
 
 <tr>
 <td width="31%" height="27"><div align="center">发布时间： </div></td>
-<td width="69%" height="27">2017-8-12</td>
+<td width="69%" height="27">${affiche.issue_Time }</td>
 </tr>
 
 

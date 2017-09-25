@@ -29,7 +29,7 @@
 
               <tr>
                 <td width="36%" rowspan="4" height="120"><div align="center">
-                  <input name="pricture" type="image" src="goodsPicture/huawei/1492255388853.jpg" width="140" height="110">
+                  <input name="pricture" type="image" <c:if test="${goods.pirture!=null}">src="file/${goods.pirture}"</c:if> width="140" height="110">
                 </div></td>
                 <td width="64%" height="30"><div align="center">${goods.goodsName }</div></td>
               </tr>
@@ -43,7 +43,7 @@
               <tr>
                 <td height="30"><div align="center"> 
                 <c:if test="${loginMember!=null }">
-               	<a href="#" onClick="window.open('fg-goodSelectOne.jsp','','width=600,height=400');">查看详细内容</a>				
+               	<a href="#" onClick="window.open('index_showGoodsInfo?goods.id=${goods.id}','','width=600,height=400');">查看详细内容</a>				
                </c:if>
                <c:if test="${loginMember==null }">
 			登录后才能购买</c:if>

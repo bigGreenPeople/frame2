@@ -95,7 +95,7 @@ function quit() {
 				  <marquee direction="up" height="114" onmouseout="this.start()" 
              onmouseover="this.stop()" scrollAmount="1" scrollDelay="1">	  
 		            <c:forEach items="${affiches }" var="affiche">
-						<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('fg-afficheSelect.jsp?id=','','width=700,height=360');">${affiche.name }
+						<img src="image/sign.gif">&nbsp;<a href="#" onClick="window.open('affiche_showAffiche?id=${affiche.id }','','width=700,height=360');">${affiche.name }
 </a><br><br></c:forEach>
 					
             </marquee></font>			      </td>
@@ -115,7 +115,7 @@ function quit() {
 			   
 			    <c:forEach items="${goodss.list }" varStatus="status" var="goods"> <tr>
 			    <td width="14"></td><td width="164">
-                <a href="bg-sellResult.jsp?id=%>&account=">${status.index+1}&nbsp;&nbsp;${goods.goodsName }</a></td>
+                <a href="index_showOrderGoodsInfo?goods.id=${goods.id}&goodsNumId=${status.index+1}">${status.index+1}&nbsp;&nbsp;${goods.goodsName }</a></td>
 				</tr> 
                 </c:forEach>  
             </table>				

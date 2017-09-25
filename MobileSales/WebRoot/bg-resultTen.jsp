@@ -24,7 +24,7 @@
 		<table width="99%"  border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#819BBC">
           <tr>
             <td width="36%" rowspan="4" height="84"><div align="center">
-                <input name="pricture" type="image" src="goodsPicture/huawei/1492255388853.jpg" width="110" height="100">
+                <input name="pricture" type="image" <c:if test="${goods.pirture!=null}">src="file/${goods.pirture}"</c:if> width="110" height="100">
             </div></td>
             <td width="64%" height="21"><div align="center">${goods.goodsName }</div></td>
           </tr>
@@ -39,7 +39,7 @@
           
             <td height="21" align="center"> 
             <c:if test="${loginMember!=null }">
-			<a href="#" onClick="window.open('goodsAction.do?action=16&id=','','width=500,height=200');">查看详细内容</a>
+			<a href="#" onClick="window.open('index_showGoodsInfo?goods.id=${goods.id}','','width=500,height=200');">查看详细内容</a>
 			</c:if>
         <c:if test="${loginMember==null }">   登录后才能购买</c:if></td>
           </tr>
