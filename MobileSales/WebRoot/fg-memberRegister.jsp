@@ -8,26 +8,26 @@
 <link href="css/css.css" rel="stylesheet" type="text/css"> 
 <script language="javascript">
 function checkEmpty(memberForm){
-for(i=0;i<memberForm.length;i++){
-if(memberForm.elements[i].value==""){
-alert("表单信息不能为空");
-return false;
-}
-}
-//新加入的验证E-mail地址是否正确209-05-25
-var vemail=memberForm.email.value;
-var regExp=/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
-if(!regExp.test(vemail)){
-	window.alert("您输入的邮箱地址不正确！");return false;
-}
-if(document.memberForm.password.value!=document.memberForm.passwordOne.value){
-window.alert("您两次输入的密码不一致，请重新输入");
-return false;
-}
-if(isNaN(document.memberForm.age.value)){
-window.alert("年龄只能为数字");
-return false;
-}
+	for(i=0;i<memberForm.length;i++){
+		if(memberForm.elements[i].value==""){
+			alert("表单信息不能为空");
+			return false;
+		}
+	}
+	//新加入的验证E-mail地址是否正确209-05-25
+	var vemail=memberForm.email.value;
+	var regExp=/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+	if(!regExp.test(vemail)){
+		window.alert("您输入的邮箱地址不正确！");return false;
+	}
+	if(memberForm.password.value!=memberForm.passwordOne.value){
+		window.alert("您两次输入的密码不一致，请重新输入");
+		return false;
+	}
+	if(isNaN(memberForm.age.value)){
+		window.alert("年龄只能为数字");
+		return false;
+	}
 }
 </script>
 <body>
@@ -36,28 +36,28 @@ return false;
   <tr>
     <td bgcolor="#F5F5F5" align="center">
 <img src="image/fg1.jpg" width="752" height="39">
-<form action="${pageContext.request.contextPath }/member_register" method="post"  onsubmit="return checkEmpty(memberForm)">
+<form id="memberForm" action="${pageContext.request.contextPath }/member_register" method="post"  onsubmit="return checkEmpty(memberForm)">
 <table width="270"  border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="107" height="35">
           <div align="right">会员名称：</div></td>
         <td width="163">
             <div align="left">
-             <input type="text"  name="name"/>
+             <input type="text" id="name" name="name"/>
           </div></td></tr>
       <tr>
         <td height="35">          
           <div align="right">会员密码：</div></td>
         <td>
             <div align="left">
-            <input type="password"  name="password"/>
+            <input type="password" id="password" name="password"/>
           </div></td></tr>
       <tr>
         <td height="35">
           <div align="right">密码确认：</div></td>
         <td>
             <div align="left">
-              <input type="password" name="passwordOne">
+              <input type="password" id="passwordOne" name="passwordOne">
           </div></td></tr>
       <tr>
         <td height="35">
@@ -71,7 +71,7 @@ return false;
           <div align="right">年龄：</div></td>
         <td>
             <div align="left">
-              <input type="text"  name="age"/>          
+              <input type="text" id="age" name="age"/>          
           </div></td></tr>
       <tr>
         <td height="35">
@@ -85,7 +85,7 @@ return false;
           <div align="right">Email地址：</div></td>
         <td>
             <div align="left">
-             <input type="text"  name="email"/>
+             <input type="text" id="email" name="email"/>
           </div></td></tr>
       <tr>
         <td height="35">

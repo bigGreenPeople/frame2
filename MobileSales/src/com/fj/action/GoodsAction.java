@@ -169,7 +169,7 @@ public class GoodsAction extends ActionSupport{
 			//System.out.println(repath);
 			//file是文件的全路径
 			String fname = UniName.getFname(fieldNameFileName);
-			File file = new File(repath,UniName.getFname(fname));
+			File file = new File(repath,fname);
 			//使用组件包完成文件的写入
 			FileUtils.copyFile(fieldName, file);
 			goods.setPirture(fname);

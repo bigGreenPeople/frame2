@@ -31,7 +31,7 @@ return false;
           </tr>
         </table>
         <br>
-        <form action="${pageContext.request.contextPath }/link_addLink" onsubmit="return checkEmpty(linkForm)">
+        <form method="post" action="${pageContext.request.contextPath }/link_addLink" onsubmit="return checkEmpty(linkForm)">
         
    
         <table style="font-size: 12px;" width="53%" height="60"  border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">

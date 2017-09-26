@@ -64,6 +64,10 @@
 		</action>
 		<!-- 用户 -->
 		<action name="member_*" class="memberAction" method="{1}">
+		<!-- 注册表单错误界面 -->
+			<result name="input">
+				/fg-memberRegisterErr.jsp
+			</result>
 			<!-- 到首页 -->
 			<result name="toIndex" type="redirectAction">
 				index_toIndex

@@ -6,9 +6,9 @@
 	<bean id="comboPooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<!-- jdbc:mysql://localhost:3306/sample_db -->
-		<property name="jdbcUrl" value="jdbc:mysql:/306/MobileSales?characterEncoding=UTF-8"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://MobileSales?characterEncoding=UTF-8"></property>
 		<property name="user" value="></property>
-		<property name="password" val</property>
+		<property name="password" value=""></property>
 	</bean>
 	<!-- 创建sessionfactroy -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
