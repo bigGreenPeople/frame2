@@ -23,6 +23,7 @@
             <column name="station" length="40" />
         </property>
         <property name="standard" type="java.lang.String">
+            <column name="standard" length="100" />
         </property>
         <set name="decidedzones" inverse="true">
             <key>

@@ -43,5 +43,12 @@
 			/index.jsp
 		</result>
 	</action>
+	
+	<!-- 快递员action -->
+	<action name="staff_*" class="staffAction" method="{1}">
+		<result name="list">
+			/WEB-INF/pages/base/staff.jsp
+		</result>
+	</action>
 </package>
 </struts>
