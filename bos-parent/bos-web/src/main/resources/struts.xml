@@ -50,5 +50,11 @@
 			/WEB-INF/pages/base/staff.jsp
 		</result>
 	</action>
+	<!-- 区域action -->
+	<action name="region_*" class="regionAction" method="{1}">
+		<result name="list">
+			/WEB-INF/pages/base/region.jsp
+		</result>
+	</action>
 </package>
 </struts>
