@@ -56,5 +56,17 @@
 			/WEB-INF/pages/base/region.jsp
 		</result>
 	</action>
+	<!-- 分区的action-->
+	<action name="subarea_*" class="subareaAction" method="{1}">
+		<result name="list">
+			/WEB-INF/pages/base/subarea.jsp
+		</result>
+	</action>
+	<!-- 定区的action-->
+	<action name="decidedzone_*" class="decidedzoneAction" method="{1}">
+		<result name="list">
+			/WEB-INF/pages/base/decidedzone.jsp
+		</result>
+	</action>
 </package>
 </struts>
