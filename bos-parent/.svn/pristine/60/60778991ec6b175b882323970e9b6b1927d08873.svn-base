@@ -1,0 +1,105 @@
+package com.fj.bos.web.action;
+
+import javax.servlet.http.HttpSession;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.fj.bos.domain.User;
+import com.fj.bos.service.IUserService;
+import com.fj.bos.utils.BOSUtils;
+import com.fj.bos.utils.MD5Utils;
+import com.fj.bos.web.action.Base.BaseAction;
+
+@Controller
+@Scope("prototype")
+public class UserAction extends BaseAction<User> {
+	//注入service 
+	@Autowired
+	private IUserService userService;
+	//属性驱动，接收页面输入的验证码
+	private String checkcode;
+	public void setCheckcode(String checkcode) {
+		this.checkcode = checkcode;
+	}
+
+	
+	//登录方法
+	public String login() throws Exception{
+		//先从session得到验证码
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		String validatecode = (String) session.getAttribute("key");
+		if(StringUtils.isNotBlank(checkcode) && checkcode.equals(validatecode)){
+			//验证密码正确swing GUI
+			/*User user = userService.login(model);
+			if(user !=null){
+				//密码正确跳转到主界面
+				ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
+				return HOME;
+			}else{
+				//密码错误	写入错误信息
+				this.addFieldError("checkcodeerr", "密码错误!");
+				return LOGIN;
+			}*/
+			//使用shiro框架进行校检
+			//获取当前用户对象
+			Subject subject = SecurityUtils.getSubject();
+			//用户密码令牌	给予shiro密码和账号(密码用于比较  账号用于查询到正确的密码)
+			UsernamePasswordToken token = new UsernamePasswordToken(model.getUsername(), MD5Utils.md5(model.getPassword()));
+			try {
+				//当前用户去验证(如果验证失败将会抛出异常)
+				subject.login(token);
+				//得到验证的用户
+				User loginUser = (User) subject.getPrincipal();
+				ServletActionContext.getRequest().getSession().setAttribute("loginUser", loginUser);
+				return HOME;
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				//密码错误	写入错误信息
+				this.addFieldError("checkcodeerr", "账号或密码错误!");
+				return LOGIN;
+			}
+		}else{
+			//验证码错误	写入错误信息
+			this.addFieldError("checkcodeerr", "验证码错误!");
+			return LOGIN;
+		}
+	}
+	
+	//退出登录
+	public String logout() throws Exception{
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		session.invalidate();
+		return LOGIN;
+	}
+	
+	/**
+	 * 修改密码
+	 */
+	public String editPassword() throws Exception{
+		//回调的信息
+		String f = "1";
+		
+		//获得当前用户
+		User loginUser = BOSUtils.getLoginUser();
+		
+		try {
+			userService.editPassword(loginUser.getId(),model.getPassword());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			f = "0";
+		}
+		//指定回收的数据是文本格式
+		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+		ServletActionContext.getResponse().getWriter().print(f);
+		
+		return NONE;
+	}
+}
