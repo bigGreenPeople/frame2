@@ -90,6 +90,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- 配置我们的认证和授权类 -->
 		<property name="realm" ref="bosRealm"></property>
+		<property name="cacheManager" ref="cacheManager"></property>
 	</bean> 
 	<!-- 创建写好的realm -->
 	<bean id="bosRealm" class="com.fj.bos.realm.BOSRealm">
@@ -101,5 +102,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	</bean>
 	<!-- 配置shiro框架提供的切面类，用于创建代理对象 -->
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>
+	
+	<!-- 在spring配置文件中配置缓存管理器对象，并注入给安全管理器对象 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<!-- 注入配置文件 -->
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
+	</bean>
 </beans>
 
