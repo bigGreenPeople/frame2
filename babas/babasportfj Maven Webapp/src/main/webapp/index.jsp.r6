@@ -6,16 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <html>
 <body>
-<<<<<<< .mine
-<h2>Hello World!</h2>
-||||||| .r5
-<h2>Hello World !</h2>
-=======
 <h2></h2>
 <form action="/test/springmvc.do" method="post">
 	名称:<input type="text" value="2014-10-10 10:10:10" name="birthday"/><br/>
 	<input type="submit" value="sm"/>
 </form>
->>>>>>> .r6
 </body>
 </html>
